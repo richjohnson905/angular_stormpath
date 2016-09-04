@@ -7,7 +7,9 @@ var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/to
 var client = new pg.Client(connectionString);
 client.connect();
 
-todos.get('/', function(req, res) {
+todos.get('/',function(req, res) {
+	  
+	console.log(req.user.email)
 	console.log("GETTING TODOS");
     var results = [];
 
@@ -22,7 +24,7 @@ todos.get('/', function(req, res) {
         }
 
         // SQL Query > Select Data
-        var query = client.query("SELECT * FROM items ORDER BY id ASC;");
+        var query = client.query("SELECT * FROM items WHERE email=$1 ORDER BY id ASC;", [req.user.email]);
 
         // Stream results back one row at a time
         query.on('row', function(row) {
@@ -40,6 +42,8 @@ todos.get('/', function(req, res) {
 });
 
 todos.post('/', function(req, res, next) {
+	console.log(req.user.email)
+	console.log(req.user.id)
 	console.log("POSTING TODOS");
     var results = [];
 
@@ -57,10 +61,10 @@ todos.post('/', function(req, res, next) {
         }
 
         // SQL Query > Insert Data
-        client.query("INSERT INTO items(text, complete) values($1, $2)", [data.text, data.complete]);
+        client.query("INSERT INTO items(text, complete, email) values($1, $2, $3)", [data.text, data.complete, req.user.email]);
 
         // SQL Query > Select Data
-        var query = client.query("SELECT * FROM items ORDER BY id ASC");
+        var query = client.query("SELECT * FROM items WHERE email=$1 ORDER BY id ASC;", [req.user.email]);
 
         // Stream results back one row at a time
         query.on('row', function(row) {
@@ -100,7 +104,7 @@ todos.put('/:todo_id', function(req, res) {
         client.query("UPDATE items SET text=($1), complete=($2) WHERE id=($3)", [data.text, data.complete, id]);
 
         // SQL Query > Select Data
-        var query = client.query("SELECT * FROM items ORDER BY id ASC");
+        var query = client.query("SELECT * FROM items WHERE email=$1 ORDER BY id ASC;", [req.user.email]);
 
         // Stream results back one row at a time
         query.on('row', function(row) {
@@ -137,7 +141,7 @@ todos.delete('/:todo_id', function(req, res) {
         client.query("DELETE FROM items WHERE id=($1)", [id]);
 
         // SQL Query > Select Data
-        var query = client.query("SELECT * FROM items ORDER BY id ASC");
+        var query = client.query("SELECT * FROM items WHERE email=$1 ORDER BY id ASC;", [req.user.email]);
 
         // Stream results back one row at a time
         query.on('row', function(row) {

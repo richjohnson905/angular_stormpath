@@ -8,6 +8,9 @@ and render default login and registration screens in your Angular application.
 [express-stormpath]: https://github.com/stormpath/express-stormpath
 [stormpath-sdk-angularjs]: https://github.com/stormpath/stormpath-sdk-angularjs
 
+## My Stuff First
+My password is GBxs3YmpDid2Ua
+
 ## 1. Getting Started
 
 To run this example project on your local computer, you will need to have
