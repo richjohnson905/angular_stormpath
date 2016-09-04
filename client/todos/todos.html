@@ -1,0 +1,26 @@
+<div class="container">
+
+      <div class="header">
+        <h1>Todo App</h1>
+        <hr>
+        <h1 class="lead">Node + Express + Angular + PostgreSQL</h1>
+      </div>
+
+      <div class="todo-form">
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control input-lg" placeholder="Enter text..." ng-model="formData.text">
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createTodo()">Add Todo</button>
+        </form>
+      </div>
+
+      <br>
+
+      <div class="todo-list">
+        <ul ng-repeat="todo in todoData track by $index">
+          <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)">&nbsp;{{ todo.text }}</li></h3><hr>
+        </ul>
+      </div>
+
+    </div>

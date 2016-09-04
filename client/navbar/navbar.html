@@ -12,6 +12,9 @@
                 <li if-user ng-class="{active: isActive('/profile')}">
                     <a ui-sref="profile">Profile</a>
                 </li>
+                <li if-user ng-class="{active: isActive('/todos')}">
+                    <a href="/todos">Todos</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li if-not-user>
