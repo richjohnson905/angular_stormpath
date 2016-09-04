@@ -4,14 +4,20 @@
     <hr>
     <div class="jumbotron">
         <p>
-            <strong>This is the example fullstack project for Angular, Express, and Stormpath.</strong>
+            <strong>Squire Scheduling</strong>
         </p>
         <div if-user>
-            <p>Now that you are logged in, you can visit the profile page and edit your account information.</p>
+            <p>Dashboard</p>
+			Content coming here
+	        <div class="my-schedule">
+	          <ul ng-repeat="schedule in scheduleData track by $index">
+	            <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(schedule.id)">&nbsp;{{ schedule.text }}</li></h3><hr>
+	          </ul>
+	        </div>
         </div>
         <div if-not-user>
             <p>
-                This example application shows you how to register and login to your Angular application with Stormpath.
+                Squire - The provider and consumer schedule wire-up
             </p>
             <p>
                 <span>Ready to begin? You'll need to</span>

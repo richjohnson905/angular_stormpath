@@ -70,6 +70,7 @@ app.route('/*')
 
 app.post('/profile', bodyParser.json(), stormpath.loginRequired, require('./routes/profile'));
 app.use('/todos', bodyParser.json(), stormpath.loginRequired, require('./routes/todos'));
+app.use('/dashboard', bodyParser.json(), stormpath.loginRequired, require('./routes/dashboard'));
 
 /**
  * Start the web server.

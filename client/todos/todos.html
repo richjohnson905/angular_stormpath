@@ -17,7 +17,7 @@
       <br>
 
       <div class="todo-list">
-        <ul ng-repeat="todo in todoData">   <!-- track by $index -->
+        <ul ng-repeat="todo in todoData track by $index">   <!-- track by $index -->
           <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)">&nbsp;{{ todo.text }}</li></h3><hr>
         </ul>
       </div>

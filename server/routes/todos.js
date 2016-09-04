@@ -40,9 +40,11 @@ todos.post('/', function(req, res, next) {
         }
 
         // SQL Query > Insert Data
-        client.query("INSERT INTO items(text, complete, email) values($1, $2, $3)", [data.text, data.complete, req.user.email]);
-
-		return getUsersTodos(req, res, done);
+		getStormId(req, res, function(storm_id) {
+			console.log("GOT IT");
+			client.query("INSERT INTO items(text, complete, stormpath_id) values($1, $2, $3)", [data.text, data.complete, storm_id]);
+			return getUsersTodos(req, res, done, storm_id);
+		});
     });
 });
 
@@ -92,14 +94,15 @@ todos.delete('/:todo_id', function(req, res) {
     });
 });
 
-function getUsersTodos(req, res, done) {
+function getUsersTodos(req, res, done, storm_id) {
 	var results = [];
-	
+	console.log("getting users todos with " + storm_id);
     // SQL Query > Select Data
-    var query = client.query("SELECT * FROM items WHERE email=$1 ORDER BY id ASC;", [req.user.email]);
+    var query = client.query("SELECT * FROM items WHERE stormpath_id=$1 ORDER BY id ASC;", [storm_id]);
 
     // Stream results back one row at a time
     query.on('row', function(row) {
+		console.log(row)
         results.push(row);
     });
 
@@ -107,6 +110,23 @@ function getUsersTodos(req, res, done) {
     query.on('end', function() {
         done();
         return res.json(results);
+    });
+}
+
+function getStormId(req, res, callback) {
+	console.log("GETTING storm ID");
+	var storm_id = 0;
+	var query = client.query("SELECT * FROM stormpath WHERE email=$1;", [req.user.email]);
+	console.log("fuck");
+    query.on('row', function(row) {
+		console.log(row);
+        storm_id = row.id;
+    });
+	
+    // After all data is returned, close connection and return results
+    query.on('end', function() {
+		console.log("returning: " + storm_id)
+        callback(storm_id);
     });
 }
 
