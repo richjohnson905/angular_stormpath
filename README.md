@@ -9,7 +9,7 @@ and render default login and registration screens in your Angular application.
 [stormpath-sdk-angularjs]: https://github.com/stormpath/stormpath-sdk-angularjs
 
 ## My Stuff First
-My password is GBxs3YmpDid2Ua
+
 
 ## 1. Getting Started
 
