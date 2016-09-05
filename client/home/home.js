@@ -14,7 +14,7 @@ angular.module('exampleApp')
       $scope.scheduleData = {};
 	  
 	  // Get all todos
-	  $http.get('/home')
+	  $http.get('/dashboard')
 	      .success(function(data) {
 	          $scope.scheduleData = data;
 	          console.log(data);
@@ -22,4 +22,16 @@ angular.module('exampleApp')
 	      .error(function(error) {
 	          console.log('Error: ' + error);
 	      });
+		  
+      // Delete a schedule
+      $scope.deleteSchedule = function(scheduleID) {
+          $http.delete('/dashboard/' + scheduleID)
+              .success(function(data) {
+                  $scope.scheduleData = data;
+                  console.log(data);
+              })
+              .error(function(data) {
+                  console.log('Error: ' + data);
+              });
+      };
   });

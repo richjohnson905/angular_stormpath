@@ -23,14 +23,15 @@ angular.module('exampleApp')
       $scope.todoData = {};
 
       // Get all todos
+	  console.log("INIT ON TODO GET");
       $http.get('/todos')
           .success(function(data) {
               $scope.todoData = data;
               console.log(data);
           })
-          .error(function(error) {
-              console.log('Error: ' + error);
-          });
+	      .error(function(error) {
+	           console.log('Error: ' + error);
+	      });
 
       // Create a new todo
       $scope.createTodo = function(todoID) {
@@ -56,4 +57,5 @@ angular.module('exampleApp')
                   console.log('Error: ' + data);
               });
       };
+	  
   });

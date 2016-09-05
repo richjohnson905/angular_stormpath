@@ -63,14 +63,16 @@ app.use(stormpath.init(app, {
  * to define all view routes, and rediret to the home page if the URL is not
  * defined.
  */
+app.use('/todos', bodyParser.json(), stormpath.loginRequired, require('./routes/todos'));
+app.use('/dashboard', bodyParser.json(), stormpath.loginRequired, require('./routes/dashboard'));
+
 app.route('/*')
   .get(function(req, res) {
-    res.sendFile(path.join(__dirname, '..', 'client','index.html'));
+	  console.log("Got a GET request from my angular app");
+      res.sendFile(path.join(__dirname, '..', 'client','index.html'));
   });
 
 app.post('/profile', bodyParser.json(), stormpath.loginRequired, require('./routes/profile'));
-app.use('/todos', bodyParser.json(), stormpath.loginRequired, require('./routes/todos'));
-app.use('/dashboard', bodyParser.json(), stormpath.loginRequired, require('./routes/dashboard'));
 
 /**
  * Start the web server.

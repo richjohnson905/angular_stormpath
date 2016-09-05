@@ -10,17 +10,23 @@ client.connect();
 todos.get('/',function(req, res, next) {	  
 	console.log(req.user.email)
 	console.log("GETTING TODOS");
+	console.log("GETTING TODOS2");
 
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
+		console.log("what the fuck!!!!!!!!");
         // Handle connection errors
         if(err) {
           done();
           console.log(err);
           return res.status(500).json({ success: false, data: err});
         }
-		return getUsersTodos(req, res, done);
+		console.log("getting storm id");
+		getStormId(req, res, function(storm_id) {
+			return getUsersTodos(req, res, done, storm_id);
+		});
     });
+	console.log("ending...")
 });
 
 todos.post('/', function(req, res, next) {
@@ -117,7 +123,7 @@ function getStormId(req, res, callback) {
 	console.log("GETTING storm ID");
 	var storm_id = 0;
 	var query = client.query("SELECT * FROM stormpath WHERE email=$1;", [req.user.email]);
-	console.log("fuck");
+	
     query.on('row', function(row) {
 		console.log(row);
         storm_id = row.id;

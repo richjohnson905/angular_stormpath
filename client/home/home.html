@@ -8,12 +8,6 @@
         </p>
         <div if-user>
             <p>Dashboard</p>
-			Content coming here
-	        <div class="my-schedule">
-	          <ul ng-repeat="schedule in scheduleData track by $index">
-	            <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(schedule.id)">&nbsp;{{ schedule.text }}</li></h3><hr>
-	          </ul>
-	        </div>
         </div>
         <div if-not-user>
             <p>
@@ -28,4 +22,12 @@
             </p>
         </div>
     </div>
+	<div if-user>
+		Content coming here
+        <div class="my-schedule">
+          <ul ng-repeat="schedule in scheduleData track by $index">
+            <li><h3><input class="lead" type="checkbox" ng-click="deleteSchedule(schedule.id)">&nbsp;{{ schedule.text }}</li></h3><hr>
+          </ul>
+        </div>
+	</div>
 </div>
