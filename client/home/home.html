@@ -8,6 +8,15 @@
         </p>
         <div if-user>
             <p>Dashboard</p>
+			<h3 if-user-in-group="'admins'">
+			    Hello, {{user.fullName}}, you are an administrator
+			</h3>
+			<h3 if-user-in-group="'providers'">
+			    Hello, {{user.fullName}}, you are a provider
+			</h3>
+			<h3 if-user-in-group="'users'">
+			    Hello, {{user.fullName}}, you are a user
+			</h3>
         </div>
         <div if-not-user>
             <p>

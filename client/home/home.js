@@ -17,7 +17,6 @@ angular.module('exampleApp')
 	  $http.get('/dashboard')
 	      .success(function(data) {
 	          $scope.scheduleData = data;
-	          console.log(data);
 	      })
 	      .error(function(error) {
 	          console.log('Error: ' + error);
@@ -28,7 +27,6 @@ angular.module('exampleApp')
           $http.delete('/dashboard/' + scheduleID)
               .success(function(data) {
                   $scope.scheduleData = data;
-                  console.log(data);
               })
               .error(function(data) {
                   console.log('Error: ' + data);

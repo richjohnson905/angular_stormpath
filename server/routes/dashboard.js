@@ -8,9 +8,6 @@ var client = new pg.Client(connectionString);
 client.connect();
 
 dashboard.get('/',function(req, res, next) {	  
-	console.log(req.user.email)
-	console.log("GETTING Dashboard");
-
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
         // Handle connection errors
@@ -26,7 +23,6 @@ dashboard.get('/',function(req, res, next) {
 
 		    // Stream results back one row at a time
 		    query.on('row', function(row) {
-				console.log(row)
 		        results.push(row);
 		    });
 
@@ -50,7 +46,6 @@ function getStormId(req, res, callback) {
 	
     // After all data is returned, close connection and return results
     query.on('end', function() {
-		console.log("returning: " + storm_id)
         callback(storm_id);
     });
 }

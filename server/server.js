@@ -37,23 +37,25 @@ app.use('/',express.static(path.join(__dirname, '..', 'client'),{ redirect: fals
  * Now we initialize Stormpath, any middleware that is registered after this
  * point will be protected by Stormpath.
  */
-
-console.log('Initializing Stormpath');
-
 app.use(stormpath.init(app, {
-  web: {
-    spa: {
-      enabled: true,
-      view: path.join(__dirname, '..', 'client','index.html')
-    },
-    me: {
-      expand: {
-        customData: true,
-        groups: true
-      }
-    },
-    debug: 'info'
-  }
+	postRegistrationHandler: function (account, req, res, next) {
+	    console.log('User:', account.email, 'just registered!');
+		client.query("INSERT INTO stormpath(email) values($1)", [account.email]);
+	    next();
+	},
+	web: {
+		spa: {
+		  enabled: true,
+		  view: path.join(__dirname, '..', 'client','index.html')
+		},
+		me: {
+		  expand: {
+		    customData: true,
+		    groups: true
+		  }
+		},
+		debug: 'info'
+	}
 }));
 
 /**
