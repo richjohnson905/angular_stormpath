@@ -42,7 +42,6 @@ function getStormId(req, res, callback) {
 	console.log("GETTING storm ID");
 	var storm_id = 0;
 	var query = client.query("SELECT * FROM stormpath WHERE email=$1;", [req.user.email]);
-	console.log("fuck");
     query.on('row', function(row) {
 		console.log(row);
         storm_id = row.id;
