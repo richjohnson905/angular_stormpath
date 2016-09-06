@@ -26,6 +26,7 @@ dashboard.get('/',function(req, res, next) {
 
 		    // Stream results back one row at a time
 		    query.on('row', function(row) {
+				console.log(row)
 		        results.push(row);
 		    });
 

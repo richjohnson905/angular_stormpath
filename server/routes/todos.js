@@ -65,9 +65,16 @@ todos.put('/:todo_id', function(req, res) {
           return res.status(500).send(json({ success: false, data: err}));
         }
         // SQL Query > Update Data
-        client.query("UPDATE items SET text=($1), complete=($2) WHERE id=($3)", [data.text, data.complete, id]);
-
-        return getUsersTodos(req, res, done);
+		getStormId(req, res, function(storm_id) {
+	        client.query("UPDATE items SET text=($1), complete=($2) WHERE id=($3)", [data.text, data.complete, id], function(err, result) {
+				if (err) {
+					done();
+					console.log(err);
+					return res.status(500).json({ success: false, data: err});
+				}
+				return getUsersTodos(req, res, done, storm_id);
+			});
+		});
     });
 });
 
@@ -85,9 +92,16 @@ todos.delete('/:todo_id', function(req, res) {
         }
 
         // SQL Query > Delete Data
-        client.query("DELETE FROM items WHERE id=($1)", [id]);
-
-        return getUsersTodos(req, res, done);
+		getStormId(req, res, function(storm_id) {
+	        client.query("DELETE FROM items WHERE id=($1)", [id], function(err, result) {
+				if (err) {
+					done();
+					console.log(err);
+					return res.status(500).json({ success: false, data: err});
+				}
+				return getUsersTodos(req, res, done, storm_id);
+			});
+		});
     });
 });
 
