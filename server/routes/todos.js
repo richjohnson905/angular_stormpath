@@ -2,7 +2,8 @@ var express = require('express');
 var todos = express.Router();
 
 var pg = require('pg');
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
+//var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
+var connectionString = 'postgres://ec2-54-243-47-213.compute-1.amazonaws.com:5432/dbboidjdr156ff';
 
 var client = new pg.Client(connectionString);
 client.connect();
