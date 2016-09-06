@@ -112,7 +112,6 @@ function getUsersTodos(req, res, done, storm_id) {
 
     // Stream results back one row at a time
     query.on('row', function(row) {
-		console.log(row)
         results.push(row);
     });
 
@@ -128,7 +127,6 @@ function getStormId(req, res, callback) {
 	var query = client.query("SELECT * FROM stormpath WHERE email=$1;", [req.user.email]);
 	
     query.on('row', function(row) {
-		console.log(row);
         storm_id = row.id;
     });
 	
