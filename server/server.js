@@ -83,6 +83,7 @@ app.use(stormpath.init(app, {
  * to define all view routes, and rediret to the home page if the URL is not
  * defined.
  */
+app.use('/provider', bodyParser.json(), stormpath.loginRequired, require('./routes/providerRoutes'));
 app.use('/todos', bodyParser.json(), stormpath.loginRequired, require('./routes/todos'));
 app.use('/dashboard', bodyParser.json(), stormpath.loginRequired, require('./routes/dashboard'));
 

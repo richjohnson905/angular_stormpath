@@ -15,6 +15,9 @@
                 <li if-user ng-class="{active: isActive('/todos')}">
 					<a ui-sref="todos">Todos</a>
                 </li>
+                <li if-user ng-class="{active: isActive('/provider')}">
+					<a ui-sref="provider">Provider</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li if-not-user>
