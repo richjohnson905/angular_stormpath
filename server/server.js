@@ -6,20 +6,36 @@ var path = require('path');
 var stormpath = require('express-stormpath');
 
 var router = express.Router();
+
 var pg = require('pg');
+var db;
 
-
-
-//var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
-var connectionString = 'postgres://ec2-54-243-47-213.compute-1.amazonaws.com:5432/dbboidjdr156ff';
-
-var client = new pg.Client(connectionString);
-client.connect();
+//var connectionString = 'postgres://ec2-54-243-47-213.compute-1.amazonaws.com:5432/dbboidjdr156ff';
+if (true) {
+	console.log("setting up local db");
+	var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
+	var db = new pg.Client(connectionString);
+	db.connect();
+}
+else {
+	console.log("setting up ssl aws db");
+	pg.defaults.ssl = true;
+	pg.connect(process.env.DATABASE_URL, function(err, theClient) {
+	  if (err) throw err;
+	  console.log('Connected to postgres! Getting schemas...');
+	  db = theClient;
+	});
+}
 
 /**
  * Create the Express application.
  */
 var app = express();
+
+app.all('*', function(request, response, next) {
+    request.database = db;
+    next();
+});
 
 /**
  * The 'trust proxy' setting is required if you will be deploying your
@@ -32,9 +48,7 @@ app.set('trust proxy',true);
   We need to setup a static file server that can serve the assets for the
   angular application.  We don't need to authenticate those requests, so we
   setup this server before we initialize Stormpath.
-
  */
-
 app.use('/',express.static(path.join(__dirname, '..', 'client'),{ redirect: false }));
 
 /**
@@ -44,7 +58,7 @@ app.use('/',express.static(path.join(__dirname, '..', 'client'),{ redirect: fals
 app.use(stormpath.init(app, {
 	postRegistrationHandler: function (account, req, res, next) {
 	    console.log('User:', account.email, 'just registered!');
-		client.query("INSERT INTO stormpath(email) values($1)", [account.email]);
+		db.query("INSERT INTO stormpath(email) values($1)", [account.email]);
 	    next();
 	},
 	web: {
