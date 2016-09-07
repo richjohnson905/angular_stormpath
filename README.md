@@ -9,7 +9,9 @@ and render default login and registration screens in your Angular application.
 [stormpath-sdk-angularjs]: https://github.com/stormpath/stormpath-sdk-angularjs
 
 ## My Stuff First
-
+Before pushing to heroku, use the heroku stormpath yml file.
+Run - git push heroku master
+Else- git push origin master // for regular github commit
 
 ## 1. Getting Started
 
