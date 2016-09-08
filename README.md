@@ -13,6 +13,42 @@ stormpath.yml is only for heroku.  The local bash_profile contains the env var f
 Run - git push heroku master
 Else- git push origin master // for regular github commit
 
+## Schema
+{"schedule": {
+	"bizName": "Excel",
+	"phone": "222-333-4444",
+	"address": "123 main street Dardenne Prairie, MO 63368",
+    "providers": [
+        {
+            "name": "Kenny Ball",
+            "service": "personal training",
+            "slots": 15,
+            "sunday": [],
+            "monday": [6, 7, 8, 9, 16, 17, 18],
+            "tuesday": [],
+            "wednesday": [],
+            "thursday": [],
+            "friday": [],
+            "saturday": [],
+            "repeats": true
+        },
+        {
+            "name": "Kyle Dehas",
+            "service": "sport performance",
+            "slots": 5,
+            "sunday": [],
+            "monday": [],
+            "tuesday": [16, 17, 18],
+            "wednesday": [],
+            "thursday": [],
+            "friday": [],
+            "saturday": [],
+            "repeats": true
+        }
+    ]
+    }
+}
+
 ## 1. Getting Started
 
 To run this example project on your local computer, you will need to have
