@@ -1,0 +1,37 @@
+{
+  "name": "express-stormpath-angular-sample-project",
+  "description": "Sample fullstack application, using Angular.js, Express.js, and Stormpath",
+  "main": "server.js",
+  "authors": [
+    "Stormpath",
+    "Inc."
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "stormpath",
+    "angular",
+    "express",
+    "authentication",
+    "oauth",
+    "login",
+    "registration",
+    "user",
+    "password",
+    "security"
+  ],
+  "homepage": "https://github.com/blueguitarenator/angular_stormpath",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "bootstrap": "^3.3.7",
+    "jquery": "1",
+    "stormpath-sdk-angularjs": "^1.0.0"
+  }
+}
