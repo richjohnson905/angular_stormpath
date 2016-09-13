@@ -64,6 +64,8 @@ app.use(ExpressStormpath.init(app,{
 	}
 }));
 
+app.use(favicon(__dirname + '/public/favicon.ico'));
+
 // Described in the Stormpath SDK
 app.get('/home', ExpressStormpath.getUser, function (req, res) {
   var stormpathApplication = req.app.get('stormpathApplication');
