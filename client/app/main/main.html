@@ -10,7 +10,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
+    <div if-user class="col-lg-12">
       <h1 class="page-header">Todos:</h1>
 	  
 	  <div class="todo-form">
@@ -30,8 +30,8 @@
 	      </ul>
 	    </div> -->
 	  
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="todo in todos">
-        <li><a href="#" tooltip="{{todo.info}}">{{todo.name}}</a></li>
+      <ul if-user class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="todo in todos">
+        <li><a href="#" tooltip="{{todo.info}}">{{todo.text}}</a></li>
       </ul>
     </div>
   </div>
