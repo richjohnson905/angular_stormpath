@@ -2,10 +2,10 @@
 
 angular.module('yoStormApp')
   .controller('MainCtrl', function ($scope, $http) {
-    $scope.awesomeThings = [];
+    $scope.todos = [];
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
+    $http.get('/api/todos').success(function(todos) {
+      $scope.todos = todos;
     });
 
   });
