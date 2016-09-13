@@ -64,6 +64,14 @@ app.use(ExpressStormpath.init(app,{
 	}
 }));
 
+// app.get('/', ExpressStormpath.getUser, function (req, res) {
+//   if (req.user) {
+//     res.send('Hello, ' + req.user.email);
+//   } else {
+//     res.send('Not logged in');
+//   }
+// });
+
 var server = require('http').createServer(app);
 require('./config/express')(app);
 require('./routes')(app);

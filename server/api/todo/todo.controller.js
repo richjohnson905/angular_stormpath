@@ -36,7 +36,7 @@ function getUsersTodos(req, res, storm_id) {
 
 function getStormId(req, res, callback) {
 	var storm_id = 0;
-	var query = req.database.query("SELECT * FROM stormpath WHERE email=$1;", ["eve@msn.com"]); //[req.user.email]);
+	var query = req.database.query("SELECT * FROM stormpath WHERE email=$1;", [req.user.email]);
 	
     query.on('row', function(row) {
         storm_id = row.id;
