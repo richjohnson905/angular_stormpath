@@ -16,7 +16,7 @@ var pg = require('pg');
 var db;
 
 //var connectionString = 'postgres://ec2-54-243-47-213.compute-1.amazonaws.com:5432/dbboidjdr156ff';
-if (true) {
+if (false) {
 	console.log("setting up local db");
 	var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
 	var db = new pg.Client(connectionString);
