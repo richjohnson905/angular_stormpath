@@ -64,6 +64,28 @@ app.use(ExpressStormpath.init(app,{
 	}
 }));
 
+// Described in the Stormpath SDK
+app.get('/home', ExpressStormpath.getUser, function (req, res) {
+  var stormpathApplication = req.app.get('stormpathApplication');
+  // Do stuff with stormpath
+});
+
+/* REMOVE THIS
+app.get('/secret', function (req, res) {
+  var client = req.app.get('stormpathClient');
+
+  // For example purposes only -- you probably don't want to actually expose
+  // this information to your users =)
+  client.getCurrentTenant(function (err, tenant) {
+    if (err) {
+      return res.status(400).json(err);
+    }
+
+    res.json(tenant);
+  });
+});
+*/
+
 // app.get('/', ExpressStormpath.getUser, function (req, res) {
 //   if (req.user) {
 //     res.send('Hello, ' + req.user.email);
