@@ -6,11 +6,12 @@
 
 var errors = require('./components/errors');
 var path = require('path');
+var ExpressStormpath = require('express-stormpath');
 
 module.exports = function(app) {
 
   // Insert routes below
-  app.use('/api/todos', require('./api/todo'));
+  app.use('/api/todos', ExpressStormpath.loginRequired, require('./api/todo'));
   app.use('/api/things', require('./api/thing'));
   
   // All undefined asset or api routes should return a 404
