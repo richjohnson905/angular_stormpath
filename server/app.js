@@ -63,8 +63,8 @@ app.use(ExpressStormpath.init(app,{
 		debug: 'info'
 	}
 }));
-
-app.use(favicon(__dirname + '/client/favicon.ico'));
+var favicon = require('serve-favicon');
+app.use(favicon(path.join(__dirname,'public','favicon.ico')));
 
 // Described in the Stormpath SDK
 app.get('/home', ExpressStormpath.getUser, function (req, res) {

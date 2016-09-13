@@ -8,3 +8,4 @@ dist
 npm-debug.log
 stormpath.yaml
 stormpath.yaml
+*/.DS_Store
