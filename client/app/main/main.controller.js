@@ -13,12 +13,13 @@ angular.module('yoStormApp')
           $http.post('/api/todos', $scope.formData)
               .success(function(data) {
                   $scope.formData = {};
-                  $scope.todoData = data;
+                  $scope.todos = data;
                   console.log(data);
               })
               .error(function(error) {
                   console.log('Error: ' + error);
               });
+
       };
 
   });

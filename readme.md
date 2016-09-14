@@ -6,6 +6,6 @@ Notes -
 
 
 ## Deploy
-* grunt build
+* grunt build (in project root)
 * cd dist
 * grunt buildcontrol:heroku
