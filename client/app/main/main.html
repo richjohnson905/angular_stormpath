@@ -1,6 +1,6 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<header class="hero-unit" id="banner">
+<header if-not-user class="hero-unit" id="banner">
   <div class="container">
     <h1>'Get Wired!</h1>
     <p class="lead">Kick-start your group</p>
@@ -11,7 +11,7 @@
 <div class="container">
   <div class="row">
     <div if-user class="col-lg-12">
-      <h1 class="page-header">Todos:</h1>
+      <h1 class="page-header">Dashboard</h1>
 	  
 	  <div class="todo-form">
 	      <form>
@@ -23,15 +23,10 @@
 	    </div>
 
 	    <br>
-
-	    <!-- <div class="todo-list">
-	      <ul ng-repeat="todo in todoData track by $index">
-	        <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)">&nbsp;{{ todo.text }}</li></h3><hr>
-	      </ul>
-	    </div> -->
 	  
       <ul if-user class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="todo in todos">
-        <li><a href="#" tooltip="{{todo.info}}">{{todo.text}}</a></li>
+        <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)">&nbsp;{{ todo.text }}</li></h3><hr>
+        <!--<li><a href="#" tooltip="{{todo.info}}">{{todo.text}}</a></li>-->
       </ul>
     </div>
   </div>

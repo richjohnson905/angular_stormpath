@@ -32,7 +32,23 @@ exports.create = function(req, res) {
 			return getUsersTodos(req, res, storm_id);
 		});
 	});
-}
+};
+
+exports.destroy = function(req, res) {
+// Grab data from the URL parameters
+    var id = req.params.id;
+
+    // SQL Query > Delete Data
+	getStormId(req, res, function(storm_id) {
+        req.database.query("DELETE FROM items WHERE id=($1)", [id], function(err, result) {
+			if (err) {
+				console.log(err);
+				return res.status(500).json({ success: false, data: err});
+			}
+			return getUsersTodos(req, res, storm_id);
+		});
+	});
+};
 
 function getUsersTodos(req, res, storm_id) {
 	var results = [];

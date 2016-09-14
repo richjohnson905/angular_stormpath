@@ -9,17 +9,28 @@ angular.module('yoStormApp')
     });
 
     // Create a new todo
-      $scope.createTodo = function(todoID) {
-          $http.post('/api/todos', $scope.formData)
-              .success(function(data) {
-                  $scope.formData = {};
-                  $scope.todos = data;
-                  console.log(data);
-              })
-              .error(function(error) {
-                  console.log('Error: ' + error);
-              });
+    $scope.createTodo = function() {
+        $http.post('/api/todos', $scope.formData)
+            .success(function(data) {
+                $scope.formData = {};
+                $scope.todos = data;
+                console.log(data);
+            })
+            .error(function(error) {
+                console.log('Error: ' + error);
+            });
+    };
 
-      };
+    $scope.deleteTodo = function(todoId) {
+        $http.delete('/api/todos/' + todoId)
+          .success(function(data) {
+            $scope.todos = data;
+            console.log(data);
+          })
+          .error(function(error) {
+            console.log('Error: ' + error);
+          });
+        }
+    
 
   });
