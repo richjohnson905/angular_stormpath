@@ -8,4 +8,17 @@ angular.module('yoStormApp')
       $scope.todos = todos;
     });
 
+    // Create a new todo
+      $scope.createTodo = function(todoID) {
+          $http.post('/api/todos', $scope.formData)
+              .success(function(data) {
+                  $scope.formData = {};
+                  $scope.todoData = data;
+                  console.log(data);
+              })
+              .error(function(error) {
+                  console.log('Error: ' + error);
+              });
+      };
+
   });

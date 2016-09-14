@@ -18,6 +18,22 @@ exports.index = function(req, res) {
   	});
 };
 
+exports.create = function(req, res) {
+    var data = {text: req.body.text, complete: false};
+
+    // SQL Query > Insert Data
+	getStormId(req, res, function(storm_id) {
+		req.database.query("INSERT INTO items(text, complete, stormpath_id) values($1, $2, $3)", [data.text, data.complete, storm_id], function(err, result) {
+			if (err) {
+				//done();
+				console.log(err);
+				return res.status(500).json({ success: false, data: err});
+			}
+			return getUsersTodos(req, res, storm_id);
+		});
+	});
+}
+
 function getUsersTodos(req, res, storm_id) {
 	var results = [];
     // SQL Query > Select Data
