@@ -4,9 +4,6 @@ angular.module('yoStormApp')
   .controller('MainCtrl', function ($scope, $http) {
     $scope.todos = [];
 
-    $scope.foo = function() {
-      $scope.isCollapsed = !$scope.isCollapsed
-    }
     $scope.isCollapsed = false;
     $scope.isCollapsedHorizontal = false;
 
