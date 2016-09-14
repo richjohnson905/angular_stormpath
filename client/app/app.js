@@ -5,6 +5,7 @@ angular.module('yoStormApp', [
   'ngResource',
   'ngSanitize',
   'ui.router',
+  'ngAnimate',
   'ui.bootstrap',
   'stormpath',
   'stormpath.templates'

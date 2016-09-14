@@ -32,6 +32,25 @@
   </div>
 </div>
 
+<style>
+  .horizontal-collapse {
+    height: 70px;
+  }
+</style>
+<div if-user >
+	<button type="button" class="btn btn-default" ng-click="foo()">Toggle collapse Vertically</button>
+	<hr>
+	<div uib-collapse="isCollapsed">
+		<div class="well well-lg">Some content</div>
+	</div>
+
+	<button type="button" class="btn btn-default" ng-click="isCollapsedHorizontal = !isCollapsedHorizontal">Toggle collapse Horizontally</button>
+	<hr>
+	<div class="horizontal-collapse" uib-collapse="isCollapsedHorizontal" horizontal>
+		<div class="well well-lg">Some content</div>
+	</div>
+</div>
+
 <footer class="footer">
   <div class="container">
       <p>Angular Fullstack v2.1.1 |
