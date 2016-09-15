@@ -11,44 +11,54 @@ var express = require('express');
 var ExpressStormpath = require('express-stormpath');
 var path = require('path');
 var config = require('./config/environment');
-var pg = require('pg');
+//var pg = require('pg');
 
-var db;
+//var db;
 
 //var connectionString = 'postgres://ec2-54-243-47-213.compute-1.amazonaws.com:5432/dbboidjdr156ff';
-if (true) {
-	console.log("setting up local db");
-	var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
-	var db = new pg.Client(connectionString);
-	db.connect();
-}
-else {
-	console.log("setting up ssl aws db");
-	pg.defaults.ssl = true;
-	pg.connect(process.env.DATABASE_URL, function(err, theClient) {
-	  if (err) throw err;
-	  console.log('Connected to postgres! Getting schemas...');
-	  db = theClient;
-	});
-}
+// if (true) {
+// 	console.log("setting up local db");
+// 	var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
+// 	var db = new pg.Client(connectionString);
+// 	db.connect();
+// }
+// else {
+// 	console.log("setting up ssl aws db");
+// 	pg.defaults.ssl = true;
+// 	pg.connect(process.env.DATABASE_URL, function(err, theClient) {
+// 	  if (err) throw err;
+// 	  console.log('Connected to postgres! Getting schemas...');
+// 	  db = theClient;
+// 	});
+// }
 
 
 // Setup server
 var app = express();
 
 
-
-app.all('*', function(request, response, next) {
-    request.database = db;
-    next();
+var models = require('../models');
+models.sequelize.sync().then(function () {
+  server.listen(config.port);
+  // server.on('error', onError);
+  // server.on('listening', onListening);
 });
+
+function onError(err) {
+	console.log(err);
+}
+
+function onListening() {
+	console.log("=========listening========");
+}
 
 app.use(ExpressStormpath.init(app,{
 	postRegistrationHandler: function (account, req, res, next) {
-		    console.log('User:', account.email, 'just registered!');
-			db.query("INSERT INTO stormpath(email) values($1)", [account.email]);
-		    next();
-		},
+		models.Storm.create({
+			email: account.email
+		});
+		next();
+	},
 	web: {
 		spa: {
 		  enabled: true,

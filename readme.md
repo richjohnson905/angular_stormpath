@@ -8,6 +8,8 @@ Notes -
 * https://github.com/angular-ui/ui-router/wiki
 * https://docs.angularjs.org/guide/forms
 * http://cmme.org/tdumitrescu/blog/2014/02/node-sql-testing/
+* http://docs.sequelizejs.com/en/1.7.0/
+
 
 ## Deploy
 * grunt build (in project root)

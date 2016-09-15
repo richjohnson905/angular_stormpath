@@ -25,7 +25,7 @@
 	    <br>
 	  
       <ul if-user class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="todo in todos">
-        <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)">&nbsp;{{ todo.text }}</li></h3><hr>
+        <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)">&nbsp;{{ todo.name }}</li></h3><hr>
         <!--<li><a href="#" tooltip="{{todo.info}}">{{todo.text}}</a></li>-->
       </ul>
     </div>

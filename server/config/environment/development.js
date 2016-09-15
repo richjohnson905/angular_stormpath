@@ -8,16 +8,14 @@ module.exports = {
     uri: 'mongodb://localhost/yostorm-dev'
   },
 
-  seedDB: true
+  seedDB: true,
   
 // Postgres connection options
-  // postgres: {
-//           uri: process.env.POSTGRES_URL ||
-//          'postgres://user:pass@localhost:5432/testDB'
-//   },
-//   database: 'todo',
-//   username: 'rich.johnson',
-//   password: 'root',
-//   seedDB: true
-//   };
+  postgres: {
+          uri: process.env.POSTGRES_URL ||
+         'postgres://user:pass@localhost:5432/todo'
+  },
+  database: 'todo',
+  username: 'rich.johnson',
+  password: 'root'
 };
