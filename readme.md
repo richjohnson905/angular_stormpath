@@ -14,11 +14,13 @@ Notes -
 
 ## Schema
 {"provider":{
+    "complete": true,
     "name": "Excel",
     "address": "123 main street",
     "phone": "323-323-2342",
     "providers": [
       {
+        "complete": true,
         "name": "Kenny Ball",
         "repeats": true,
         "sunday": [],

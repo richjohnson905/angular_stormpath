@@ -11,6 +11,7 @@ var ExpressStormpath = require('express-stormpath');
 module.exports = function(app) {
 
   // Insert routes below
+  app.use('/api/providers', ExpressStormpath.loginRequired, require('./api/provider'));
   app.use('/api/todos', ExpressStormpath.loginRequired, require('./api/todo'));
   app.use('/api/things', require('./api/thing'));
   

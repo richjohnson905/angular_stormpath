@@ -1,0 +1,25 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+ 
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Provider</h3>
+      <hr>
+    </div>
+  </div>
+ 
+  <div class="row">
+    <div class="col-xs-12">
+      {{message}}, You haven't setup any provider content yet 
+
+      <pre>{{Model | json}}</pre>
+        <!-- Nested Views Partial Begin -->
+        <div if-user>
+            <a ui-sref=".info" class="btn btn-primary">Info</a>
+            <a ui-sref=".schedule" class="btn btn-primary">Schedule</a>
+        </div>
+
+        <div ui-view=""></div>
+    </div>
+  </div>
+</div>
