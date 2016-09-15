@@ -7,6 +7,7 @@ Notes -
 * http://stackoverflow.com/questions/24902365/angular-ui-ui-router-how-do-i-inject-partial-view-using-stateprovider
 * https://github.com/angular-ui/ui-router/wiki
 * https://docs.angularjs.org/guide/forms
+* http://cmme.org/tdumitrescu/blog/2014/02/node-sql-testing/
 
 ## Deploy
 * grunt build (in project root)
