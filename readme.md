@@ -6,6 +6,7 @@ Notes -
 * https://github.com/DaftMonk/fullstack-demo
 * http://stackoverflow.com/questions/24902365/angular-ui-ui-router-how-do-i-inject-partial-view-using-stateprovider
 * https://github.com/angular-ui/ui-router/wiki
+* https://docs.angularjs.org/guide/forms
 
 ## Deploy
 * grunt build (in project root)

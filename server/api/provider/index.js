@@ -5,6 +5,7 @@ var controller = require('./provider.controller');
 
 var router = express.Router();
 
+//router.get('/', controller.index);
 router.get('/', controller.index);
 router.post('/', controller.create);
 

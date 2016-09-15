@@ -7,14 +7,14 @@ angular.module('yoStormApp')
     $scope.Model = $scope.Model || {Name : "xxx"};
 
     $http.get('/api/providers').success(function(providers){
-      $scope.providers = providers
+      $scope.Model = providers
     });
 
     // Create a new todo
     $scope.createProvider = function() {
-        $http.post('/api/providers', $scope.formData)
+        $http.post('/api/providers', $scope.Model)
             .success(function(data) {
-                $scope.formData = {};
+                $scope.Model = {};
                 $scope.Model = data;
                 console.log(data);
             })
