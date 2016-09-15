@@ -19,7 +19,7 @@ Notes -
     "name": "Excel",
     "address": "123 main street",
     "phone": "323-323-2342",
-    "providers": [
+    "schedules": [
       {
         "complete": true,
         "name": "Kenny Ball",

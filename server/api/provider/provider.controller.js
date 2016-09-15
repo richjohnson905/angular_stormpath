@@ -10,7 +10,7 @@ exports.index = function(req, res) {
     "name": "Excel",
     "address": "123 main street",
     "phone": "323-323-2342",
-    "providers": [
+    "schedules": [
       {
         "complete": true,
         "name": "Kenny Ball",
@@ -31,7 +31,7 @@ exports.create = function(req, res) {
     "name": "Excel",
     "address": "123 main street",
     "phone": "323-323-2342",
-    "providers": [
+    "schedules": [
       {
         "complete": true,
         "name": "Kenny Ball",

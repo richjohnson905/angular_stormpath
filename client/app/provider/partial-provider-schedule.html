@@ -2,13 +2,13 @@
 
 <div>
     <form novalidate class="simple-form">
-        Name: <input type="text" ng-model="Model.providers[0].name" /><br />
-        Sunday: <input type="text" ng-model="Model.providers[0].sunday" /><br />
-        Monday: <input type="text" ng-model="Model.providers[0].monday" /><br />
-        Tuesday: <input type="text" ng-model="Model.providers[0].tuesday" /><br />
-        Wednesday: <input type="text" ng-model="Model.providers[0].wednesday" /><br />
-        Repeats: <input type="radio" ng-model="Model.providers[0].repeats" value="true" />true
-        <input type="radio" ng-model="Model.providers[0].repeats" value="false" />false<br />
+        Name: <input type="text" ng-model="Model.schedules[0].name" /><br />
+        Sunday: <input type="text" ng-model="Model.schedules[0].sunday" /><br />
+        Monday: <input type="text" ng-model="Model.schedules[0].monday" /><br />
+        Tuesday: <input type="text" ng-model="Model.schedules[0].tuesday" /><br />
+        Wednesday: <input type="text" ng-model="Model.schedules[0].wednesday" /><br />
+        Repeats: <input type="radio" ng-model="Model.schedules[0].repeats" value="true" />true
+        <input type="radio" ng-model="Model.schedules[0].repeats" value="false" />false<br />
         <input type="button" ng-click="reset()" value="Reset" />
         <input type="submit" ng-click="update(user)" value="Save" />
     </form>
