@@ -13,17 +13,13 @@ var models = require('../../../models');
 
 // Get list of todos
 exports.index = function(req, res) {
-    models.Todo.findAll({
-        include: [models.Storm]
-    }).then(function(todos) {
-        res.json(todos);
-    });
+    return getTodos(req, res);
 };
 
 exports.create = function(req, res) {
     var data = {text: req.body.text, complete: false};
 
-    var storm = getStormId(req, res, function(stormId) {
+    getStormId(req, res, function(stormId) {
         models.Todo.create({
             name: data.text,
             complete: false,
@@ -32,14 +28,22 @@ exports.create = function(req, res) {
             include: [models.Storm]
         })
         .then(function(){
-            models.Todo.findAll({
-                include: [models.Storm]
-            }).then(function(todos) {
-                res.json(todos);
-            });
+            return getTodos(req, res);
         });
     });
+}
 
+function getTodos(req, res) {
+    getStormId(req, res, function(stormId) {
+        models.Todo.findAll({
+            where: {
+                StormId: stormId
+            },
+            include: [models.Storm]
+        }).then(function(todos) {
+            res.json(todos);
+        });
+    });
 }
 
 function getStormId(req, res, callback) {

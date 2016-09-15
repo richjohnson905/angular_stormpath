@@ -40,8 +40,8 @@ var app = express();
 var models = require('../models');
 models.sequelize.sync().then(function () {
   server.listen(config.port);
-  // server.on('error', onError);
-  // server.on('listening', onListening);
+  server.on('error', onError);
+  server.on('listening', onListening);
 });
 
 function onError(err) {
