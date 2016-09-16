@@ -1,0 +1,18 @@
+
+<!-- partial-provider-view.html -->
+
+<div>
+ 
+    <form novalidate class="simple-form">
+        Name: {{Model.name}}<br />
+        Address: {{Model.address}}<br />
+        Phone: {{Model.phone}}<br />
+        
+    </form>
+  <!--<pre>user = {{user | json}}</pre>-->
+  <!--<pre>master = {{master | json}}</pre>-->
+</div>
+
+
+
+<a class="btn btn-primary" ui-sref="provider.edit({id: provider.id})">Edit</a>

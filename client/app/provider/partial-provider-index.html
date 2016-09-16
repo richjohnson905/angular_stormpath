@@ -1,0 +1,15 @@
+<!-- partial-provider-index.html -->
+
+<table class="table movietable">
+    <tr>
+    <td><h3>  </h3></td>
+    <td></td>
+    </tr>
+    <tr ng-repeat="provider in providers">
+    <td>{{provider.name}}</td>
+    <td>
+        <a class="btn btn-primary" ui-sref="provider.view({id: provider.id})">View</a>
+        <a class="btn btn-danger"  ng-click="deleteProvider(provider)">Delete</a>
+    </td>
+    </tr>
+</table>

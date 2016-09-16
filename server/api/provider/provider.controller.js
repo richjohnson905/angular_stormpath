@@ -1,50 +1,91 @@
 'use strict';
 
 var _ = require('lodash');
+var models = require('../../../models');
 
 // Get my provider
 exports.index = function(req, res) {
-  getStormId(req, res, function(storm_id) {
-  	return getCompleteProvider(req, res, storm_id);
-  });
+  return getProviders(req, res);
 };
+
+function getProviders(req, res) {
+    getStormId(req, res, function(stormId) {
+        models.Provider.findAll({
+            where: {
+                StormId: stormId
+            },
+            include: [models.Storm]
+        }).then(function(providers) {
+            res.json(providers);
+        });
+    });
+}
 
 exports.create = function(req, res) {
   var provider = req.body.text;
-  var schedule = provider.schedule;
-  var sunday = schedule.sunday;
-  var monday = schedule.monday;
 
-    // SQL Query > Insert Data
-	getStormId(req, res, function(storm_id) {
-    if (provider) {
-      req.database.query("INSERT INTO provider(name, address, phone, stormpath_id) values($1, $2, $3, $4)", [provider.name, provider.address, provider.phone, storm_id], function(err, result) {
-        if (err) {
-          console.log(err);
-          return res.status(500).json({ success: false, data: err});
-        }
-        var provider_id = result.id;
-        if (schedule) {
-          req.database.query("INSERT INTO schedule(name, repeat, provider_id) values($1, $2, $3)", [schedule.name, schedule.repeat, provider_id], function(err, result) {
-            if (err) {
-              console.log(err);
-              return res.status(500).json({ success: false, data: err});
-            }
-            var schedule_id = result.id;
-            insertDay(sunday, "sunday", schedule_id);
-            insertDay(monday, "monday", schedule_id);
-            insertDay(tuesday, "tuesday", schedule_id);
-            insertDay(wednesday, "wednesday", schedule_id);
-            insertDay(thursday, "thursday", schedule_id);
-            insertDay(friday, "friday", schedule_id);
-            insertDay(saturday, "saturday", schedule_id);
-          });
-          return getCompleteProvider(req, res, storm_id);
-        }
-      });
-    }
-	});
+    getStormId(req, res, function(stormId) {
+        models.Provider.create({
+            name: data.name,
+            address: data.address,
+            phone: data.phone,
+            StormId: stormId
+        },{
+            include: [models.Storm]
+        })
+        .then(function(){
+            return getProviders(req, res);
+        });
+    });
 }
+
+exports.show = function(req, res) {
+
+}
+
+exports.update = function(req, res) {
+    
+}
+
+exports.destroy = function(req, res) {
+    
+}
+
+//   var provider = req.body.text;
+//   var schedule = provider.schedule;
+//   var sunday = schedule.sunday;
+//   var monday = schedule.monday;
+
+//     // SQL Query > Insert Data
+// 	getStormId(req, res, function(storm_id) {
+//     if (provider) {
+//       req.database.query("INSERT INTO provider(name, address, phone, stormpath_id) values($1, $2, $3, $4)", [provider.name, provider.address, provider.phone, storm_id], function(err, result) {
+//         if (err) {
+//           console.log(err);
+//           return res.status(500).json({ success: false, data: err});
+//         }
+//         var provider_id = result.id;
+//         if (schedule) {
+//           req.database.query("INSERT INTO schedule(name, repeat, provider_id) values($1, $2, $3)", [schedule.name, schedule.repeat, provider_id], function(err, result) {
+//             if (err) {
+//               console.log(err);
+//               return res.status(500).json({ success: false, data: err});
+//             }
+//             var schedule_id = result.id;
+//             insertDay(sunday, "sunday", schedule_id);
+//             insertDay(monday, "monday", schedule_id);
+//             insertDay(tuesday, "tuesday", schedule_id);
+//             insertDay(wednesday, "wednesday", schedule_id);
+//             insertDay(thursday, "thursday", schedule_id);
+//             insertDay(friday, "friday", schedule_id);
+//             insertDay(saturday, "saturday", schedule_id);
+//           });
+//           return getCompleteProvider(req, res, storm_id);
+//         }
+//       });
+//     }
+// 	});
+// }
 
 function insertDay(day, dayName, schedule_id) {
   if (day) {
@@ -142,6 +183,16 @@ function getMyDay(req, res, schedule_id, day) {
 }
 
 function getStormId(req, res, callback) {
+    models.Storm.findOne({
+        where: {
+            email: req.user.email
+        }
+    }).then(function(storm) {
+        callback(storm.id);
+    });
+}
+
+function getStormId2(req, res, callback) {
 	var storm_id = 0;
 	var query = req.database.query("SELECT * FROM stormpath WHERE email=$1;", [req.user.email]);
 	

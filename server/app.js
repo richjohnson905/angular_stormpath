@@ -11,26 +11,6 @@ var express = require('express');
 var ExpressStormpath = require('express-stormpath');
 var path = require('path');
 var config = require('./config/environment');
-//var pg = require('pg');
-
-//var db;
-
-//var connectionString = 'postgres://ec2-54-243-47-213.compute-1.amazonaws.com:5432/dbboidjdr156ff';
-// if (true) {
-// 	console.log("setting up local db");
-// 	var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/todo';
-// 	var db = new pg.Client(connectionString);
-// 	db.connect();
-// }
-// else {
-// 	console.log("setting up ssl aws db");
-// 	pg.defaults.ssl = true;
-// 	pg.connect(process.env.DATABASE_URL, function(err, theClient) {
-// 	  if (err) throw err;
-// 	  console.log('Connected to postgres! Getting schemas...');
-// 	  db = theClient;
-// 	});
-// }
 
 
 // Setup server
