@@ -7,7 +7,8 @@ angular.module('yoStormApp')
         abstract: true,
         url: '/provider',
         templateUrl: 'app/provider/provider.html',
-
+        controller: 'ProviderCtrl',
+        
         sp: {
 	        authenticate: true
 	      }
@@ -30,7 +31,8 @@ angular.module('yoStormApp')
       })
       .state('provider.new',{
         url: '/new',
-        templateUrl: 'app/provider/partial-provider-new.html'
+        templateUrl: 'app/provider/partial-provider-edit.html',
+        controller: 'ProviderNewCtrl',
       })
       .state('provider.edit',{
         url: '/:id/edit',
@@ -49,6 +51,21 @@ angular.module('yoStormApp')
       })
       .state('provider.schedule', {
         url: '/schedule',
-        templateUrl: 'app/provider/partial-provider-schedule.html'
+        templateUrl: 'app/provider/partial-provider-schedule.html',
+        controller: 'ProviderScheduleCtrl',
+      })
+      .state('provider.new.schedule', {
+        url: '/schedule',
+        templateUrl: 'app/provider/partial-provider-schedule.html',
+        controller: 'ProviderNewCtrl'
+      })
+      .state('provider.submit', {
+        url: '/submit',
+        templateUrl: 'app/provider/partial-provider-submit.html'
+      })
+      .state('provider.new.submit', {
+        url: '/submit',
+        templateUrl: 'app/provider/partial-provider-submit.html',
+        controller: 'ProviderNewCtrl'
       });
   });
