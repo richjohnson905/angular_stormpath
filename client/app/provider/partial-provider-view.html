@@ -1,12 +1,12 @@
 
 <!-- partial-provider-view.html -->
-
+Hello, {{message}}
 <div>
  
     <form novalidate class="simple-form">
-        Name: {{Model.name}}<br />
-        Address: {{Model.address}}<br />
-        Phone: {{Model.phone}}<br />
+        Name: {{providers.name}}<br />
+        Address: {{providers.address}}<br />
+        Phone: {{providers.phone}}<br />
         
     </form>
   <!--<pre>user = {{user | json}}</pre>-->
@@ -15,4 +15,5 @@
 
 
 
-<a class="btn btn-primary" ui-sref="provider.edit({id: provider.id})">Edit</a>
+<a class="btn btn-primary" ui-sref="provider.edit({id: providers.id})">Edit</a>
+<a class="btn btn-primary" ui-sref="provider.index">Back</a>

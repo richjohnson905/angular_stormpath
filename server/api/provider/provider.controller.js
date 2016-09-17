@@ -5,7 +5,7 @@ var models = require('../../../models');
 
 // Get my provider
 exports.index = function(req, res) {
-  return getProviders(req, res);
+  getProviders(req, res);
 };
 
 function getProviders(req, res) {
@@ -34,13 +34,23 @@ exports.create = function(req, res) {
             include: [models.Storm]
         })
         .then(function(){
-            return getProviders(req, res);
+            getProviders(req, res);
         });
     });
 }
 
 exports.show = function(req, res) {
-
+    console.log('SHOWING');
+    var providerId = req.params.id;
+    models.Provider.findOne({
+        where: {
+            id: providerId
+        },
+        include: [models.Storm]
+    }).then(function(provider) {
+        console.log(provider.name);
+        res.json(provider);
+    });
 }
 
 exports.update = function(req, res) {
