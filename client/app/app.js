@@ -11,9 +11,11 @@ angular.module('yoStormApp', [
   'stormpath.templates'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-    $urlRouterProvider
-      .otherwise('/');
+    
 
+    $urlRouterProvider.when("/provider", "provider/index");
+    $urlRouterProvider.otherwise('/');
+    
     $locationProvider.html5Mode(true);
   })
   .run(function($stormpath){
