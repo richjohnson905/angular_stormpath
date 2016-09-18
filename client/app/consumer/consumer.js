@@ -14,11 +14,17 @@ angular.module('yoStormApp')
       .state('consumer.index', {
         url: '/index',
         templateUrl: 'app/consumer/partial-consumer-index.html',
-        controller: 'ConsumerIndexCtrl'
+        controller: 'ConsumerIndexCtrl',
+        sp: {
+	        authenticate: true
+	      }
       })
       .state('consumer.add',{
         url: '/add',
         templateUrl: 'app/consumer/partial-consumer-add.html',
         controller: 'ConsumerAddCtrl',
+        sp: {
+	        authenticate: true
+	      }
       })
   });
