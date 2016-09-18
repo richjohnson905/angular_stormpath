@@ -1,6 +1,5 @@
 
 <!-- partial-provider-edit.html -->
-Hello, {{message}}
 <div>
     <form>
     <div class="form-provider-group">
@@ -16,12 +15,44 @@ Hello, {{message}}
         <input type="text" class="form-control" ng-model="providers.phone">
     </div>
     </br>
-    <a ui-sref="provider.schedule" class="btn btn-block btn-info">
-        Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
-    </a>
+    <h3>Schedules</h3>
+    <div class="form-provider-group">
+        <label for="name">Schedule Name:</label>
+        <input type="text" class="form-control" ng-model="schedules[0].name">
+    </div>
+    <div class="form-provider-group">
+        <label for="sunday">Sunday:</label>
+        <input type="text" class="form-control" ng-model="schedules[0].sunday">
+    </div>
+    <div class="form-provider-group">
+        <label for="monday">Monday:</label>
+        <input type="text" class="form-control" ng-model="schedules[0].sunday">
+    </div>
+    <label>Does Schedule Repeat?</label>
+    <div class="form-group">
+    <div class="radio">
+        <label>
+           <input type="radio" ng-model="schedules[0].repeat" value="true" checked>
+           Yes
+        </label>
+    </div>
+    <div class="radio">
+        <label>
+            <input type="radio" ng-model="schedules[0].repeat" value="false">
+            No
+        </label>
+    </div>
+    <div class="text-center">
+        <span class="glyphicon glyphicon-heart"></span>
+        <h3>Submit!</h3>
+        
+        <button type="submit" class="btn btn-primary" ng-click="processForm()">Submit</button>
+        <a class="btn btn-danger" ui-sref="provider.index">Discard</a>
+    </div>
     </form> 
 
-    <pre>providers = {{providers | json}}</pre>
+  <pre>providers = {{providers | json}}</pre>
+  <pre>schedules = {{schedules | json}}</pre>
     <pre>master = {{master | json}}</pre>
 
 </div>

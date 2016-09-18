@@ -12,4 +12,5 @@ router.get('/:id', controller.show);
 router.put('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 
+router.get('/schedule')
 module.exports = router;

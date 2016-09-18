@@ -3,12 +3,19 @@
 Hello, {{message}}
 <div>
  
-    <form novalidate class="simple-form">
+    
         Name: {{providers.name}}<br />
         Address: {{providers.address}}<br />
         Phone: {{providers.phone}}<br />
         
-    </form>
+        <h3> Schedules </h3>
+        Name: {{schedules[0].name}}<br />
+        Repeats: {{schedules[0].repeat}}<br />
+        Sunday: {{schedules[0].sunday}}<br />
+        Monday: {{schedules[0].monday}}<br />
+        Tuesday: {{schedules[0].tuesday}}<br />
+        Wednesday: {{schedules[0].wednesday}}<br />
+
 
 </div>
 </br>
@@ -17,5 +24,6 @@ Hello, {{message}}
 
 </br>
   <pre>providers = {{providers | json}}</pre>
+  <pre>schedules = {{schedules | json}}</pre>
   <pre>user = {{user | json}}</pre>
   <pre>master = {{master | json}}</pre>
