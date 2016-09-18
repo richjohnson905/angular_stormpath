@@ -17,7 +17,7 @@ var config = require('./config/environment');
 var app = express();
 
 
-var models = require('../models');
+var models = require('./models');
 models.sequelize.sync().then(function () {
   server.listen(config.port);
   server.on('error', onError);
