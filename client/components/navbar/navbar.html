@@ -15,11 +15,15 @@
 	        <a ng-href="{{item.link}}">{{item.title}}</a>
 	    </li>
 	    <!-- New links below here -->
-	    <li if-user ng-class="{active: isActive('/profile')}">
-	        <a ng-href="/profile">Profile</a>
+	    
+			<li if-user ng-class="{active: isActive('/consumer')}">
+	        <a ng-href="/consumer">Consumer</a>
 	    </li>
 			<li if-user ng-class="{active: isActive('/provider')}">
 	        <a ng-href="/provider">Provider</a>
+	    </li>
+			<li if-user ng-class="{active: isActive('/profile')}">
+	        <a ng-href="/profile">Profile</a>
 	    </li>
 	    <li if-not-user ng-class="{active: isActive('/register')}">
 	        <a ui-sref="register">Register</a>
