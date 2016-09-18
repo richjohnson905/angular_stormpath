@@ -9,7 +9,7 @@ Notes -
 * https://docs.angularjs.org/guide/forms
 * http://cmme.org/tdumitrescu/blog/2014/02/node-sql-testing/
 * http://docs.sequelizejs.com/en/1.7.0/
-
+* http://stackoverflow.com/questions/22958683/how-to-implement-many-to-many-association-in-sequelize
 
 ## Deploy
 * grunt build (in project root)

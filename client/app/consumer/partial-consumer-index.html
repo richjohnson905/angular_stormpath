@@ -1,0 +1,18 @@
+<!-- partial-consumer-index.html -->
+Hello, {{message}}
+<table class="table consumer">
+    <tr>
+    <td><h3>  </h3></td>
+    <td></td>
+    </tr>
+    <tr ng-repeat="consumer in consumers">
+    <td>{{consumer.name}}</td>
+    <td>
+        <a class="btn btn-primary" ui-sref="consumer.add({id: consumer.id})">View</a>
+        <a class="btn btn-danger"  ng-click="deleteConsumer(consumer)">Delete</a>
+    </td>
+    </tr>
+</table>
+</br>
+<a class="btn btn-primary" ui-sref="consumer.add">Add a Consumer</a>
+

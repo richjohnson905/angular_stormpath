@@ -6,8 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         classMethods: {
             associate: function(models) {
-                Storm.hasMany(models.Todo),
-                Storm.hasMany(models.Provider)
+                Storm.hasMany(models.Provider, {as: 'UserProvider'})
             }
         }
     });

@@ -5,22 +5,10 @@ var models = require('../../models');
 
 // Get my provider
 exports.index = function(req, res) {
-  getProviders(req, res);
+  getProviders(req, res, function(providers) {
+      return res.json(providers);
+  });
 };
-
-function getProviders(req, res) {
-    var result = {}
-    getStormId(req, res, function(stormId) {
-        models.Provider.findAll({
-            where: {
-                StormId: stormId
-            },
-            include: [models.Storm]
-        }).then(function(providers) {
-            res.json(providers);
-        });
-    });
-}
 
 exports.create = function(req, res) {
   var provider = req.body.text;
@@ -39,10 +27,12 @@ exports.create = function(req, res) {
         });
     });
 }
-
+// http://stackoverflow.com/questions/36760999/sequelize-and-querying-on-complex-relations?rq=1
 exports.show = function(req, res) {
     // var result = {};
     console.log('SHOWING');
+
+
     var providerId = req.params.id;
     models.Provider.findOne({
         where: {
@@ -52,6 +42,21 @@ exports.show = function(req, res) {
     }).then(function(provider) {
         console.log(provider.name);
         res.json(provider);
+    });
+
+}
+
+function getProviders(req, res, callback) {
+    var result = {}
+    getStormId(req, res, function(stormId) {
+        models.Provider.findAll({
+            where: {
+                StormId: stormId
+            },
+            include: [models.Storm]
+        }).then(function(providers) {
+            callback(providers);
+        });
     });
 }
 

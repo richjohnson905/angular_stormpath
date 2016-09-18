@@ -14,6 +14,7 @@ angular.module('yoStormApp', [
     
 
     $urlRouterProvider.when("/provider", "provider/index");
+    $urlRouterProvider.when("/consumer", "consumer/index");
     $urlRouterProvider.otherwise('/');
     
     $locationProvider.html5Mode(true);

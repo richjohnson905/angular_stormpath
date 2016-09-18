@@ -15,33 +15,33 @@ angular.module('yoStormApp')
       .state('provider.index',{
         url: '/index',
         templateUrl: 'app/provider/partial-provider-index.html',
-        controller: 'ProviderIndexCtrl'
+        controller: 'ProviderIndexCtrl',
+        sp: {
+	        authenticate: true
+	      }
       })
       .state('provider.view',{
         url: '/:id/view',
         templateUrl: 'app/provider/partial-provider-view.html',
-        controller: 'ProviderViewCtrl'
-        // resolve: {
-        //   provider: function($http, $stateParams){
-        //     var url = "/api/providers/" + $stateParams.id;
-        //     return $http.get(url).then(function(res){return res.data;});
-        //   }
-        // }
+        controller: 'ProviderViewCtrl',
+        sp: {
+	        authenticate: true
+	      }
       })
       .state('provider.new',{
         url: '/new',
         templateUrl: 'app/provider/partial-provider-edit.html',
         controller: 'ProviderNewCtrl',
+        sp: {
+	        authenticate: true
+	      }
       })
       .state('provider.edit',{
         url: '/:id/edit',
         templateUrl: 'app/provider/partial-provider-edit.html',
-        controller: 'ProviderEditCtrl'
-        // resolve: {
-        //   provider: function($http, $stateParams){
-        //     var url = "/api/providers/" + $stateParams.id;
-        //     return $http.get(url).then(function(res){return res.data;});
-        //   }
-        // }
+        controller: 'ProviderEditCtrl',
+        sp: {
+	        authenticate: true
+	      }
       });
   });

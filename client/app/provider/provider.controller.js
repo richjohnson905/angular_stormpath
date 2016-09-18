@@ -16,9 +16,12 @@ angular.module('yoStormApp')
 
     $http.get('/api/providers/' + $stateParams.id).success(function(provider){
       $http.get('api/provider/' + provider.id + '/schedules').success(function(schedules) {
-        $scope.providers = provider;
+        $http.get('api/provider/' + provider.id + '/schedule/' + schedules[0].id + '/sundays').success(function(sundays) {
+          $scope.sundays = sundays;
+        });
         $scope.schedules = schedules;
       });
+      $scope.providers = provider;
     });
   }).controller('ProviderEditCtrl', function($scope, $http, $stateParams, $state) {
     $scope.processForm = function() {
@@ -30,9 +33,12 @@ angular.module('yoStormApp')
     }
     $http.get('/api/providers/' + $stateParams.id).success(function(provider){
       $http.get('api/provider/' + provider.id + '/schedules').success(function(schedules) {
-        $scope.providers = provider;
+        $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid + '/sundays').success(function(sundays) {
+          $scope.sundays = sundays;
+        });
         $scope.schedules = schedules;
       });
+      $scope.providers = provider;
     });
   }).controller('ProviderNewCtrl', function($scope, $state) {
     $scope.processForm = function() {

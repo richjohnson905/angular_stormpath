@@ -11,10 +11,10 @@ Hello, {{message}}
         <h3> Schedules </h3>
         Name: {{schedules[0].name}}<br />
         Repeats: {{schedules[0].repeat}}<br />
-        Sunday: {{schedules[0].sunday}}<br />
-        Monday: {{schedules[0].monday}}<br />
-        Tuesday: {{schedules[0].tuesday}}<br />
-        Wednesday: {{schedules[0].wednesday}}<br />
+        Sunday: {{sundays[0].hour}}<br />
+        Monday: {{mondays[0].hour}}<br />
+        Tuesday: {{tuesdays[0].hour}}<br />
+        Wednesday: {{wednesdays[0].hour}}<br />
 
 
 </div>
@@ -25,5 +25,6 @@ Hello, {{message}}
 </br>
   <pre>providers = {{providers | json}}</pre>
   <pre>schedules = {{schedules | json}}</pre>
+  <pre>sundays = {{sundays | json}}</pre>
   <pre>user = {{user | json}}</pre>
   <pre>master = {{master | json}}</pre>

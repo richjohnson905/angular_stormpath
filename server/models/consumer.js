@@ -1,14 +1,16 @@
 'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-    var Schedule = sequelize.define('Schedule', {
-        name: DataTypes.STRING,
-        repeat: DataTypes.BOOLEAN
+    var Consumer = sequelize.define('Consumer', {
+        name: DataTypes.STRING
     },{
         classMethods: {
             associate: function(models) {
-                Schedule.hasMany(models.Sunday, {as: 'SundayHour'}),
-                Schedule.belongsTo(models.Provider, {
+                Consumer.belongsToMany(models.Provider, {
+                    through: 'Provider_Consumer',
+                    foreignKey: 'Consumer_rowId'
+                }),
+                Consumer.belongsTo(models.Storm, {
                     onDelete: "CASCADE",
                     foreignKey: {
                         allowNull: false
@@ -17,5 +19,5 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     });
-    return Schedule;
+    return Consumer;
 };
