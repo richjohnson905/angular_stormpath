@@ -15,8 +15,9 @@
     "lodash": "~2.4.1",
     "method-override": "~1.0.0",
     "morgan": "~1.0.0",
-    "serve-favicon": "~2.0.1",
-    "pg":"~6.1.0"
+    "pg": "~6.1.0",
+    "sequelize-heroku": "^1.0.0",
+    "serve-favicon": "~2.0.1"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
