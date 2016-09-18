@@ -3,14 +3,7 @@
 angular.module('yoStormApp')
   .controller('ProviderCtrl', function($scope, $http, $state) {
     $scope.providers = $scope.providers || {name : "xxx"};
-    //alert("here");
-    $scope.processForm = function() {
-      alert("process");
-      $state.go("provider.index");
-    },
-    $scope.discard = function() {
-      $state.go("provider.index");
-    }
+    
   }).controller('ProviderIndexCtrl', function($scope, $http) {
     $scope.message = 'Index';
     $scope.providers = $scope.providers || {name : "xxx"};
@@ -41,6 +34,12 @@ angular.module('yoStormApp')
         $scope.schedules = schedules;
       });
     });
-  }).controller('ProviderNewCtrl', function($scope) {
-    $scope.providers = $scope.providers || {name : "xxx"};
+  }).controller('ProviderNewCtrl', function($scope, $state) {
+    $scope.processForm = function() {
+      alert("process33");
+      $state.go("provider.index");
+    },
+    $scope.discard = function() {
+      $state.go("provider.index");
+    }
   });
