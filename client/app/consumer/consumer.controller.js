@@ -12,9 +12,10 @@ angular.module('yoStormApp')
     });
   })
   .controller('ConsumerAddCtrl', function($scope, $http, $state) {
-    $scope.message = 'Add';
     $scope.processForm = function() {
-      alert("process66");
+      $http.post('/api/consumer/', {pid: $scope.providerId, name: $scope.name}).success(function(){
+        alert("Success setting up provider");
+      });
       $state.go("consumer.index");
     },
     $scope.discard = function() {
