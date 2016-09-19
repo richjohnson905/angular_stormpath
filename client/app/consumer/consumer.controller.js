@@ -4,9 +4,14 @@ angular.module('yoStormApp')
   .controller('ConsumerCtrl', function ($scope) {
     $scope.message = 'Hello';
   })
-  .controller('ConsumerIndexCtrl', function($scope, $http) {
-    $scope.message = 'Index';
+  .controller('ConsumerIndexCtrl', function($scope, $http, $state) {
 
+    $scope.deleteConsumer = function(cid) {
+      $http.delete('api/consumer/' + cid).success(function(){
+        alert("Successfully deleted record");
+        $state.go("consumer.index");
+      });
+    },
     $http.get('/api/consumers').success(function(consumers){
       $scope.consumers = consumers
     });

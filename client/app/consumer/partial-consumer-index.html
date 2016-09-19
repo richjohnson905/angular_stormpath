@@ -1,5 +1,4 @@
 <!-- partial-consumer-index.html -->
-Hello, {{message}}
 <table class="table consumer">
     <tr>
     <td><h3>  </h3></td>
@@ -9,7 +8,7 @@ Hello, {{message}}
     <td>{{consumer.name}}</td>
     <td>
         <a class="btn btn-primary" ui-sref="consumer.schedule({id: consumer.id})">Schedule</a>
-        <a class="btn btn-danger"  ng-click="deleteConsumer(consumer)">Delete</a>
+        <a class="btn btn-danger"  ng-click="deleteConsumer(consumer.id)">Delete</a>
     </td>
     </tr>
 </table>

@@ -22,20 +22,21 @@ exports.index = function(req, res) {
 };
 
 exports.create = function(req, res) {
-  console.log("CREATING CONSUMER PROVIDER");
   getStormId(req, res, function(stormId) {
     models.Provider.findById(req.body.pid).then(function(provider) {
-      console.log("Found Provider");
       models.Consumer.create({name: req.body.name, StormId: stormId}).then(function(consumer) {
-        console.log("Created Consumer Success");
         consumer.addProviders(provider).then(function(result){
-          console.log("Made Many-To-Many connection!!");
         });
       });
     });
   });
 };
 
+exports.destroy = function(req, res) {
+  models.Consumer.findById(req.params.id).then(function(consumer) {
+    consumer.destroy();
+  });
+}
 
 function getStormId(req, res, callback) {
     models.Storm.findOne({
