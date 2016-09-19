@@ -3,7 +3,7 @@
 angular.module('yoStormApp')
   .controller('NavbarCtrl', function ($scope, $location) {
     $scope.menu = [{
-      'title': 'Home',
+      'title': 'Dashboard',
       'link': '/'
     }];
 

@@ -3,6 +3,7 @@
 angular.module('yoStormApp')
   .controller('MainCtrl', function ($scope, $http) {
     // $scope.todos = [];
+    //$scope.message = account.username;
 
     // $scope.isCollapsed = false;
     // $scope.isCollapsedHorizontal = false;

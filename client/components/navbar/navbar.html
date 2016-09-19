@@ -7,35 +7,43 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand">yo-storm</a>
+      <a href="/" class="navbar-brand">wired.In</a>
     </div>
     <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
-	  <ul class="nav navbar-nav">
-	    <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
-	        <a ng-href="{{item.link}}">{{item.title}}</a>
-	    </li>
-	    <!-- New links below here -->
-	    
-			<li if-user ng-class="{active: isActive('/consumer')}">
-	        <a ng-href="/consumer">Consumer</a>
-	    </li>
-			<li if-user ng-class="{active: isActive('/provider')}">
-	        <a ng-href="/provider">Provider</a>
-	    </li>
-			<li if-user ng-class="{active: isActive('/profile')}">
-	        <a ng-href="/profile">Profile</a>
-	    </li>
-	    <li if-not-user ng-class="{active: isActive('/register')}">
-	        <a ui-sref="register">Register</a>
-	    </li>
-	    <li if-not-user ng-class="{active: isActive('/login')}">
-	        <a ui-sref="login">Login</a>
-	    </li>
-	    <li if-user ng-class="{active: isActive('/logout')}">
-	       <a href="" sp-logout>Logout</a>
-	    </li>
-	  </ul>
-	  
+			<ul class="nav navbar-nav">
+				<li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
+						<a ng-href="{{item.link}}">{{item.title}}</a>
+				</li>
+				<!-- New links below here -->
+				<li if-user ng-class="{active: isActive('/consumer')}">
+						<a ng-href="/consumer">Consumer</a>
+				</li>
+				<li if-user ng-class="{active: isActive('/provider')}">
+						<a ng-href="/provider">Provider</a>
+				</li>
+				<!--<li if-user ng-class="{active: isActive('/profile')}">
+						<a ng-href="/profile">Profile</a>
+				</li>-->
+				<!--<li if-not-user ng-class="{active: isActive('/register')}">
+						<a ui-sref="register">Register</a>
+				</li>
+				<li if-not-user ng-class="{active: isActive('/login')}">
+						<a ui-sref="login">Login</a>
+				</li>-->
+				<!--<li if-user ng-class="{active: isActive('/logout')}">
+					<a href="" sp-logout>Logout</a>
+				</li>-->
+				<!--<li class="navbar-right"><a href="#">Right 2</a></li>
+				<li class="navbar-right"><a href="#">Right 1</a></li>-->
+			</ul>
+			<div if-user style="float: right !important">
+				<!--<p class="navbar-text"><span class="welcome">Welcome, {{message}}</span> <br>-->
+				<a ng-href="/profile">My Account</a> | <a href="" sp-logout>Logout</a>
+			</div>
+			<div if-not-user style="float: right !important">
+				<!--<p class="navbar-text"><span class="welcome">Welcome, username</span> <br>-->
+				<a ui-sref="register">Register</a> | <a ui-sref="login">Login</a>
+			</div>
     </div>
   </div>
 </div>
