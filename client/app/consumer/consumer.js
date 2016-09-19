@@ -27,4 +27,12 @@ angular.module('yoStormApp')
 	        authenticate: true
 	      }
       })
+      .state('consumer.schedule', {
+        url: '/:id/schedule',
+        templateUrl: 'app/consumer/partial-consumer-schedule.html',
+        controller: 'ConsumerScheduleCtrl',
+        sp: {
+          authenticate: true
+        }
+      })
   });

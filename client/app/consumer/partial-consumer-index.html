@@ -8,7 +8,7 @@ Hello, {{message}}
     <tr ng-repeat="consumer in consumers">
     <td>{{consumer.name}}</td>
     <td>
-        <a class="btn btn-primary" ui-sref="consumer.add({id: consumer.id})">View</a>
+        <a class="btn btn-primary" ui-sref="consumer.schedule({id: consumer.id})">Schedule</a>
         <a class="btn btn-danger"  ng-click="deleteConsumer(consumer)">Delete</a>
     </td>
     </tr>

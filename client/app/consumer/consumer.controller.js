@@ -11,10 +11,19 @@ angular.module('yoStormApp')
       $scope.consumers = consumers
     });
   })
-  .controller('ConsumerAddCtrl', function($scope, $http) {
+  .controller('ConsumerAddCtrl', function($scope, $http, $state) {
     $scope.message = 'Add';
     $scope.processForm = function() {
       alert("process66");
+      $state.go("consumer.index");
+    },
+    $scope.discard = function() {
+      $state.go("consumer.index");
+    }
+  })
+  .controller('ConsumerScheduleCtrl', function($scope, $http, $state) {
+    $scope.processForm = function() {
+      alert("process77");
       $state.go("consumer.index");
     },
     $scope.discard = function() {
