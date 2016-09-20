@@ -1,36 +1,40 @@
 <!-- partial-provider-schedule.html -->
 
+<!-- http://plnkr.co/edit/YJklNEMygHdH6zcgMYHP?p=preview -->
 <div>
     <form>
-    <div class="form-provider-group">
-        <label for="name">Schedule Name:</label>
-        <input type="text" class="form-control" ng-model="providers.schedules[0].name">
+    <h3>Schedules</h3>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <ul class="list-group">
+            <a class="list-group-item" ng-click="select(item)" ng-repeat="item in schedules">{{item.name}}</a>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="panel panel-default">
+          <div class="form-provider-group">
+            <label for="name">Schedule Name:</label>
+            <input type="text" class="form-control" ng-model="providers.name">
+          </div>
+          <br />Sunday
+          <br />6am: <input type="checkbox" ng-model="sunday6" [ng-true-value="on"] [ng-false-value="off"]>
+          7am: <input type="checkbox" ng-model="sunday7" [ng-true-value="on"] [ng-false-value="off"]>
+          8am: <input type="checkbox" ng-model="sunday8" [ng-true-value="on"] [ng-false-value="off"]>
+          9am: <input type="checkbox" ng-model="sunday9" [ng-true-value="on"] [ng-false-value="off"]>
+          10am: <input type="checkbox" ng-model="sunday10" [ng-true-value="on"] [ng-false-value="off"]>
+          
+          <br />Monday: {{selected.addressLine2}}
+          <br />Wednesday: {{selected.suburb}}
+          <br />Thursday: {{selected.contactPhone}}
+          <br />Friday: {{selected.emailAddress}}
+          <br />Saturday: {{selected.emailAddress}}
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" ng-click="processForm2()">Save Schedule</button>
     </div>
-    <div class="form-provider-group">
-        <label for="sunday">Sunday:</label>
-        <input type="text" class="form-control" ng-model="providers.schedules[0].sunday">
-    </div>
-    <div class="form-provider-group">
-        <label for="monday">Monday:</label>
-        <input type="text" class="form-control" ng-model="providers.schedules[0].sunday">
-    </div>
-    <label>Does Schedule Repeat?</label>
-    <div class="form-group">
-    <div class="radio">
-        <label>
-           <input type="radio" ng-model="providers.schedules[0].repeat" value="true" checked>
-           Yes
-        </label>
-    </div>
-    <div class="radio">
-        <label>
-            <input type="radio" ng-model="providers.schedules[0].repeat" value="false">
-            No
-        </label>
-    </div>
-    <a ui-sref="provider.submit" class="btn btn-block btn-info">
-        Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
-    </a>
     </form>
 </div>
 

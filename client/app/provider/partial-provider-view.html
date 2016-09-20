@@ -1,26 +1,29 @@
 
 <!-- partial-provider-view.html -->
-Hello, {{message}}
 <div>
- 
+    Name: {{providers.name}}<br />
+    Address: {{providers.address}}<br />
+    Phone: {{providers.phone}}<br />
+    <a class="btn btn-primary" ui-sref="provider.edit({id: providers.id})">Edit</a>
+    <a class="btn btn-primary" ui-sref="provider.index">Back</a>
+    <a class="btn btn-primary" ui-sref="provider.view.schedules">List Schedules</a>
+    <a class="btn btn-primary" ui-sref="provider.view.scheduleNew">Add Schedule</a>
     
-        Name: {{providers.name}}<br />
-        Address: {{providers.address}}<br />
-        Phone: {{providers.phone}}<br />
-        
-        <h3> Schedules </h3>
-        Name: {{schedules[0].name}}<br />
-        Repeats: {{schedules[0].repeat}}<br />
-        Sunday: {{sundays[0].hour}}<br />
-        Monday: {{mondays[0].hour}}<br />
-        Tuesday: {{tuesdays[0].hour}}<br />
-        Wednesday: {{wednesdays[0].hour}}<br />
+    <div ui-view></div>
+
+
+
+    <!--Name: {{schedules[0].name}}<br />
+    Repeats: {{schedules[0].repeat}}<br />
+    Sunday: {{sundays[0].hour}}<br />
+    Monday: {{mondays[0].hour}}<br />
+    Tuesday: {{tuesdays[0].hour}}<br />
+    Wednesday: {{wednesdays[0].hour}}<br />-->
 
 
 </div>
 </br>
-<a class="btn btn-primary" ui-sref="provider.edit({id: providers.id})">Edit</a>
-<a class="btn btn-primary" ui-sref="provider.index">Back</a>
+
 
 </br>
   <pre>providers = {{providers | json}}</pre>

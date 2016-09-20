@@ -1,0 +1,17 @@
+<div>
+    <h3> Schedules </h3>
+
+    <table class="table schedules">
+        <tr>
+        <td><h3>  </h3></td>
+        <td></td>
+        </tr>
+        <tr ng-repeat="item in schedules">
+        <td>{{item.name}}</td>
+        <td>
+            <a class="btn btn-primary" ui-sref="item.view({id: item.id})">View</a>
+            <a class="btn btn-danger"  ng-click="deleteSchedule(item)">Delete</a>
+        </td>
+        </tr>
+    </table>
+</div>
