@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
-var models = require('../../models');
+var models = require('../../../../models');
 
 // Get list of sundays
 exports.index = function(req, res) {

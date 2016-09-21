@@ -27,22 +27,19 @@
     <form>
     <div class="form-provider-group">
         <label for="name">Provider Name:</label>
-        <input type="text" class="form-control" ng-model="providers.name">
+        <input type="text" class="form-control" ng-model="provider.name">
     </div>
     <div class="form-provider-group">
         <label for="address">Address:</label>
-        <input type="text" class="form-control" ng-model="providers.address">
+        <input type="text" class="form-control" ng-model="provider.address">
     </div>
     <div class="form-provider-group">
         <label for="phone">Phone Number:</label>
-        <input type="text" class="form-control" ng-model="providers.phone">
+        <input type="text" class="form-control" ng-model="provider.phone">
     </div>
     </br>
-    
-    <a ui-sref=".schedule" class="btn btn-primary">Schedule</a>
-    <a ui-sref=".paragraph" class="btn btn-danger">Paragraph</a>
 
-    <div ui-view></div>
+    <!--<div ui-view></div>-->
     <!--<div class="form-provider-group">
         <label for="name">Schedule Name:</label>
         <input type="text" class="form-control" ng-model="schedules[0].name">
@@ -99,9 +96,9 @@
     </form> 
 
     
-    <pre>itemDetails = {{itemDetails | json}}</pre>
-    <pre>providers = {{providers | json}}</pre>
-    <pre>schedules = {{schedules | json}}</pre>
+    
+    <pre>provider = {{provider | json}}</pre>
+    
         <pre>master = {{master | json}}</pre>
 
 </div>

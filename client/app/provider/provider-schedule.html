@@ -1,0 +1,36 @@
+<h1>Schedules</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Store</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>#1234</td>
+            <td>Whatever</td>
+            <td>AK</td>
+            <td>54321</td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="#/provider/1/schedule/1/edit" class="btn">
+    <i class="icon-edit"></i> Edit Schedule</a>
+
+<hr>
+
+<ul class="nav nav-tabs">
+    <li class="active" ng-class="{active:$state.includes('manage.store.complaints') || $state.includes('manage.store.addComplaint')}">
+        <a href="#/manage/store/1234">Complaints</a></li>
+    <li ng-class="{active:$state.includes('manage.store.accidents')}">
+        <a href="#/manage/store/1234/accidents">Accidents</a></li>
+</ul>
+
+<div ui-view>
+    <!-- Third Level -->
+</div>
