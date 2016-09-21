@@ -13,48 +13,46 @@ var models = require('../../models');
 
 // Get list of todos
 exports.index = function(req, res) {
+    console.log(req.user.email);
     return getTodos(req, res);
 };
 
 exports.create = function(req, res) {
     var data = {text: req.body.text, complete: false};
 
-    getStormId(req, res, function(stormId) {
-        models.Todo.create({
-            name: data.text,
-            complete: false,
-            StormId: stormId
-        },{
-            include: [models.Storm]
-        })
-        .then(function(){
-            return getTodos(req, res);
-        });
+    
+    models.Todo.create({
+        name: data.text,
+        complete: false,
+        stormId: req.user.email
+    })
+    .then(function(){
+        return getTodos(req, res);
     });
+    
 }
 
 function getTodos(req, res) {
-    getStormId(req, res, function(stormId) {
-        models.Todo.findAll({
-            where: {
-                StormId: stormId
-            },
-            include: [models.Storm]
-        }).then(function(todos) {
-            res.json(todos);
-        });
+    
+    models.Todo.findAll({
+        where: {
+            stormId: req.user.email
+        }
+    }).then(function(todos) {
+        res.json(todos);
     });
+    
 }
 
-function getStormId(req, res, callback) {
-    models.Storm.findOne({
-        where: {
-            email: req.user.email
-        }
-    }).then(function(storm) {
-        callback(storm.id);
-    });
-}
+// function getStormId(req, res, callback) {
+//     models.Storm.findOne({
+//         where: {
+//             email: req.user.email
+//         }
+//     }).then(function(storm) {
+//         callback(storm.id);
+//     });
+// }
 
 exports.destroy = function(req, res) {
 // Grab data from the URL parameters
@@ -70,16 +68,16 @@ exports.destroy = function(req, res) {
     });
 };
 
-function getStormId2(req, res, callback) {
-	var storm_id = 0;
-	var query = req.database.query("SELECT * FROM stormpath WHERE email=$1;", [req.user.email]);
+// function getStormId2(req, res, callback) {
+// 	var storm_id = 0;
+// 	var query = req.database.query("SELECT * FROM stormpath WHERE email=$1;", [req.user.email]);
 	
-    query.on('row', function(row) {
-        storm_id = row.id;
-    });
+//     query.on('row', function(row) {
+//         storm_id = row.id;
+//     });
 	
-    // After all data is returned, close connection and return results
-    query.on('end', function() {
-        callback(storm_id);
-    });
-}
+//     // After all data is returned, close connection and return results
+//     query.on('end', function() {
+//         callback(storm_id);
+//     });
+// }

@@ -13,19 +13,17 @@ exports.index = function(req, res) {
 exports.create = function(req, res) {
   var provider = req.body.text;
 
-    getStormId(req, res, function(stormId) {
-        models.Provider.create({
-            name: data.name,
-            address: data.address,
-            phone: data.phone,
-            StormId: stormId
-        },{
-            include: [models.Storm]
-        })
-        .then(function(){
-            getProviders(req, res);
-        });
+   
+    models.Provider.create({
+        name: data.name,
+        address: data.address,
+        phone: data.phone,
+        stormId: req.user.email
+    })
+    .then(function(){
+        getProviders(req, res);
     });
+   
 }
 // http://stackoverflow.com/questions/36760999/sequelize-and-querying-on-complex-relations?rq=1
 exports.show = function(req, res) {
@@ -37,8 +35,7 @@ exports.show = function(req, res) {
     models.Provider.findOne({
         where: {
             id: providerId
-        },
-        include: [models.Storm]
+        }
     }).then(function(provider) {
         console.log(provider.name);
         res.json(provider);
@@ -48,16 +45,15 @@ exports.show = function(req, res) {
 
 function getProviders(req, res, callback) {
     var result = {}
-    getStormId(req, res, function(stormId) {
-        models.Provider.findAll({
-            where: {
-                StormId: stormId
-            },
-            include: [models.Storm]
-        }).then(function(providers) {
-            callback(providers);
-        });
+    
+    models.Provider.findAll({
+        where: {
+            stormId: req.user.email
+        }
+    }).then(function(providers) {
+        callback(providers);
     });
+    
 }
 
 exports.update = function(req, res) {
@@ -68,15 +64,15 @@ exports.destroy = function(req, res) {
     
 }
 
-function getStormId(req, res, callback) {
-    models.Storm.findOne({
-        where: {
-            email: req.user.email
-        }
-    }).then(function(storm) {
-        callback(storm.id);
-    });
-}
+// function getStormId(req, res, callback) {
+//     models.Storm.findOne({
+//         where: {
+//             email: req.user.email
+//         }
+//     }).then(function(storm) {
+//         callback(storm.id);
+//     });
+// }
 // function insertDay(day, dayName, schedule_id) {
 //   if (day) {
 //     for (i = 0; i < day.length; i++) {
