@@ -5,13 +5,14 @@ var models = require('../../../models');
 
 // Get list of schedules
 exports.index = function(req, res) {
-  getSchedules(req.params.id, function(schedules) {
+    console.log("SCHEDULE INDEX");
+  getSchedules(req.params.pid, function(schedules) {
     return res.json(schedules);
   });
 };
 
 exports.show = function(req, res) {
-    console.log(">>>>>>>>>>" + req.params.id);
+    console.log("SCHEDULE SHOW >>>>>>>>>>" + req.params.sid);
     const scheduleId = req.params.sid * 1;
     models.Schedule.findById(scheduleId).then(function(schedule) {
         return res.json(schedule);

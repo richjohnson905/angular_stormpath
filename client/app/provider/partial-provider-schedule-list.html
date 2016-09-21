@@ -9,7 +9,7 @@
         <tr ng-repeat="item in schedules">
         <td>{{item.name}}</td>
         <td>
-            <a class="btn btn-primary" ui-sref="provider.view.viewSchedule({id: providerId, sid: item.id})">View</a>
+            <a class="btn btn-primary" ui-sref="provider.view.viewSchedule({pid: providerId, sid: item.id})">View</a>
             <a class="btn btn-danger"  ng-click="deleteSchedule(item)">Delete</a>
         </td>
         </tr>

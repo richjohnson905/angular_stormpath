@@ -23,7 +23,7 @@ angular.module('yoStormApp')
       })
       /* Provider View */
       .state('provider.view',{
-        url: '/:id',
+        url: '/:pid',
         templateUrl: 'app/provider/partial-provider-view.html',
         controller: 'ProviderViewCtrl',
         sp: {
@@ -41,7 +41,7 @@ angular.module('yoStormApp')
       })
       /* Provider Edit */
       .state('provider.edit',{
-        url: '/:id/edit',
+        url: '/:pid/edit',
         templateUrl: 'app/provider/partial-provider-edit.html',
         controller: 'ProviderEditCtrl',
         sp: {
@@ -86,7 +86,7 @@ angular.module('yoStormApp')
         })
           /* Provider > Schedule > Hours */
           .state('provider.schedule.hours',{
-            url: '/:id/edit',
+            url: '/:sid/edit',
             templateUrl: 'app/provider/partial-provider-schedule-hours.html',
             controller: 'ProviderScheduleCtrl',
             sp: {

@@ -4,10 +4,10 @@
     Name: {{provider.name}}<br />
     Address: {{provider.address}}<br />
     Phone: {{provider.phone}}<br />
-    <a class="btn btn-primary" ui-sref="provider.edit({id: provider.id})">Edit</a>
+    <a class="btn btn-primary" ui-sref="provider.edit({pid: provider.id})">Edit</a>
     <a class="btn btn-primary" ui-sref="provider.index">Back</a>
-    <a class="btn btn-primary" ui-sref="provider.view.schedules({id: provider.id})">Schedules</a>
-    <a class="btn btn-primary" ui-sref="provider.view.newSchedule({id: provider.id})">Edit Schedules</a>
+    <a class="btn btn-primary" ui-sref="provider.view.schedules({pid: provider.id})">Schedules</a>
+    <a class="btn btn-primary" ui-sref="provider.view.newSchedule({pid: provider.id})">Edit Schedules</a>
     
     <div ui-view></div>
 

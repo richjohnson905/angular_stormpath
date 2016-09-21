@@ -33,12 +33,12 @@ function onListening() {
 }
 
 app.use(ExpressStormpath.init(app,{
-	postRegistrationHandler: function (account, req, res, next) {
-		models.Storm.create({
-			email: account.email
-		});
-		next();
-	},
+	// postRegistrationHandler: function (account, req, res, next) {
+	// 	models.Storm.create({
+	// 		email: account.email
+	// 	});
+	// 	next();
+	// },
 	web: {
 		spa: {
 		  enabled: true,

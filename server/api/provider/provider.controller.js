@@ -31,7 +31,7 @@ exports.show = function(req, res) {
     console.log('SHOWING');
 
 
-    var providerId = req.params.id;
+    var providerId = req.params.pid;
     models.Provider.findOne({
         where: {
             id: providerId

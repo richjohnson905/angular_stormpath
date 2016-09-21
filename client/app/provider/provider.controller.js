@@ -4,23 +4,24 @@ angular.module('yoStormApp')
   .controller('ProviderCtrl', function($scope, $http) {
     $scope.providers = $scope.providers || {name : "xxx"};
 
-    $http.get('/api/providers').success(function(providers){
+    $http.get('/api/provider').success(function(providers){
       $scope.providers = providers
     });
   })
   .controller('ProviderIndexCtrl', function($scope, $http) {
     $scope.providers = $scope.providers || {name : "xxx"};
 
-    $http.get('/api/providers').success(function(providers){
+    $http.get('/api/provider').success(function(providers){
       $scope.providers = providers
     });
   })
   .controller('ProviderViewCtrl', function($scope, $http, $stateParams) {
     $scope.message = 'View';
+    console.log($stateParams.pid);
 
-    $http.get('/api/providers/' + $stateParams.id).success(function(provider){
-      // $http.get('api/provider/' + provider.id + '/schedules').success(function(schedules) {
-      //   $http.get('api/provider/' + provider.id + '/schedule/' + schedules[0].id + '/sundays').success(function(sundays) {
+    $http.get('/api/provider/' + $stateParams.pid).success(function(provider){
+      // $http.get('api/provider/' + provider.pid + '/schedules').success(function(schedules) {
+      //   $http.get('api/provider/' + provider.pid + '/schedule/' + schedules[0].id + '/sundays').success(function(sundays) {
       //     $scope.sundays = sundays;
       //   });
       //   $scope.schedules = schedules;
@@ -38,7 +39,7 @@ angular.module('yoStormApp')
     $scope.discard = function() {
       $state.go("provider.index");
     }
-    $http.get('/api/providers/' + $stateParams.id).success(function(provider){
+    $http.get('/api/provider/' + $stateParams.pid).success(function(provider){
       // $http.get('api/provider/' + $scope.provider.id + '/schedules').success(function(schedules) {
       //   $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid + '/sundays').success(function(sundays) {
       //     $scope.sundays = sundays;
@@ -69,21 +70,21 @@ angular.module('yoStormApp')
     }
   })
   .controller('ProviderScheduleViewCtrl', function($scope, $http, $stateParams) {
-    console.log("id: " + $stateParams.id);
+    console.log("pid: " + $stateParams.pid);
     console.log("sid: " + $stateParams.sid);
-    $http.get('api/provider/' + $stateParams.id + '/schedule/' + $stateParams.sid).success(function(schedule) {
+    $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
       $scope.schedule = schedule;
     });
   })
   .controller('ProviderScheduleCtrl', function($scope, $http, $stateParams) {
     var hourValues = [];
-    $scope.providerId = $stateParams.id;
-    $http.get('api/provider/' + $stateParams.id + '/schedules').success(function(schedules) {
+    $scope.providerId = $stateParams.pid;
+    $http.get('api/provider/' + $stateParams.pid + '/schedule').success(function(schedules) {
       $scope.schedules = schedules
     });
     $scope.select = function(item) {
       $scope.selected = item;
-      $http.get('api/provider/' + 1 + '/schedule/' + item.id + '/sundays').success(function(sundays) {
+      $http.get('api/provider/' + $scope.providerId + '/schedule/' + item.id + '/sundays').success(function(sundays) {
           var allSundays = [];
           for (var i = 0; i < sundays.length; i++) {
             allSundays.push(sundays[i].hour);

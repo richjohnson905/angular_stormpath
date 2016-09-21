@@ -11,13 +11,13 @@ var ExpressStormpath = require('express-stormpath');
 module.exports = function(app) {
 
   // Insert routes below
-  app.use('/api/providers', ExpressStormpath.loginRequired, require('./api/provider'));
-  app.use('/api/provider/:id/schedules', ExpressStormpath.loginRequired, require('./api/provider/schedule'));
-  app.use('/api/provider/:pid/schedule/:id', ExpressStormpath.loginRequired, require('./api/provider/schedule'));
-  app.use('/api/provider/:pid/schedule/:sid/sundays', ExpressStormpath.loginRequired, require('./api/provider/schedule/sunday'));
+  app.use('/api/provider/', ExpressStormpath.loginRequired, require('./api/provider'));
+  app.use('/api/provider/:pid/schedule', ExpressStormpath.loginRequired, require('./api/provider/schedule'));
+  //app.use('/api/provider/:pid/schedule/:sid', ExpressStormpath.loginRequired, require('./api/provider/schedule'));
+  //app.use('/api/provider/:pid/schedule/:sid/sundays', ExpressStormpath.loginRequired, require('./api/provider/schedule/sunday'));
 
-  app.use('/api/consumers', ExpressStormpath.loginRequired, require('./api/consumer'));
   app.use('/api/consumer', ExpressStormpath.loginRequired, require('./api/consumer'));
+  //app.use('/api/consumer', ExpressStormpath.loginRequired, require('./api/consumer'));
 
   app.use('/api/todos', ExpressStormpath.loginRequired, require('./api/todo'));
   // app.use('/api/things', require('./api/thing'));
