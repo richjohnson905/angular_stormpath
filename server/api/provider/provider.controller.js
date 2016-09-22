@@ -11,17 +11,17 @@ exports.index = function(req, res) {
 };
 
 exports.create = function(req, res) {
-  var provider = req.body.text;
-
-   
+    console.log("Please no!!!!!");
     models.Provider.create({
-        name: data.name,
-        address: data.address,
-        phone: data.phone,
+        name: req.body.name,
+        address: req.body.address,
+        phone: req.body.phone,
         stormId: req.user.email
     })
     .then(function(){
-        getProviders(req, res);
+        getProviders(req, res, function(providers){
+            res.json(providers);
+        });
     });
    
 }
@@ -29,7 +29,6 @@ exports.create = function(req, res) {
 exports.show = function(req, res) {
     // var result = {};
     console.log('SHOWING');
-
 
     var providerId = req.params.pid;
     models.Provider.findOne({
@@ -43,6 +42,36 @@ exports.show = function(req, res) {
 
 }
 
+exports.update = function(req, res) {
+    console.log("SCREAM");
+    models.Provider.update(
+    {
+        name: req.body.name,
+        address: req.body.address,
+        phone: req.body.phone,
+    },
+    {
+        where: { id : req.body.id }
+    })
+    .then(function (result) { 
+
+    }, function(rejectedPromiseError){
+
+    });
+    // models.Provider.destroy({
+    //     where: {
+    //         id: req.body.id
+    //     }
+    // }).then(function(providers) {
+    //     models.create({
+    //         name: req.body.name,
+    //         address: req.body.address,
+    //         phone: req.body.phone,
+    //         stormId: req.user.email
+    //     })
+    // });
+}
+
 function getProviders(req, res, callback) {
     var result = {}
     
@@ -53,15 +82,16 @@ function getProviders(req, res, callback) {
     }).then(function(providers) {
         callback(providers);
     });
-    
-}
-
-exports.update = function(req, res) {
-    
 }
 
 exports.destroy = function(req, res) {
-    
+    models.Provider.destroy({
+        where: {
+            id: req.params.pid
+        }
+    }).then(function(providers) {
+        res.json(providers);
+    });
 }
 
 // function getStormId(req, res, callback) {

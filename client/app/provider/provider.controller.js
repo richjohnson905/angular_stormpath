@@ -14,26 +14,30 @@ angular.module('yoStormApp')
     $http.get('/api/provider').success(function(providers){
       $scope.providers = providers
     });
+    $scope.deleteProvider = function(provider) {
+      $http.delete('/api/provider/' + provider.id).success(function(result){
+        $state.reload("provider.index");
+      });
+    }
   })
   .controller('ProviderViewCtrl', function($scope, $http, $stateParams) {
     $scope.message = 'View';
     console.log($stateParams.pid);
 
     $http.get('/api/provider/' + $stateParams.pid).success(function(provider){
-      // $http.get('api/provider/' + provider.pid + '/schedules').success(function(schedules) {
-      //   $http.get('api/provider/' + provider.pid + '/schedule/' + schedules[0].id + '/sundays').success(function(sundays) {
-      //     $scope.sundays = sundays;
-      //   });
-      //   $scope.schedules = schedules;
-      // });
       $scope.provider = provider;
-      //$scope.providers = provider;
     });
   })
   .controller('ProviderEditCtrl', function($scope, $http, $stateParams, $state) {
-    
     $scope.processForm = function() {
-      alert("process22");
+      $http.put('/api/provider/' + $stateParams.pid, $scope.provider)
+          .success(function(data) {
+              $scope.provider = data;
+              console.log(data);
+          })
+          .error(function(error) {
+              console.log('Error: ' + error);
+          });
       $state.go("provider.index");
     },
     $scope.discard = function() {
@@ -70,8 +74,11 @@ angular.module('yoStormApp')
     }
   })
   .controller('ProviderScheduleViewCtrl', function($scope, $http, $stateParams) {
-    console.log("pid: " + $stateParams.pid);
-    console.log("sid: " + $stateParams.sid);
+    $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
+      $scope.schedule = schedule;
+    });
+  })
+  .controller('ProviderScheduleEditCtrl', function($scope, $http, $stateParams) {
     $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
       $scope.schedule = schedule;
     });

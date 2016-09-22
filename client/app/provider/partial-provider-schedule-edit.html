@@ -1,1 +1,30 @@
-<h1>FOO</h1>
+
+
+<!-- partial-provider-schedule-view.html -->
+<div>
+    <h1>Schedule Edit</h1>
+
+    <form>
+    <div class="form-provider-group">
+        <label for="name">Schedule Name:</label>
+        <input type="text" class="form-control" ng-model="schedule.name">
+    </div>
+
+    <input type="hidden" ng-model="providerId" value="{{providerId}}"/>
+    <div class="text-center">
+        <span class="glyphicon glyphicon-heart"></span>
+        <h3>Submit!</h3>
+        
+        <button type="submit" class="btn btn-primary" ng-click="processForm()">Submit</button>
+        <a class="btn btn-danger" ui-sref="provider.schedules">Discard</a>
+    </div>
+    </form> 
+    
+
+
+</div>
+</br>
+
+
+</br>
+  <pre>schedule = {{schedule | json}}</pre>

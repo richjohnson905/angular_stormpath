@@ -12,7 +12,7 @@ angular.module('yoStormApp')
         $state.go("consumer.index");
       });
     },
-    $http.get('/api/consumers').success(function(consumers){
+    $http.get('/api/consumer').success(function(consumers){
       $scope.consumers = consumers
     });
   })

@@ -1,29 +1,7 @@
 
 <!-- partial-provider-edit.html -->
 <div>
-<!--
-    <h3>Schedules</h3>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="panel panel-default">
-          <ul class="list-group">
-            <a class="list-group-item" ng-click="select(item)" ng-repeat="item in itemDetails">{{item.name}}</a>
-          </ul>
-        </div>
-      </div>
 
-      <div class="col-md-8">
-        <div class="panel panel-default">
-          <h2>Name: {{selected.name}}</h2>
-          <br />Address Line 1: {{selected.addressLine1}}
-          <br />Address Line 2: {{selected.addressLine2}}
-          <br />Suburb: {{selected.suburb}}
-          <br />Phone: {{selected.contactPhone}}
-          <br />Email: {{selected.emailAddress}}
-        </div>
-      </div>
-    </div>
-    -->
     <form>
     <div class="form-provider-group">
         <label for="name">Provider Name:</label>
@@ -39,53 +17,6 @@
     </div>
     </br>
 
-    <!--<div ui-view></div>-->
-    <!--<div class="form-provider-group">
-        <label for="name">Schedule Name:</label>
-        <input type="text" class="form-control" ng-model="schedules[0].name">
-    </div>
-    <div class="form-provider-group">
-        <label for="sunday">Sunday:</label>
-        <input type="text" class="form-control" ng-model="schedules[0].sunday">
-    </div>
-    <div class="form-provider-group">
-        <label for="monday">Monday:</label>
-        <input type="text" class="form-control" ng-model="schedules[0].monday">
-    </div>
-        <div class="form-provider-group">
-        <label for="monday">Tuesday:</label>
-        <input type="text" class="form-control" ng-model="schedules[0].tuesday">
-    </div>
-        <div class="form-provider-group">
-        <label for="monday">Wednesday:</label>
-        <input type="text" class="form-control" ng-model="schedules[0].wednesday">
-    </div>
-        <div class="form-provider-group">
-        <label for="monday">Thrusday:</label>
-        <input type="text" class="form-control" ng-model="schedules[0].thrusday">
-    </div>
-        <div class="form-provider-group">
-        <label for="monday">Friday:</label>
-        <input type="text" class="form-control" ng-model="schedules[0].friday">
-    </div>
-        <div class="form-provider-group">
-        <label for="monday">Saturday:</label>
-        <input type="text" class="form-control" ng-model="schedules[0].saturday">
-    </div>
-    <label>Does Schedule Repeat?</label>
-    <div class="form-group">
-    <div class="radio">
-        <label>
-           <input type="radio" ng-model="schedules[0].repeat" value="true" checked>
-           Yes
-        </label>
-    </div>
-    <div class="radio">
-        <label>
-            <input type="radio" ng-model="schedules[0].repeat" value="false">
-            No
-        </label>
-    </div>-->
     <div class="text-center">
         <span class="glyphicon glyphicon-heart"></span>
         <h3>Submit!</h3>
@@ -95,10 +26,8 @@
     </div>
     </form> 
 
-    
-    
     <pre>provider = {{provider | json}}</pre>
     
-        <pre>master = {{master | json}}</pre>
+     <pre>master = {{master | json}}</pre>
 
 </div>
