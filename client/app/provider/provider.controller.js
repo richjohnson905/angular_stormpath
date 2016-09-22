@@ -44,12 +44,6 @@ angular.module('yoStormApp')
       $state.go("provider.index");
     }
     $http.get('/api/provider/' + $stateParams.pid).success(function(provider){
-      // $http.get('api/provider/' + $scope.provider.id + '/schedules').success(function(schedules) {
-      //   $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid + '/sundays').success(function(sundays) {
-      //     $scope.sundays = sundays;
-      //   });
-      //   $scope.schedules = schedules;
-      // });
       $scope.provider = provider;
     });
   })
@@ -62,12 +56,9 @@ angular.module('yoStormApp')
 
     $scope.processForm = function() {
       $scope.itemDetails = getData();
-      //$state.go("provider.index");
     },
     $scope.processForm2 = function() {
       alert("save");
-      //$scope.itemDetails = getData();
-      //$state.go("provider.index");
     },
     $scope.discard = function() {
       $state.go("provider.index");

@@ -11,7 +11,6 @@ exports.index = function(req, res) {
 };
 
 exports.create = function(req, res) {
-    console.log("Please no!!!!!");
     models.Provider.create({
         name: req.body.name,
         address: req.body.address,
@@ -23,11 +22,9 @@ exports.create = function(req, res) {
             res.json(providers);
         });
     });
-   
 }
 // http://stackoverflow.com/questions/36760999/sequelize-and-querying-on-complex-relations?rq=1
 exports.show = function(req, res) {
-    // var result = {};
     console.log('SHOWING');
 
     var providerId = req.params.pid;
@@ -39,11 +36,9 @@ exports.show = function(req, res) {
         console.log(provider.name);
         res.json(provider);
     });
-
 }
 
 exports.update = function(req, res) {
-    console.log("SCREAM");
     models.Provider.update(
     {
         name: req.body.name,
@@ -58,18 +53,6 @@ exports.update = function(req, res) {
     }, function(rejectedPromiseError){
 
     });
-    // models.Provider.destroy({
-    //     where: {
-    //         id: req.body.id
-    //     }
-    // }).then(function(providers) {
-    //     models.create({
-    //         name: req.body.name,
-    //         address: req.body.address,
-    //         phone: req.body.phone,
-    //         stormId: req.user.email
-    //     })
-    // });
 }
 
 function getProviders(req, res, callback) {
