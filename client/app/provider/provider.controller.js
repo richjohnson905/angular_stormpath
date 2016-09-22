@@ -20,6 +20,13 @@ angular.module('yoStormApp')
       });
     }
   })
+  .controller('ProviderNewCtrl', function($scope, $http, $state) {
+    $scope.processForm = function() {
+      $http.post('/api/provider/', {name: $scope.provider.name, address: $scope.provider.address, phone: $scope.provider.phone}).success(function(){
+        $state.go('provider.index');
+      });
+    }
+  })
   .controller('ProviderViewCtrl', function($scope, $http, $stateParams) {
     $scope.message = 'View';
     console.log($stateParams.pid);
@@ -46,23 +53,6 @@ angular.module('yoStormApp')
     $http.get('/api/provider/' + $stateParams.pid).success(function(provider){
       $scope.provider = provider;
     });
-  })
-  .controller('ProviderNewCtrl', function($scope, $state) {
-    
-    $scope.select = function(item) {
-      $scope.selected = item;
-    }
-    $scope.selected = {};
-
-    $scope.processForm = function() {
-      $scope.itemDetails = getData();
-    },
-    $scope.processForm2 = function() {
-      alert("save");
-    },
-    $scope.discard = function() {
-      $state.go("provider.index");
-    }
   })
   .controller('ProviderScheduleViewCtrl', function($scope, $http, $stateParams) {
     $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {

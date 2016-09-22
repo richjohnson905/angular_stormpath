@@ -11,7 +11,6 @@
 var _ = require('lodash');
 var models = require('../../models');
 
-// Get list of todos
 exports.index = function(req, res) {
     console.log(req.user.email);
     return getTodos(req, res);
@@ -19,8 +18,6 @@ exports.index = function(req, res) {
 
 exports.create = function(req, res) {
     var data = {text: req.body.text, complete: false};
-
-    
     models.Todo.create({
         name: data.text,
         complete: false,
@@ -29,11 +26,9 @@ exports.create = function(req, res) {
     .then(function(){
         return getTodos(req, res);
     });
-    
 }
 
 function getTodos(req, res) {
-    
     models.Todo.findAll({
         where: {
             stormId: req.user.email
@@ -41,43 +36,15 @@ function getTodos(req, res) {
     }).then(function(todos) {
         res.json(todos);
     });
-    
 }
 
-// function getStormId(req, res, callback) {
-//     models.Storm.findOne({
-//         where: {
-//             email: req.user.email
-//         }
-//     }).then(function(storm) {
-//         callback(storm.id);
-//     });
-// }
-
 exports.destroy = function(req, res) {
-// Grab data from the URL parameters
     var id = req.params.id;
     models.Todo.destroy({
         where: {
             id: id
         }
     }).then(function(){
-        models.Todo.findAll().then(function(todos) {
-            res.json(todos);
-        });
+        return getTodos(req, res);
     });
 };
-
-// function getStormId2(req, res, callback) {
-// 	var storm_id = 0;
-// 	var query = req.database.query("SELECT * FROM stormpath WHERE email=$1;", [req.user.email]);
-	
-//     query.on('row', function(row) {
-//         storm_id = row.id;
-//     });
-	
-//     // After all data is returned, close connection and return results
-//     query.on('end', function() {
-//         callback(storm_id);
-//     });
-// }

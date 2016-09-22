@@ -1,5 +1,5 @@
 'use strict';
-
+// ORDER MATTERS - Put NEW before VIEW!!!!
 angular.module('yoStormApp')
   .config(function ($stateProvider) {
     $stateProvider
@@ -21,20 +21,20 @@ angular.module('yoStormApp')
 	        authenticate: true
 	      }
       })
+      /* Provider New */
+      .state('provider.create',{
+        url: '/create',
+        templateUrl: 'app/provider/partial-provider-edit.html',
+        controller: 'ProviderNewCtrl',
+        sp: {
+	        authenticate: true
+	      }
+      })
       /* Provider View */
       .state('provider.view',{
         url: '/:pid',
         templateUrl: 'app/provider/partial-provider-view.html',
         controller: 'ProviderViewCtrl',
-        sp: {
-	        authenticate: true
-	      }
-      })
-      /* Provider New */
-      .state('provider.new',{
-        url: '/new',
-        templateUrl: 'app/provider/partial-provider-edit.html',
-        controller: 'ProviderNewCtrl',
         sp: {
 	        authenticate: true
 	      }

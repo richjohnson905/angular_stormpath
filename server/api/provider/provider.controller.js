@@ -25,7 +25,7 @@ exports.create = function(req, res) {
 }
 // http://stackoverflow.com/questions/36760999/sequelize-and-querying-on-complex-relations?rq=1
 exports.show = function(req, res) {
-    console.log('SHOWING');
+    console.log('SHOWING: ' + req.params.pid);
 
     var providerId = req.params.pid;
     models.Provider.findOne({
