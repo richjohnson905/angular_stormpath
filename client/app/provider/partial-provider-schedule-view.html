@@ -2,8 +2,8 @@
 <div>
     Name: {{schedule.name}}<br />
     <input type="hidden" ng-model="providerId" value="{{providerId}}"/>
-    <a class="btn btn-primary" ui-sref="provider.view.editSchedule({id: providerId, sid: schedule.id})">Edit</a>
-    <a class="btn btn-primary" ui-sref="provider.view.schedules">Back</a>
+    <a class="btn btn-primary" ui-sref="provider.view.schedule.edit({id: providerId, sid: schedule.id})">Edit</a>
+    <a class="btn btn-primary" ui-sref="provider.view.schedule.list">Back</a>
     
 
 

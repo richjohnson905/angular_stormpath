@@ -49,7 +49,14 @@ angular.module('yoStormApp')
 	      }
       })
         /* Provider > Schedules */
-        .state('provider.view.schedules',{
+        .state('provider.view.schedule', {
+          abstract: true,
+          templateUrl: 'app/provider/provider-schedule.html',
+          sp: {
+            authenticate: true
+          }
+        })
+        .state('provider.view.schedule.list',{
           url: '/schedules',
           templateUrl: 'app/provider/partial-provider-schedule-list.html',
           controller: 'ProviderScheduleCtrl',
@@ -58,7 +65,7 @@ angular.module('yoStormApp')
           }
         })
         /* Provider > Schedules New */
-        .state('provider.view.newSchedule',{
+        .state('provider.view.schedule.new',{
           url: '/schedule',
           templateUrl: 'app/provider/partial-provider-schedule.html',
           controller: 'ProviderScheduleCtrl',
@@ -67,7 +74,7 @@ angular.module('yoStormApp')
           }
         })
         /* Provider > Schedules View */
-        .state('provider.view.viewSchedule',{
+        .state('provider.view.schedule.view',{
           url: '/schedule/:sid',
           templateUrl: 'app/provider/partial-provider-schedule-view.html',
           controller: 'ProviderScheduleViewCtrl',
@@ -76,7 +83,7 @@ angular.module('yoStormApp')
           }
         })
         /* Provider > Schedules Edit */
-        .state('provider.view.editSchedule',{
+        .state('provider.view.schedule.edit',{
           url: '/schedule/:sid',
           templateUrl: 'app/provider/partial-provider-schedule-edit.html',
           controller: 'ProviderScheduleEditCtrl',
@@ -85,7 +92,7 @@ angular.module('yoStormApp')
           }
         })
           /* Provider > Schedule > Hours */
-          .state('provider.schedule.hours',{
+          .state('provider.view.schedule.hours',{
             url: '/:sid/edit',
             templateUrl: 'app/provider/partial-provider-schedule-hours.html',
             controller: 'ProviderScheduleCtrl',

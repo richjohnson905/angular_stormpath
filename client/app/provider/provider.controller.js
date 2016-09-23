@@ -101,9 +101,9 @@ function defaultRoute($scope, $http, $stateParams, $state) {
       $http.get('/api/provider/' + $stateParams.pid + '/schedule').success(function(schedules) {
         if (schedules.length > 0) {
           $scope.schedules = schedules;
-          $state.go("provider.view.schedules");
+          $state.go("provider.view.schedule.list");
         } else {
-          $state.go("provider.view.schedules");
+          $state.go("provider.view.schedule.list");
         }
       });
     })
