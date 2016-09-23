@@ -25,7 +25,7 @@ models.sequelize.sync().then(function () {
 });
 
 function onError(err) {
-	console.log(err);
+	console.log('app js onError: ' + err);
 }
 
 function onListening() {
