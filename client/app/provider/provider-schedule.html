@@ -1,35 +1,32 @@
 <h1>Schedules</h1>
 
+<form name="scheduleForm">
 <table class="table">
     <thead>
         <tr>
-            <th>Store</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Zip</th>
+            <th>Name</th>
+            <th>Repeat</th>
+            <th>Created</th>
+            <th>Updated</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>#1234</td>
-            <td>Whatever</td>
-            <td>AK</td>
-            <td>54321</td>
+        <tr ng-repeat="row in schedules">
+            <td><label><input type="radio" name="scheduleForm" ng-model="value" ng-change='newValue(value)' value="{{row.name}}"> {{row.name}}</label></td>
+            <td>{{row.repeat}}</td>
+            <td>{{row.createdAt}}</td>
+            <td>{{row.updatedAt}}</td>
         </tr>
     </tbody>
 </table>
+</form>
 
-<a href="#/provider/1/schedule/1/edit" class="btn">
-    <i class="icon-edit"></i> Edit Schedule</a>
+
 
 <hr>
 
-<ul class="nav nav-tabs">
-    <li class="active" ng-class="{active:$state.includes('manage.store.complaints') || $state.includes('manage.store.addComplaint')}">
-        <a href="#/manage/store/1234">Complaints</a></li>
-    <li ng-class="{active:$state.includes('manage.store.accidents')}">
-        <a href="#/manage/store/1234/accidents">Accidents</a></li>
-</ul>
+
+
 
 <div ui-view>
     <!-- Third Level -->

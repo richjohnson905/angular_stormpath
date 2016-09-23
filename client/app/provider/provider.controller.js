@@ -96,6 +96,9 @@ angular.module('yoStormApp')
           $scope.hourValues = hourValues;
         });
     };
+    $scope.newValue = function(value) {
+      alert(value);
+    }
     
   });
 
@@ -107,7 +110,7 @@ function defaultRoute($scope, $http, $stateParams, $state) {
       $http.get('/api/provider/' + $stateParams.pid + '/schedule').success(function(schedules) {
         if (schedules.length > 0) {
           $scope.schedules = schedules;
-          $state.go("provider.view.schedule.list");
+          $state.go("provider.view.schedule.list"); //({pid:$stateParams.pid, sid: schedules[0].id})
         } else {
           $state.go("provider.view.schedule.list");
         }

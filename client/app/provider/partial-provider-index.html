@@ -7,7 +7,7 @@
     <tr ng-repeat="provider in providers">
     <td>{{provider.name}}</td>
     <td>
-        <a class="btn btn-primary" ui-sref="provider.view({pid: provider.id})">View</a>
+        <a class="btn btn-primary" ui-sref="provider.view.schedule.list({pid: provider.id})">View</a>
         <a class="btn btn-danger"  ng-click="deleteProvider(provider)">Delete</a>
     </td>
     </tr>

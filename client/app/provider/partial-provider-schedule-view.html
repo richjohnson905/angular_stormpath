@@ -1,7 +1,18 @@
 <!-- partial-provider-schedule-view.html -->
 <div>
-    Name: {{schedule.name}}<br />
     <input type="hidden" ng-model="providerId" value="{{providerId}}"/>
+
+    <ul class="nav nav-tabs">
+        <li class="active" ng-class="{active:$state.includes('manage.store.complaints') || $state.includes('manage.store.addComplaint')}">
+            <a href="#/manage/store/1234">Sunday</a></li>
+        <li ng-class="{active:$state.includes('manage.store.accidents')}">
+            <a href="#/manage/store/1234/accidents">Monday</a></li>
+        <li ng-class="{active:$state.includes('manage.store.accidents')}">
+            <a href="#/manage/store/1234/accidents">Tuesday</a></li>
+    </ul>
+
+<br />
+<br />
     <a class="btn btn-primary" ui-sref="provider.view.schedule.edit({id: providerId, sid: schedule.id})">Edit</a>
     <a class="btn btn-primary" ui-sref="provider.view.schedule.list">Back</a>
     

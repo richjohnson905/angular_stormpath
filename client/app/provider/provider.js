@@ -84,7 +84,7 @@ angular.module('yoStormApp')
         })
         /* Provider > Schedules Edit */
         .state('provider.view.schedule.edit',{
-          url: '/schedule/:sid',
+          url: '/schedule/:sid/edit',
           templateUrl: 'app/provider/partial-provider-schedule-edit.html',
           controller: 'ProviderScheduleEditCtrl',
           sp: {

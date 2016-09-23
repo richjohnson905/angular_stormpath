@@ -1,19 +1,6 @@
 <div>
-    <h3> Schedules </h3>
     <input type="hidden" ng-model="providerId" value="{{providerId}}"/>
-    <table class="table schedules">
-        <tr>
-        <td><h3>  </h3></td>
-        <td></td>
-        </tr>
-        <tr ng-repeat="item in schedules">
-        <td>{{item.name}}</td>
-        <td>
-            <a class="btn btn-primary" ui-sref="provider.view.schedule.view({pid: providerId, sid: item.id})">View</a>
-            <a class="btn btn-danger"  ng-click="deleteSchedule(item)">Delete</a>
-        </td>
-        </tr>
-    </table>
-</div>
+
+<a ui-sref="provider.view.schedule.view({id: providerId, sid: schedules[0].id})">View Schedule</a>
 
 <pre>schedules = {{schedules | json}}</pre>
