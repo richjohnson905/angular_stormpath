@@ -52,7 +52,7 @@ angular.module('yoStormApp')
           .error(function(error) {
               console.log('Error: ' + error);
           });
-      $state.go("provider.index");
+      defaultRoute($scope, $http, $stateParams, $state);
     },
     $scope.discard = function() {
       $state.go("provider.index");
@@ -73,8 +73,14 @@ angular.module('yoStormApp')
   })
   .controller('ProviderScheduleCtrl', function($scope, $http, $stateParams) {
     var hourValues = [];
-    $scope.providerId = $stateParams.pid;
-    $http.get('api/provider/' + $stateParams.pid + '/schedule').success(function(schedules) {
+    var pid = 0;
+    if ($stateParams.pid) {
+      pid = $stateParams.pid;
+    } else {
+      pid = $scope.providerId;
+    }
+    
+    $http.get('api/provider/' + pid + '/schedule').success(function(schedules) {
       $scope.schedules = schedules
     });
     $scope.select = function(item) {

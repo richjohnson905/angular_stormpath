@@ -3,6 +3,7 @@
 <div>
 
     <form>
+        <input type="hidden" ng-model="providerId" value="{{provider.id}}"/>
     <div class="form-provider-group">
         <label for="name">Provider Name:</label>
         <input type="text" class="form-control" ng-model="provider.name">
@@ -22,7 +23,7 @@
         <h3>Submit!</h3>
         
         <button type="submit" class="btn btn-primary" ng-click="processForm()">Submit</button>
-        <a class="btn btn-danger" ui-sref="provider.index">Discard</a>
+        <a class="btn btn-danger" ui-sref="provider.view.schedule.list({pid: provider.id})">Discard</a>
     </div>
     </form> 
 
