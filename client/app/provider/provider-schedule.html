@@ -12,7 +12,7 @@
     </thead>
     <tbody>
         <tr ng-repeat="row in schedules">
-            <td><label><input type="radio" name="scheduleForm" ng-model="value" ng-change='newValue(value)' value="{{row.name}}"> {{row.name}}</label></td>
+            <td><label><input type="radio" name="scheduleForm" ng-model="value" ng-click='newValue(value)' value="{{row.name}}">{{row.name}}</label></td>
             <td>{{row.repeat}}</td>
             <td>{{row.createdAt}}</td>
             <td>{{row.updatedAt}}</td>
@@ -21,11 +21,7 @@
 </table>
 </form>
 
-
-
 <hr>
-
-
 
 
 <div ui-view>

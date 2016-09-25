@@ -71,35 +71,41 @@ angular.module('yoStormApp')
       $scope.schedule = schedule;
     });
   })
-  .controller('ProviderScheduleCtrl', function($scope, $http, $stateParams) {
-    var hourValues = [];
-    var pid = 0;
-    if ($stateParams.pid) {
-      pid = $stateParams.pid;
-    } else {
-      pid = $scope.providerId;
-    }
+  .controller('ProviderScheduleCtrl', function($scope, $http, $stateParams, $state) {
+    defaultRoute($scope, $http, $stateParams, $state);
+    // var hourValues = [];
+    // var pid = 0;
+    //$scope.data = {selectedOption: x};
     
-    $http.get('api/provider/' + pid + '/schedule').success(function(schedules) {
-      $scope.schedules = schedules
-    });
-    $scope.select = function(item) {
-      $scope.selected = item;
-      $http.get('api/provider/' + $scope.providerId + '/schedule/' + item.id + '/sundays').success(function(sundays) {
-          var allSundays = [];
-          for (var i = 0; i < sundays.length; i++) {
-            allSundays.push(sundays[i].hour);
-          }
-          for (var i = 0; i < 24; i++) {
-            hourValues[i] = allSundays.indexOf(i) != -1;
-          }
-          $scope.hourValues = hourValues;
-        });
-    };
+    // if ($stateParams.pid) {
+    //   pid = $stateParams.pid;
+    // } else {
+    //   pid = $scope.providerId;
+    // }
+    
+    // $http.get('api/provider/' + pid + '/schedule').success(function(schedules) {
+    //   $scope.schedules = schedules
+    // });
+    // $scope.select = function(item) {
+    //   $scope.selected = item;
+    //   $http.get('api/provider/' + $scope.providerId + '/schedule/' + item.id + '/sundays').success(function(sundays) {
+    //       var allSundays = [];
+    //       for (var i = 0; i < sundays.length; i++) {
+    //         allSundays.push(sundays[i].hour);
+    //       }
+    //       for (var i = 0; i < 24; i++) {
+    //         hourValues[i] = allSundays.indexOf(i) != -1;
+    //       }
+    //       $scope.hourValues = hourValues;
+    //     });
+    // };
     $scope.newValue = function(value) {
       alert(value);
     }
-    
+    // $scope.foo = function() {
+    //   alert("shit");
+    //   $scope.value = schedules[1].name;
+    // }
   });
 
 // default provider view route is /provider/:pid/schedule/:sid 
@@ -110,7 +116,9 @@ function defaultRoute($scope, $http, $stateParams, $state) {
       $http.get('/api/provider/' + $stateParams.pid + '/schedule').success(function(schedules) {
         if (schedules.length > 0) {
           $scope.schedules = schedules;
+          $scope.value = schedules[0].name;
           $state.go("provider.view.schedule.list"); //({pid:$stateParams.pid, sid: schedules[0].id})
+          //$state.go("provider.view.schedule.view({sid: schedules[0].id})"); //({pid:$stateParams.pid, sid: schedules[0].id})
         } else {
           $state.go("provider.view.schedule.list");
         }

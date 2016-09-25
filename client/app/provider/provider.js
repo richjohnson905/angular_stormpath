@@ -52,6 +52,7 @@ angular.module('yoStormApp')
         .state('provider.view.schedule', {
           abstract: true,
           templateUrl: 'app/provider/provider-schedule.html',
+          controller: 'ProviderScheduleCtrl',
           sp: {
             authenticate: true
           }
