@@ -67,10 +67,10 @@ angular.module('yoStormApp')
         //   }
         // })
         /* Provider > Schedules New */
-        .state('provider.pview.schedule.new',{
-          url: '/schedule',
-          templateUrl: 'app/provider/partial-provider-schedule.html',
-          controller: 'ProviderScheduleCtrl',
+        .state('provider.pview.create',{
+          url: '/create',
+          templateUrl: 'app/provider/partial-provider-schedule-edit.html',
+          controller: 'ProviderScheduleNewCtrl',
           sp: {
             authenticate: true
           }

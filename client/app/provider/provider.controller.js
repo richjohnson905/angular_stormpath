@@ -67,12 +67,32 @@ angular.module('yoStormApp')
     });
   })
   .controller('ProviderScheduleEditCtrl', function($scope, $http, $stateParams) {
+    
     $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
       $scope.schedule = schedule;
     });
   })
+  .controller('ProviderScheduleNewCtrl', function($scope, $http, $state, $stateParams) {
+    $scope.providerId = $stateParams.pid;
+    $scope.processForm = function(providerId) {
+      $http.post('/api/provider/' + providerId + '/schedule', {name: $scope.schedule.name, pid: providerId})
+        .success(function(){
+          $state.go('provider.pview.schedule({pid: providerId})');
+        })
+        .error(function(err) {
+          console.log('Error: ' + err);
+        });
+    }
+  })
   .controller('ProviderScheduleCtrl', function($scope, $http, $stateParams, $state) {
     defaultRoute($scope, $http, $stateParams, $state);
+    var pid = $stateParams.pid;
+
+    $scope.deleteSchedule = function(schedule) {
+      $http.delete('/api/provider/' + pid + '/schedule/' + schedule.id).success(function(result){
+        $state.reload("provider.pview.schedule({pid: pid})");
+      });
+    }
     // var hourValues = [];
     // var pid = 0;
     //$scope.data = {selectedOption: x};

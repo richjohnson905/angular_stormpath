@@ -19,6 +19,30 @@ exports.show = function(req, res) {
     })
 }
 
+exports.create = function(req, res) {
+    console.log("SCHEDULE Create");
+    var pid = req.body.pid;
+    models.Schedule.create({
+        name: req.body.name,
+        ProviderId: pid
+    })
+    .then(function(){
+        getSchedules(pid, function(schedules){
+            res.json(schedules);
+        });
+    });
+}
+
+exports.destroy = function(req, res) {
+    models.Schedule.destroy({
+        where: {
+            id: req.params.sid
+        }
+    }).then(function(schedules) {
+        res.json(schedules);
+    });
+}
+
 function getSchedules(providerId, callback) {
     models.Schedule.findAll({
         where: {
