@@ -11,11 +11,11 @@
 
     <input type="hidden" ng-model="providerId" value="{{providerId}}"/>
     <div class="text-center">
-        <span class="glyphicon glyphicon-heart"></span>
+    
         <h3>Submit!</h3>
         
         <button type="submit" class="btn btn-primary" ng-click="processForm()">Submit</button>
-        <a class="btn btn-danger" ui-sref="provider.schedules">Discard</a>
+        <a class="btn btn-danger" ui-sref="provider.pview.schedule({pid: providerId)}">Discard</a>
     </div>
     </form> 
     

@@ -1,0 +1,53 @@
+<div>
+    <h3>Schedules</h3>
+    <!--<form name="scheduleForm">
+        <input type="hidden" ng-model="scheduleId" value="{{row.id}}"/>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Repeat</th>
+                    <th>Created</th>
+                    <th>Updated</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="row in schedules">
+                    <td><label><input type="radio" name="scheduleForm" ng-model="value" ng-click='newValue(value)' value="{{row.name}}">{{row.name}}</label></td>
+                    <td>{{row.repeat}}</td>
+                    <td>{{row.createdAt}}</td>
+                    <td>{{row.updatedAt}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+<hr>-->
+
+<table class="table movietable">
+    <tr>
+    <td><h3>  </h3></td>
+    <td></td>
+    </tr>
+    <tr ng-repeat="row in schedules">
+    <td>{{row.name}}</td>
+    <td>
+        <a class="btn btn-primary" ui-sref="provider.pview.sview({pid: provider.id, sid: row.id})">View</a>
+        <a class="btn btn-primary" ui-sref="provider.pview.edit({pid: provider.id, sid: row.id})">Edit</a>
+        <a class="btn btn-danger"  ng-click="deleteProvider(provider)">Delete</a>
+    </td>
+    </tr>
+</table>
+</br>
+
+<a class="btn btn-primary" ui-sref="provider.create">Create a new Provider</a>
+
+
+
+<!--<a class="btn btn-primary" ui-sref="provider.pview.schedule.hours({id: providerId, sid: scheduleId})">Hours</a>
+<a class="btn btn-primary" ui-sref="provider.pview.schedule.create({id: providerId})">Create</a>
+<a class="btn btn-primary" ui-sref="provider.pview.schedule.edit({id: providerId, sid: scheduleId})">Edit</a>-->
+
+
+<!--<a class="btn btn-primary" ng-click="foo()">Back</a>-->
+<pre>schedules = {{schedules | json}}</pre>

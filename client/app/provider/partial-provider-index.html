@@ -1,4 +1,5 @@
 <!-- partial-provider-index.html -->
+<h3>Provider</h3>
 <table class="table movietable">
     <tr>
     <td><h3>  </h3></td>
@@ -7,8 +8,10 @@
     <tr ng-repeat="provider in providers">
     <td>{{provider.name}}</td>
     <td>
-        <a class="btn btn-primary" ui-sref="provider.view.schedule.list({pid: provider.id})">View</a>
+        <a class="btn btn-primary" ui-sref="provider.pview({pid: provider.id})">View</a>
+        <a class="btn btn-primary" ui-sref="provider.edit({pid: provider.id})">Edit</a>
         <a class="btn btn-danger"  ng-click="deleteProvider(provider)">Delete</a>
+        <a class="btn btn-primary"  ui-sref="provider.pview.schedule({pid: provider.id})">Schedules</a>
     </td>
     </tr>
 </table>

@@ -117,10 +117,10 @@ function defaultRoute($scope, $http, $stateParams, $state) {
         if (schedules.length > 0) {
           $scope.schedules = schedules;
           $scope.value = schedules[0].name;
-          $state.go("provider.view.schedule.list"); //({pid:$stateParams.pid, sid: schedules[0].id})
-          //$state.go("provider.view.schedule.view({sid: schedules[0].id})"); //({pid:$stateParams.pid, sid: schedules[0].id})
+          //$state.go("provider.pview.schedule.list"); //({pid:$stateParams.pid, sid: schedules[0].id})
+          //$state.go("provider.pview.schedule.view({sid: schedules[0].id})"); //({pid:$stateParams.pid, sid: schedules[0].id})
         } else {
-          $state.go("provider.view.schedule.list");
+          $state.go("provider.pview.schedule.list");
         }
       });
     })
