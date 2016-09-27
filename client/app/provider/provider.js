@@ -48,7 +48,7 @@ angular.module('yoStormApp')
 	        authenticate: true
 	      }
       })
-        /* Provider > Schedules */
+        /* Provider > Schedule Index */
         .state('provider.pview.schedule', {
           // abstract: true,
           url: '/schedule',
@@ -58,14 +58,6 @@ angular.module('yoStormApp')
             authenticate: true
           }
         })
-        // .state('provider.pview.schedule.list',{
-        //   url: '/schedules',
-        //   templateUrl: 'app/provider/partial-provider-schedule-list.html',
-        //   controller: 'ProviderScheduleCtrl',
-        //   sp: {
-        //     authenticate: true
-        //   }
-        // })
         /* Provider > Schedules New */
         .state('provider.pview.create',{
           url: '/create',
@@ -94,10 +86,18 @@ angular.module('yoStormApp')
           }
         })
           /* Provider > Schedule > Hours */
-          .state('provider.pview.schedule.hours',{
-            url: '/:sid/edit',
-            templateUrl: 'app/provider/partial-provider-schedule-hours.html',
-            controller: 'ProviderScheduleCtrl',
+          .state('provider.pview.edit.hour',{
+            abstract: true,
+            templateUrl: 'app/provider/partial-provider-schedule-hour.html',
+            sp: {
+              authenticate: true
+            }
+          })
+          /* Provider > Schedule > Hour > Sunday */
+          .state('provider.pview.edit.sunday',{
+            url: '/sunday',
+            templateUrl: 'app/provider/partial-provider-schedule-sunday.html',
+            controller: 'ProviderScheduleHourCtrl',
             sp: {
               authenticate: true
             }

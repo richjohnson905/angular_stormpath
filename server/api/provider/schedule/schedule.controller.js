@@ -24,12 +24,28 @@ exports.create = function(req, res) {
     var pid = req.body.pid;
     models.Schedule.create({
         name: req.body.name,
+        repeat: true,
         ProviderId: pid
     })
     .then(function(){
         getSchedules(pid, function(schedules){
             res.json(schedules);
         });
+    });
+}
+
+exports.update = function(req, res) {
+    models.Schedule.update(
+    {
+        name: req.body.name
+    },
+    {
+        where: { id : req.body.id }
+    })
+    .then(function (result) { 
+        console.log('Result: ' + result);
+    }, function(rejectedPromiseError){
+        console.log('rejectedPromiseError: ' + rejectedPromiseError);
     });
 }
 

@@ -8,6 +8,7 @@ var schedules = express.Router({mergeParams: true});
 schedules.get('/', controller.index);
 schedules.get('/:sid', controller.show);
 schedules.post('/', controller.create);
+schedules.put('/:sid', controller.update);
 schedules.delete('/:sid', controller.destroy);
 
 module.exports = schedules;

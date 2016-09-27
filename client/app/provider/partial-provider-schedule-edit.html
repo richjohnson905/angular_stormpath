@@ -10,12 +10,25 @@
     </div>
 
     <input type="hidden" ng-model="providerId" value="{{providerId}}"/>
+    <input type="hidden" ng-model="scheduleId" value="{{providerId}}"/>
     <div class="text-center">
+
+    <ul class="nav nav-tabs">
+        <li class="active" ng-class="{active:$state.includes('provider.pview.edit.hour.sunday') || $state.includes('manage.store.addComplaint')}">
+            <a href="#/manage/store/1234">Sunday</a></li>
+        <li ng-class="{active:$state.includes('manage.store.accidents')}">
+            <a href="#/manage/store/1234/accidents">Monday</a></li>
+        <li ng-class="{active:$state.includes('manage.store.accidents')}">
+            <a href="#/manage/store/1234/accidents">Tuesday</a></li>
+    </ul>
+
+
+    <div ui-view></div>
     
-        <h3>Submit!</h3>
+    <h3>Submit!</h3>
         
-        <button type="submit" class="btn btn-primary" ng-click="processForm(providerId)">Submit</button>
-        <a class="btn btn-danger" ui-sref="provider.pview.schedule({pid: providerId})">Discard</a>
+    <button type="submit" class="btn btn-primary" ng-click="processForm(providerId, scheduleId)">Submit</button>
+    <a class="btn btn-danger" ui-sref="provider.pview.schedule({pid: providerId})">Discard</a>
     </div>
     </form> 
     

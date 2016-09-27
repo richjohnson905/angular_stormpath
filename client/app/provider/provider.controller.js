@@ -1,14 +1,7 @@
 'use strict';
 
 angular.module('yoStormApp')
-  .controller('ProviderCtrl', function($scope, $http) {
-    $scope.providers = $scope.providers || {name : "xxx"};
-    alert("AND NEVER HERE??");
-    $http.get('/api/provider').success(function(providers){
-      alert("NEVER HERE??");
-      $scope.providers = providers
-    });
-  })
+  /* PROVIDER INDEX */
   .controller('ProviderIndexCtrl', function($scope, $http) {
     $scope.providers = $scope.providers || {name : "xxx"};
     
@@ -21,6 +14,7 @@ angular.module('yoStormApp')
       });
     }
   })
+  /* PROVIDER NEW */
   .controller('ProviderNewCtrl', function($scope, $http, $state) {
     $scope.processForm = function() {
       $http.post('/api/provider/', {name: $scope.provider.name, address: $scope.provider.address, phone: $scope.provider.phone})
@@ -32,16 +26,11 @@ angular.module('yoStormApp')
         });
     }
   })
+  /* PROVIDER VIEW */
   .controller('ProviderViewCtrl', function($scope, $http, $stateParams, $state) {
     defaultRoute($scope, $http, $stateParams, $state);
-    // $http.get('/api/provider/' + $stateParams.pid)
-    //   .success(function(provider){
-    //     $scope.provider = provider;
-    //   })
-    //   .error(function(err) {
-    //     console.log('Error: ' + err);
-    //   });
   })
+  /* PROVIDER EDIT */
   .controller('ProviderEditCtrl', function($scope, $http, $stateParams, $state) {
     $scope.processForm = function() {
       $http.put('/api/provider/' + $stateParams.pid, $scope.provider)
@@ -61,17 +50,20 @@ angular.module('yoStormApp')
       $scope.provider = provider;
     });
   })
-  .controller('ProviderScheduleViewCtrl', function($scope, $http, $stateParams) {
-    $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
-      $scope.schedule = schedule;
-    });
+  /* SCHEDULE INDEX */
+  .controller('ProviderScheduleCtrl', function($scope, $http, $stateParams, $state) {
+    var pid = $stateParams.pid;
+
+    $scope.deleteSchedule = function(schedule) {
+      $http.delete('/api/provider/' + pid + '/schedule/' + schedule.id).success(function(result){
+        $state.go("provider.pview.schedule({pid: pid})");
+      });
+    }
+    $scope.newValue = function(value) {
+      alert(value);
+    }
   })
-  .controller('ProviderScheduleEditCtrl', function($scope, $http, $stateParams) {
-    
-    $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
-      $scope.schedule = schedule;
-    });
-  })
+  /* SCHEDULE NEW */
   .controller('ProviderScheduleNewCtrl', function($scope, $http, $state, $stateParams) {
     $scope.providerId = $stateParams.pid;
     $scope.processForm = function(providerId) {
@@ -84,48 +76,33 @@ angular.module('yoStormApp')
         });
     }
   })
-  .controller('ProviderScheduleCtrl', function($scope, $http, $stateParams, $state) {
-    defaultRoute($scope, $http, $stateParams, $state);
-    var pid = $stateParams.pid;
+  /* SCHEDULE VIEW */
+  .controller('ProviderScheduleViewCtrl', function($scope, $http, $stateParams) {
+    $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
+      $scope.schedule = schedule;
+    });
+  })
+  /* SCHEDULE EDIT */
+  .controller('ProviderScheduleEditCtrl', function($scope, $http, $stateParams) {
+    $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
+      $scope.schedule = schedule;
+      $scope.providerId = $stateParams.pid;
+    });
+    $scope.processForm = function(pid, sid) {
+      $http.put('/api/provider/' + pid + '/schedule/sid', $scope.schedule)
+        .success(function(data) {
+          $scope.schedule = data;
+          console.log("Schedule Edit Success");
+          $state.go('provider.pview.schedule({pid})');
+        })
+        .error(function(error) {
+          console.log('Error editing schedule ' + error);
+        });
+    }
+  })
+  /* HOUR */
+  .controller('ProviderScheduleHourCtrl', function($scope, $http, $stateParams) {
 
-    $scope.deleteSchedule = function(schedule) {
-      $http.delete('/api/provider/' + pid + '/schedule/' + schedule.id).success(function(result){
-        $state.reload("provider.pview.schedule({pid: pid})");
-      });
-    }
-    // var hourValues = [];
-    // var pid = 0;
-    //$scope.data = {selectedOption: x};
-    
-    // if ($stateParams.pid) {
-    //   pid = $stateParams.pid;
-    // } else {
-    //   pid = $scope.providerId;
-    // }
-    
-    // $http.get('api/provider/' + pid + '/schedule').success(function(schedules) {
-    //   $scope.schedules = schedules
-    // });
-    // $scope.select = function(item) {
-    //   $scope.selected = item;
-    //   $http.get('api/provider/' + $scope.providerId + '/schedule/' + item.id + '/sundays').success(function(sundays) {
-    //       var allSundays = [];
-    //       for (var i = 0; i < sundays.length; i++) {
-    //         allSundays.push(sundays[i].hour);
-    //       }
-    //       for (var i = 0; i < 24; i++) {
-    //         hourValues[i] = allSundays.indexOf(i) != -1;
-    //       }
-    //       $scope.hourValues = hourValues;
-    //     });
-    // };
-    $scope.newValue = function(value) {
-      alert(value);
-    }
-    // $scope.foo = function() {
-    //   alert("shit");
-    //   $scope.value = schedules[1].name;
-    // }
   });
 
 // default provider view route is /provider/:pid/schedule/:sid 
@@ -140,7 +117,7 @@ function defaultRoute($scope, $http, $stateParams, $state) {
           //$state.go("provider.pview.schedule.list"); //({pid:$stateParams.pid, sid: schedules[0].id})
           //$state.go("provider.pview.schedule.view({sid: schedules[0].id})"); //({pid:$stateParams.pid, sid: schedules[0].id})
         } else {
-          $state.go("provider.pview.schedule.list");
+          $state.go("provider.pview.schedule");
         }
       });
     })
