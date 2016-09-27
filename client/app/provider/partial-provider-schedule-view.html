@@ -3,20 +3,32 @@
     <input type="hidden" ng-model="providerId" value="{{providerId}}"/>
     
     Name: {{schedule.name}}<br />
-    Sunday: yada <br />
+    <!--Sunday: yada <br />
     Monday: Yada <br />
-    Tuesday: Yada <br />
+    Tuesday: Yada <br />-->
 
 
 
 <br />
 <br />
-    <a class="btn btn-primary" ui-sref="provider.pview.edit({id: providerId, sid: schedule.id})">Edit</a>
-    <a class="btn btn-primary" ui-sref="provider.pview.schedule({pid: provider.id})">Back</a>
+    <!--<a class="btn btn-primary" ui-sref="provider.pview.sview.sunday({id: providerId, sid: schedule.id})">Edit</a>
+    <a class="btn btn-primary" ui-sref="provider.pview.schedule({pid: provider.id})">Back</a>-->
 
 </div>
 </br>
+    <ul class="nav nav-tabs">
+        <li class="active" ng-class="{active:$state.includes('provider.pview.edit.hour.sunday') || $state.includes('manage.store.addComplaint')}">
+            <a href="#/manage/store/1234">Sunday</a></li>
+        <li ng-class="{active:$state.includes('manage.store.accidents')}">
+            <a href="#/manage/store/1234/accidents">Monday</a></li>
+        <li ng-class="{active:$state.includes('manage.store.accidents')}">
+            <a href="#/manage/store/1234/accidents">Tuesday</a></li>
+    </ul>
 
+<div ui-view></div>
+
+<a class="btn btn-primary" ui-sref="provider.pview.sview.sunday.edit({id: providerId, sid: schedule.id})">Edit</a>
+    <a class="btn btn-primary" ui-sref="provider.pview.schedule({pid: provider.id})">Back</a>
 
 
 </br>
