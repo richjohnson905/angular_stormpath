@@ -86,15 +86,15 @@ angular.module('yoStormApp')
           }
         })
           /* Provider > Schedule > Hours */
-          .state('provider.pview.sview.day',{
-            abstract: true,
-            templateUrl: 'app/provider/partial-provider-schedule-hour.html',
-            sp: {
-              authenticate: true
-            }
-          })
+          // .state('provider.pview.sview.day',{
+          //   //abstract: true,
+          //   templateUrl: 'app/provider/partial-provider-schedule-hour.html',
+          //   sp: {
+          //     authenticate: true
+          //   }
+          // })
           /* Provider > Schedule > Hour > day */
-          .state('provider.pview.sview.day.view',{
+          .state('provider.pview.sview.dayView',{
             url: '/:day',
             templateUrl: 'app/provider/partial-provider-schedule-day-view.html',
             controller: 'ProviderScheduleHourCtrl',
@@ -103,7 +103,7 @@ angular.module('yoStormApp')
             }
           })
           /* Provider > Schedule > Hour > day Edit */
-          .state('provider.pview.sview.day.edit',{
+          .state('provider.pview.sview.dayEdit',{
             url: '/:day/edit',
             templateUrl: 'app/provider/partial-provider-schedule-day-edit.html',
             controller: 'ProviderScheduleHourCtrl',

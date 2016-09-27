@@ -102,7 +102,12 @@ angular.module('yoStormApp')
   })
   /* HOUR */
   .controller('ProviderScheduleHourCtrl', function($scope, $http, $stateParams) {
-
+    $scope.dayName = "fooday";
+    $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
+      $scope.schedule = schedule;
+      $scope.providerId = $stateParams.pid;
+      
+    });
   });
 
 // default provider view route is /provider/:pid/schedule/:sid 

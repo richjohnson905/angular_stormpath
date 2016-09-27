@@ -10,7 +10,7 @@
     </div>
 
     <input type="hidden" ng-model="providerId" value="{{providerId}}"/>
-    <input type="hidden" ng-model="scheduleId" value="{{providerId}}"/>
+    <input type="hidden" ng-model="schedule" value="{{schedule}}"/>
     <div class="text-center">
 
 
@@ -18,8 +18,8 @@
     
     <h3>Submit!</h3>
         
-    <button type="submit" class="btn btn-primary" ng-click="processForm(providerId, scheduleId)">Submit</button>
-    <a class="btn btn-danger" ui-sref="provider.pview.schedule({pid: providerId})">Discard</a>
+    <button type="submit" class="btn btn-primary" ng-click="processForm(providerId, schedule.id)">Submit</button>
+    <a class="btn btn-danger" ui-sref="provider.pview.sview.dayView({pid: providerId, sid: schedule.id, day: 'sunday'})">Discard</a>
     </div>
     </form> 
     
