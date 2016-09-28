@@ -2,20 +2,17 @@
 
 var _ = require('lodash');
 var models = require('../../../../models');
+var helper = require('../../../helper/weekday');
 
 // Get list of sundays
 exports.index = function(req, res) {
-  getSundays(req.params.sid, function(sundays) {
+  helper.getHours(req.params.sid, models.Sunday, function(sundays) {
     return res.json(sundays);
   });
 };
 
-function getSundays(scheduleId, callback) {
-    models.Sunday.findAll({
-        where: {
-            ScheduleId: scheduleId
-        }
-    }).then(function(sundays) {
-        callback(sundays);
+exports.create = function(req, res) {
+    return helper.createHelper(req, res, models.Sunday, function(hours) {
+        return res.json(hours);
     });
 }

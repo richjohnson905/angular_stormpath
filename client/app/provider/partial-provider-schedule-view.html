@@ -17,12 +17,7 @@
 </div>
 </br>
     <ul class="nav nav-tabs">
-        <li class="active" ng-class="{active:$state.includes('provider.pview.edit.hour.sunday') || $state.includes('manage.store.addComplaint')}">
-            <a href="#/manage/store/1234">Sunday</a></li>
-        <li ng-class="{active:$state.includes('manage.store.accidents')}">
-            <a href="#/manage/store/1234/accidents">Monday</a></li>
-        <li ng-class="{active:$state.includes('manage.store.accidents')}">
-            <a href="#/manage/store/1234/accidents">Tuesday</a></li>
+        <li ng-repeat="type in dayModel" ui-sref="provider.pview.sview.dayEdit({day:type})" ui-sref-active="active"><a>{{type}}</a></li>
     </ul>
 
 <div ui-view></div>

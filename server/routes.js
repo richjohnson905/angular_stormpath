@@ -14,7 +14,8 @@ module.exports = function(app) {
   app.use('/api/provider/', ExpressStormpath.loginRequired, require('./api/provider'));
   app.use('/api/provider/:pid/schedule', ExpressStormpath.loginRequired, require('./api/provider/schedule'));
   //app.use('/api/provider/:pid/schedule/:sid', ExpressStormpath.loginRequired, require('./api/provider/schedule'));
-  //app.use('/api/provider/:pid/schedule/:sid/sundays', ExpressStormpath.loginRequired, require('./api/provider/schedule/sunday'));
+  app.use('/api/provider/:pid/schedule/:sid/sunday', ExpressStormpath.loginRequired, require('./api/provider/schedule/sunday'));
+  app.use('/api/provider/:pid/schedule/:sid/monday', ExpressStormpath.loginRequired, require('./api/provider/schedule/monday'));
 
   app.use('/api/consumer', ExpressStormpath.loginRequired, require('./api/consumer'));
   //app.use('/api/consumer', ExpressStormpath.loginRequired, require('./api/consumer'));

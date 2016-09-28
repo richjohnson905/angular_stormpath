@@ -58,7 +58,7 @@ angular.module('yoStormApp')
             authenticate: true
           }
         })
-        /* Provider > Schedules New */
+        /* Provider > Schedule New */
         .state('provider.pview.create',{
           url: '/create',
           templateUrl: 'app/provider/partial-provider-schedule-edit.html',
@@ -67,7 +67,7 @@ angular.module('yoStormApp')
             authenticate: true
           }
         })
-        /* Provider > Schedules View */
+        /* Provider > Schedule View */
         .state('provider.pview.sview',{
           url: '/:sid',
           templateUrl: 'app/provider/partial-provider-schedule-view.html',
@@ -76,7 +76,7 @@ angular.module('yoStormApp')
             authenticate: true
           }
         })
-        /* Provider > Schedules Edit */
+        /* Provider > Schedule Edit */
         .state('provider.pview.edit',{
           url: '/:sid/edit',
           templateUrl: 'app/provider/partial-provider-schedule-edit.html',
@@ -85,15 +85,7 @@ angular.module('yoStormApp')
             authenticate: true
           }
         })
-          /* Provider > Schedule > Hours */
-          // .state('provider.pview.sview.day',{
-          //   //abstract: true,
-          //   templateUrl: 'app/provider/partial-provider-schedule-hour.html',
-          //   sp: {
-          //     authenticate: true
-          //   }
-          // })
-          /* Provider > Schedule > Hour > day */
+          /* Provider > Schedule > dayView */
           .state('provider.pview.sview.dayView',{
             url: '/:day',
             templateUrl: 'app/provider/partial-provider-schedule-day-view.html',
@@ -102,11 +94,11 @@ angular.module('yoStormApp')
               authenticate: true
             }
           })
-          /* Provider > Schedule > Hour > day Edit */
+          /* Provider > Schedule > dayEdit */
           .state('provider.pview.sview.dayEdit',{
             url: '/:day/edit',
             templateUrl: 'app/provider/partial-provider-schedule-day-edit.html',
-            controller: 'ProviderScheduleHourCtrl',
+            controller: 'ProviderScheduleHourEditCtrl',
             sp: {
               authenticate: true
             }

@@ -78,6 +78,8 @@ angular.module('yoStormApp')
   })
   /* SCHEDULE VIEW */
   .controller('ProviderScheduleViewCtrl', function($scope, $http, $stateParams) {
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    $scope.dayModel = days;
     $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
       $scope.schedule = schedule;
     });
@@ -102,13 +104,43 @@ angular.module('yoStormApp')
   })
   /* HOUR */
   .controller('ProviderScheduleHourCtrl', function($scope, $http, $stateParams) {
-    $scope.dayName = "fooday";
     $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
       $scope.schedule = schedule;
       $scope.providerId = $stateParams.pid;
       
     });
+  }) 
+  /* HOUR EDIT*/
+  .controller('ProviderScheduleHourEditCtrl', function($scope, $http, $stateParams, $state) {
+    //$scope.hours = [];
+    var pid = $stateParams.pid;
+    var sid = $stateParams.sid;
+    var day = $stateParams.day;
+    $scope.saveButtonLabel = day;
+    $http.get('api/provider/' + pid + '/schedule/' + sid + '/' + day.toLowerCase()).success(function(sundays){
+      $scope.hours = getHours(sundays);
+    });
+    $scope.saveHours = function(day) {
+      $http.post('api/provider/' + pid + '/schedule/' + sid + '/' + day.toLowerCase(), {hours: $scope.hours, sid: sid})
+        .success(function(){
+          $state.go('provider.pview.sview.dayView');
+        })
+        .error(function(err) {
+          console.log('Error: ' + err);
+        });
+    }
   });
+
+  function getHours(data) {
+    var hours = [];
+    for (var i = 0; i < 24; i++) {
+      hours.push(false);
+    }
+    for (var i = 0; i < data.length; i++) {
+        hours[data[i].hour] = true;
+    }
+    return hours;
+  }
 
 // default provider view route is /provider/:pid/schedule/:sid 
 // else if no schedule /provider/:pid/schedule/create
