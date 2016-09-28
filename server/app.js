@@ -32,35 +32,40 @@ function onListening() {
 	console.log("=========listening========");
 }
 
-app.use(ExpressStormpath.init(app,{
-	// postRegistrationHandler: function (account, req, res, next) {
-	// 	models.Storm.create({
-	// 		email: account.email
-	// 	});
-	// 	next();
-	// },
-	web: {
-		spa: {
-		  enabled: true,
-		  view: path.join(__dirname, '..','client','index.html')
-		},
-		me: {
-			expand: {
-				customData: true,
-				groups: true
-				}
+if (process.env.NODE_ENV != 'test') {
+	app.use(ExpressStormpath.init(app,{
+		// postRegistrationHandler: function (account, req, res, next) {
+		// 	models.Storm.create({
+		// 		email: account.email
+		// 	});
+		// 	next();
+		// },
+		web: {
+			spa: {
+				enabled: true,
+				view: path.join(__dirname, '..','client','index.html')
 			},
-		debug: 'info'
-	}
-}));
+			me: {
+				expand: {
+					customData: true,
+					groups: true
+					}
+				},
+			debug: 'info'
+		}
+	}));
+
+	// Described in the Stormpath SDK
+	app.get('/home', ExpressStormpath.getUser, function (req, res) {
+		var stormpathApplication = req.app.get('stormpathApplication');
+		// Do stuff with stormpath
+	});
+}
+
 var favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname,'public','favicon.ico')));
 
-// Described in the Stormpath SDK
-app.get('/home', ExpressStormpath.getUser, function (req, res) {
-  var stormpathApplication = req.app.get('stormpathApplication');
-  // Do stuff with stormpath
-});
+
 
 /* REMOVE THIS
 app.get('/secret', function (req, res) {
@@ -90,9 +95,12 @@ var server = require('http').createServer(app);
 require('./config/express')(app);
 require('./routes')(app);
 
-app.on('stormpath.ready',function () {
-  console.log('Stormpath Ready');
-});
+if (process.env.NODE_ENV != 'test') {
+
+	app.on('stormpath.ready',function () {
+		console.log('Stormpath Ready');
+	});
+}
 
 // Start server
 server.listen(config.port, config.ip, function () {
