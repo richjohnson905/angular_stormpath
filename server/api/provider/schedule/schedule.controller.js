@@ -44,6 +44,7 @@ exports.update = function(req, res) {
     })
     .then(function (result) { 
         console.log('Result: ' + result);
+        res.json(result);
     }, function(rejectedPromiseError){
         console.log('rejectedPromiseError: ' + rejectedPromiseError);
     });

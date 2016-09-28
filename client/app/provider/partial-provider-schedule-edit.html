@@ -2,32 +2,25 @@
 
 <!-- partial-provider-schedule-view.html -->
 <div>
-
     <form>
-    <div class="form-provider-group">
-        <label for="name">Schedule Name:</label>
-        <input type="text" class="form-control" ng-model="schedule.name">
-    </div>
+        <div class="form-provider-group">
+            <label for="name">Schedule Name:</label>
+            <input type="text" class="form-control" ng-model="schedule.name">
+        </div>
 
-    <input type="hidden" ng-model="providerId" value="{{providerId}}"/>
-    <input type="hidden" ng-model="schedule" value="{{schedule}}"/>
-    <div class="text-center">
-
-
-    
-    
-    <h3>Submit!</h3>
+        <input type="hidden" ng-value="{{pid}}"/>
+        <input type="hidden" ng-value="{{schedule}}"/>
+        <div class="text-center">        
         
-    <button type="submit" class="btn btn-primary" ng-click="processForm(providerId, schedule.id)">Submit</button>
-    <a class="btn btn-danger" ui-sref="provider.pview.sview.dayView({pid: providerId, sid: schedule.id, day: 'Sunday'})">Discard</a>
-    </div>
+        <h3>Submit!</h3>
+            
+        <button type="submit" class="btn btn-primary" ng-click="processForm(pid, schedule.id)">Submit</button>
+        <a class="btn btn-danger" ui-sref="provider.pview.schedule({pid: pid})">Discard</a>
+        </div>
     </form> 
-    
-
 
 </div>
 </br>
-
 
 </br>
   <pre>schedule = {{schedule | json}}</pre>
