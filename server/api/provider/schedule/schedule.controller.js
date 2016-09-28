@@ -14,9 +14,20 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
     console.log("SCHEDULE SHOW >>>>>>>>>>" + req.params.sid);
     const scheduleId = req.params.sid * 1;
-    models.Schedule.findById(scheduleId).then(function(schedule) {
-        return res.json(schedule);
-    })
+    // models.Schedule.findById(scheduleId).then(function(schedule) {
+    //     return res.json(schedule);
+    // });
+    models.Schedule.findAll({
+        where: {
+            id: scheduleId
+        }
+    }).then(function(schedule) {
+        if (schedule.length == 1) {
+            return res.json(schedule[0]);
+        } else {
+            return res.json(null);
+        }
+    });
 }
 
 exports.create = function(req, res) {

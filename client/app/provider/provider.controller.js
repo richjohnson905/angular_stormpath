@@ -95,11 +95,12 @@ angular.module('yoStormApp')
       $http.put('/api/provider/' + pid + '/schedule/sid', $scope.schedule).success(function(data) {
           $scope.schedule = data;
           console.log("Schedule Edit Success");
-          $state.go("provider.pview.schedule", {pid}, {reload: true});
+          $state.go('provider.pview.schedule', {pid: pid}, {reload: true});
         })
         .error(function(error) {
           console.log('Error editing schedule ' + error);
         });
+    
     }
   })
   /* HOUR */
