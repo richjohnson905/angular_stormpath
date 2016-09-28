@@ -1,23 +1,30 @@
 
-<!-- partial-provider-schedule.html -->
+<!-- partial-consumer-schedule.html -->
 <div>
-    <h2>Scheduling</h2>
-    <form>
-    <div class="form-provider-group">
+    <h2>{{consumer.name}}</h2>
+    <!--<form>-->
+    <!--<div class="form-provider-group">
         <label for="name">TODO:</label>
         <input type="text" class="form-control" ng-model="providerId">
-    </div>
+    </div>-->
+
+    <ul class="nav nav-tabs">
+        <li ng-repeat="type in schedules" ui-sref="consumer.schedule.edit({sid:type.id})" ui-sref-active="active"><a>{{type.name}}</a></li>
+    </ul>
+</div>
+
+<div ui-view></div>
+
     
-    <div class="text-center">
+    <!--<div class="text-center">
         <span class="glyphicon glyphicon-heart"></span>
         <h3>Submit!</h3>
         
         <button type="submit" class="btn btn-primary" ng-click="processForm()">Submit</button>
         <a class="btn btn-danger" ui-sref="consumer.index">Discard</a>
     </div>
-    </form> 
+    </form> -->
 
-  <pre>providers = {{providers | json}}</pre>
+  <pre>consumer = {{consumer | json}}</pre>
   <pre>schedules = {{schedules | json}}</pre>
-
-</div>
+  

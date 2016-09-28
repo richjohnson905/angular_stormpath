@@ -7,7 +7,7 @@
     <tr ng-repeat="consumer in consumers">
     <td>{{consumer.name}}</td>
     <td>
-        <a class="btn btn-primary" ui-sref="consumer.schedule({id: consumer.id})">Schedule</a>
+        <a class="btn btn-primary" ui-sref="consumer.schedule({cid: consumer.id})">Schedule</a>
         <a class="btn btn-danger"  ng-click="deleteConsumer(consumer.id)">Delete</a>
     </td>
     </tr>
@@ -15,3 +15,4 @@
 </br>
 <a class="btn btn-primary" ui-sref="consumer.add">Add a Consumer</a>
 
+<pre>consumers = {{consumers | json}}</pre>

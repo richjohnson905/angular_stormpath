@@ -17,7 +17,18 @@ exports.index = function(req, res) {
   }).then(function(obj){
     res.json(obj);
   });
-    
+};
+
+exports.show = function(req, res) {
+  var cid = req.params.cid;
+  models.Consumer.findOne({
+    where: {
+      id: cid
+    },
+    include: [models.Provider]
+  }).then(function(consumer) {
+    res.json(consumer);
+  });
 };
 
 exports.create = function(req, res) {

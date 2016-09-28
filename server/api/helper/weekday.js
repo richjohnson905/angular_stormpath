@@ -36,7 +36,8 @@ function doGetHours(sid, weekdayModel, callback) {
     weekdayModel.findAll({
         where: {
             ScheduleId: sid
-        }
+        },
+        attributes: ["hour"]
     }).then(function(hours) {
         callback(hours);
     });

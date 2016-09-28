@@ -28,11 +28,20 @@ angular.module('yoStormApp')
 	      }
       })
       .state('consumer.schedule', {
-        url: '/:id/schedule',
+        url: '/:cid/schedule',
         templateUrl: 'app/consumer/partial-consumer-schedule.html',
         controller: 'ConsumerScheduleCtrl',
         sp: {
           authenticate: true
         }
       })
+      /* Consumer > Schedule > edit */
+          .state('consumer.schedule.edit',{
+            url: '/:sid',
+            templateUrl: 'app/consumer/partial-consumer-schedule-edit.html',
+            controller: 'ConsumerScheduleEditCtrl',
+            sp: {
+              authenticate: true
+            }
+          });
   });
