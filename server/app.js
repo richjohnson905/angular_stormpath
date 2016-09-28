@@ -32,35 +32,27 @@ function onListening() {
 	console.log("=========listening========");
 }
 
-if (process.env.NODE_ENV != 'test') {
-	app.use(ExpressStormpath.init(app,{
-		// postRegistrationHandler: function (account, req, res, next) {
-		// 	models.Storm.create({
-		// 		email: account.email
-		// 	});
-		// 	next();
-		// },
-		web: {
-			spa: {
-				enabled: true,
-				view: path.join(__dirname, '..','client','index.html')
+app.use(ExpressStormpath.init(app,{
+	web: {
+		spa: {
+			enabled: true,
+			view: path.join(__dirname, '..','client','index.html')
+		},
+		me: {
+			expand: {
+				customData: true,
+				groups: true
+				}
 			},
-			me: {
-				expand: {
-					customData: true,
-					groups: true
-					}
-				},
-			debug: 'info'
-		}
-	}));
+		debug: 'info'
+	}
+}));
 
-	// Described in the Stormpath SDK
-	app.get('/home', ExpressStormpath.getUser, function (req, res) {
-		var stormpathApplication = req.app.get('stormpathApplication');
-		// Do stuff with stormpath
-	});
-}
+// Described in the Stormpath SDK
+app.get('/home', ExpressStormpath.getUser, function (req, res) {
+	var stormpathApplication = req.app.get('stormpathApplication');
+	// Do stuff with stormpath
+});
 
 var favicon = require('serve-favicon');
 app.use(favicon(path.join(__dirname,'public','favicon.ico')));
@@ -95,12 +87,10 @@ var server = require('http').createServer(app);
 require('./config/express')(app);
 require('./routes')(app);
 
-if (process.env.NODE_ENV != 'test') {
+app.on('stormpath.ready',function () {
+	console.log('Stormpath Ready');
+});
 
-	app.on('stormpath.ready',function () {
-		console.log('Stormpath Ready');
-	});
-}
 
 // Start server
 server.listen(config.port, config.ip, function () {

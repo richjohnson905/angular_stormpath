@@ -24,7 +24,7 @@ module.exports = function(app) {
   app.use('/api/consumer', ExpressStormpath.loginRequired, require('./api/consumer'));
   //app.use('/api/consumer', ExpressStormpath.loginRequired, require('./api/consumer'));
 
-  app.use('/api/todos', ExpressStormpath.loginRequired, require('./api/todo'));
+  //app.use('/api/todos', ExpressStormpath.loginRequired, require('./api/todo'));
   // app.use('/api/things', require('./api/thing'));
   
   // All undefined asset or api routes should return a 404
