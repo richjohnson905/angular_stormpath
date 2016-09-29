@@ -36,14 +36,25 @@ exports.create = function(req, res) {
   models.Provider.findOne({where: {id: req.body.pid}}).then(function(provider) {
     models.Consumer.create({name: req.body.name, stormId: req.user.email}).then(function(consumer) {
       consumer.addProviders(provider).then(function(result){
+        return res.json(result);
       });
     });
   });
   
 };
 
+// exports.destroy = function(req, res) {
+//   models.Consumer.findOne({where: {id: req.params.id}}).then(function(consumer) {
+//     consumer.destroy();
+//   });
+// }
+
 exports.destroy = function(req, res) {
-  models.Consumer.findById(req.params.id).then(function(consumer) {
-    consumer.destroy();
-  });
+    models.Consumer.destroy({
+        where: {
+            id: req.params.cid
+        }
+    }).then(function(result) {
+        res.json(result);
+    });
 }

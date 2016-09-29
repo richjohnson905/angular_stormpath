@@ -8,8 +8,7 @@ angular.module('yoStormApp')
   .controller('ConsumerIndexCtrl', function($scope, $http, $state) {
 
     $scope.deleteConsumer = function(cid) {
-      $http.delete('api/consumer/' + cid).success(function(){
-        alert("Successfully deleted record");
+      $http.delete('api/consumer/' + cid).success(function(result){
         $state.go("consumer.index", {}, {reload: true});
       });
     },
@@ -20,10 +19,9 @@ angular.module('yoStormApp')
   /* Consumer Add */
   .controller('ConsumerAddCtrl', function($scope, $http, $state) {
     $scope.processForm = function() {
-      $http.post('/api/consumer/', {pid: $scope.providerId, name: $scope.name}).success(function(){
-        
+      $http.post('/api/consumer/', {pid: $scope.providerId, name: $scope.name}).success(function(result){
+        $state.go("consumer.index", {}, {reload: true});
       });
-      $state.go("consumer.index");
     }
   })
   /* Schedule Sessions */

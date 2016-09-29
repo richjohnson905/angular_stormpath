@@ -11,9 +11,8 @@
   }
 </style>
 <div>
-    <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+    <pre> <em>{{dt | date:'fullDate' }}</em></pre>
 
-    <h4>Inline</h4>
     <div style="display:inline-block; min-height:290px;">
       <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
     </div>
@@ -35,6 +34,3 @@
 
 <pre>hours = {{all | json}}</pre>
 <pre>schedule = {{schedule | json}}</pre>
-<pre>sunday = {{sunday | json}}</pre>
-<pre>monday = {{monday | json}}</pre>
-<pre>tuesday = {{tuesday | json}}</pre>
