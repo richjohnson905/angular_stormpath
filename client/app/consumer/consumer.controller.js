@@ -44,34 +44,11 @@ angular.module('yoStormApp')
     }
   })
   .controller('ConsumerScheduleEditCtrl', function($stateParams, $http, $scope) {
+    var pid;
+    var sid;
     $http.get('/api/consumer/' + $stateParams.cid).success(function(consumer) {
-      var pid = consumer.Providers[0].id;
-      $http.get('/api/provider/' + pid + '/schedule/' + $stateParams.sid).success(function(schedule){
-        $scope.schedule = schedule;
-        var sid = schedule.id;
-        getDayHours($http, pid, sid, "sunday", function(hours){
-          $scope.sunday = hours;
-        });
-        getDayHours($http, pid, sid, "monday", function(hours){
-          $scope.monday = hours;
-        });
-        getDayHours($http, pid, sid, "tuesday", function(hours){
-          $scope.tuesday = hours;
-        });
-        getDayHours($http, pid, sid, "wednesday", function(hours){
-          $scope.wednesday = hours;
-        });
-        getDayHours($http, pid, sid, "thursday", function(hours){
-          $scope.thursday = hours;
-        });
-        getDayHours($http, pid, sid, "friday", function(hours){
-          $scope.friday = hours;
-        });
-        getDayHours($http, pid, sid, "saturday", function(hours){
-          $scope.saturday = hours;
-        });
-
-      });
+      pid = consumer.Providers[0].id;
+      $scope.pid = pid;
     });
     $scope.pick = function(available) {
       alert(available);
@@ -84,23 +61,40 @@ angular.module('yoStormApp')
   $scope.today();
 
   $scope.$watch("dt", function(newValue, oldValue) {
-    //console.log("I've changed : ", $scope.dt);
-    if ($scope.dt.getDay() == 0) {
-      $scope.all = getTodayFromDatepick($scope.sunday);
-    } else if ($scope.dt.getDay() == 1) {
-      $scope.all = getTodayFromDatepick($scope.monday);
-    } else if ($scope.dt.getDay() == 2) {
-      $scope.all = getTodayFromDatepick($scope.tuesday);
-    } else if ($scope.dt.getDay() == 3) {
-      $scope.all = getTodayFromDatepick($scope.wednesday);
-    } else if ($scope.dt.getDay() == 4) {
-      $scope.all = getTodayFromDatepick($scope.thursday);
-    } else if ($scope.dt.getDay() == 5) {
-      $scope.all = getTodayFromDatepick($scope.friday);
-    } else if ($scope.dt.getDay() == 6) {
-      $scope.all = getTodayFromDatepick($scope.saturday);
-    }
+    $http.get('/api/provider/' + pid + '/schedule/' + $stateParams.sid).success(function(schedule){
+        $scope.schedule = schedule;
+        sid = schedule.id;
 
+        if ($scope.dt.getDay() == 0) {
+          getDayHours($http, pid, sid, "sunday", function(hours){
+            $scope.all = getTodayFromDatepick(hours, "sunday");
+          });
+        } else if ($scope.dt.getDay() == 1) {
+          getDayHours($http, pid, sid, "monday", function(hours){
+            $scope.all = getTodayFromDatepick(hours, "monday");
+          });          
+        } else if ($scope.dt.getDay() == 2) {
+          getDayHours($http, pid, sid, "tuesday", function(hours){
+            $scope.all = getTodayFromDatepick(hours, "tuesday");
+          });          
+        } else if ($scope.dt.getDay() == 3) {
+          getDayHours($http, pid, sid, "wednesday", function(hours){
+            $scope.all = getTodayFromDatepick(hours, "wednesday");
+          });
+        } else if ($scope.dt.getDay() == 4) {
+          getDayHours($http, pid, sid, "thursday", function(hours){
+            $scope.all = getTodayFromDatepick(hours, "thursday");
+          });
+        } else if ($scope.dt.getDay() == 5) {
+          getDayHours($http, pid, sid, "friday", function(hours){
+            $scope.all = getTodayFromDatepick(hours, "friday");
+          });
+        } else if ($scope.dt.getDay() == 6) {
+          getDayHours($http, pid, sid, "saturday", function(hours){
+            $scope.all = getTodayFromDatepick(hours, "saturday");
+          });
+        }
+    });
   });
 
   $scope.clear = function() {
@@ -165,12 +159,12 @@ angular.module('yoStormApp')
   // DATEPICKER END
   });
 
-function getTodayFromDatepick(dayArray) {
+function getTodayFromDatepick(dayArray, dayName) {
   var all = [];
   for (var i = 0; i < dayArray.length; i++) {
     all.push(dayArray[i].hour);
   }
-  return all;
+  return all;  
 }
 
 function getDayHours($http, pid, sid, dayName, callback) {
