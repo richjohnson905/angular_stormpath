@@ -26,11 +26,11 @@
 
 <h4>Available Sessions Today</h4>
 <ul>
-    <li ng-repeat="available in all">
-        <label for="time">{{available}}:</label>
-        <a class="btn btn-primary"  ng-click="pick(available)">Pick</a>
+    <li ng-repeat="nut in nuts">
+        <label for="time">{{nut.hour}}:</label>
+        <a class="btn btn-primary"  ng-click="pick(nut)">Pick</a>
     </li>
 </ul>
 
-<pre>hours = {{all | json}}</pre>
+<pre>nuts = {{nuts | json}}</pre>
 <pre>schedule = {{schedule | json}}</pre>

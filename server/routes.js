@@ -17,6 +17,9 @@ module.exports = function(app) {
   app.use('/api/provider/:pid/schedule/:sid/nut/:did', ExpressStormpath.loginRequired, require('./api/provider/schedule/nut'));
 
   app.use('/api/consumer', ExpressStormpath.loginRequired, require('./api/consumer'));
+  app.use('/api/consumer/:cid/wired', ExpressStormpath.loginRequired, require('./api/consumer/wired'));
+
+  app.use('/api/wires', ExpressStormpath.loginRequired, require('./api/consumer/wired'));
 
   app.use('/api/todo', ExpressStormpath.loginRequired, require('./api/todo'));
   app.use('/api/thing', require('./api/thing'));

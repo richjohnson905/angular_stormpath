@@ -43,12 +43,6 @@ exports.create = function(req, res) {
   
 };
 
-// exports.destroy = function(req, res) {
-//   models.Consumer.findOne({where: {id: req.params.id}}).then(function(consumer) {
-//     consumer.destroy();
-//   });
-// }
-
 exports.destroy = function(req, res) {
     models.Consumer.destroy({
         where: {

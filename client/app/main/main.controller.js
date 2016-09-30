@@ -2,6 +2,11 @@
 
 angular.module('yoStormApp')
   .controller('MainCtrl', function ($scope, $http) {
+
+    $http.get('api/wires').success(function(wires){
+      $scope.wires = wires;
+    });
+
     // $scope.todos = [];
     //$scope.message = account.username;
 

@@ -10,9 +10,7 @@ module.exports = function(sequelize, DataTypes) {
                     through: 'WiredGroup_Consumer',
                     foreignKey: 'WiredGroup_rowId'
                 }),
-                WiredGroup.belongsTo(models.Nut, {
-                    as: 'WiredGroupNut'
-                });
+                WiredGroup.belongsTo(models.Nut);
             }
         }
     });

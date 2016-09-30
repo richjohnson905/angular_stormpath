@@ -14,9 +14,10 @@ exports.index = function(req, res) {
 exports.show = function(req, res) {
     models.Nut.findAll({
         where: {
-            day: req.params.did
+            day: req.params.did,
+            ScheduleId: req.params.sid
         },
-        attributes: ['hour']
+        attributes: ['id', 'hour']
     }).then(function(hours) {
         return res.json(hours);
     });
@@ -56,7 +57,7 @@ function doGetHours(sid, day, callback) {
             ScheduleId: sid,
             day: day
         },
-        attributes: ["hour"]
+        attributes: ['id', 'hour']
     }).then(function(hours) {
         callback(hours);
     });

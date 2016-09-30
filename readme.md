@@ -37,7 +37,7 @@ Notes -
       {
         "complete": true,
         "name": "Kenny Ball",
-        "repeats": true,
+        "repeat": true,
         "sunday": [],
         "monday": [6,7,8,9,10],
         "tuesday": [],
@@ -47,4 +47,7 @@ Notes -
         "saturday": []
       }
     ]
-}}
+  }
+}
+
+## Data Diagram

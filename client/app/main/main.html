@@ -12,62 +12,34 @@
   <div class="row">
     <div if-user class="col-lg-12">
       <h1 class="page-header">Upcoming</h1>
-	  
-	  <!--<div class="todo-form">
-	      <form>
-	        <div class="form-group">
-	          <input type="text" class="form-control input-lg" placeholder="Enter text..." ng-model="formData.text">
-	        </div>
-	        <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="createTodo()">Add New Todo</button>
-	      </form>
-	    </div>
 
-	    <br>
+      <table class="table consumer">
+        <tr>
+        <td><h3>  </h3></td>
+        <td></td>
+        </tr>
+        <tr ng-repeat="wire in wires">
+          <td>{{wire.Consumers[0].name}}</td>
+        <td>
+            {{wire.date}}, {{wire.Nut.hour}}
+            <a class="btn btn-danger"  ng-click="deleteWire(wire.id)">Delete</a>
+        </td>
+        </tr>
+    </table>
 	  
-      <ul if-user class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="todo in todos">
-        <li><h3><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)">&nbsp;{{ todo.name }}</li></h3><hr>
-      </ul>-->
     </div>
   </div>
 </div>
 
-
-<!-- Nested Views Partial Begin 
-<div if-user>
-    <a ui-sref=".list" class="btn btn-primary">List</a>
-    <a ui-sref=".paragraph" class="btn btn-danger">Paragraph</a>
-</div>-->
-
 <div ui-view></div>
 <br>
-<!-- Nested Views Partial End -->
 
-<!-- Collapse Section Begin 
-<style>
-  .horizontal-collapse {
-    height: 70px;
-  }
-</style>
-<div if-user >
-	<button type="button" class="btn btn-default" ng-click="isCollapsed=!isCollapsed">Toggle collapse Vertically</button>
-	<hr>
-	<div uib-collapse="isCollapsed">
-		<div class="well well-lg">Some content</div>
-	</div>
-  
-	<button type="button" class="btn btn-default" ng-click="isCollapsedHorizontal = !isCollapsedHorizontal">Toggle collapse Horizontally</button>
-	<hr>
-	<div class="horizontal-collapse" uib-collapse="isCollapsedHorizontal" horizontal>
-		<div class="well well-lg">Some content</div>
-	</div>
-</div>
-Collapse Section End -->
-
+<pre>wires = {{wires | json}}</pre>
 <pre>user = {{user | json}}</pre>
 
 <footer class="footer">
   <div class="container">
-      <p>wired.in v0.1 |
+      <p>wireNUT v0.1 |
         <a href="http://rj905.net/">@rj905</a> |
          <a href="https://github.com/blueguitarenator/angular_stormpath/issues?state=open">Issues</a></p>
   </div>
