@@ -1,11 +1,17 @@
 'use strict';
 
 angular.module('yoStormApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', function ($scope, $http, $state) {
 
-    $http.get('api/wires').success(function(wires){
+    $http.get('api/wire').success(function(wires){
       $scope.wires = wires;
     });
+
+    $scope.deleteWire = function(wid) {
+      $http.delete('api/wire/' + wid).success(function(result) {
+        $state.go('main', {}, {reload: true});
+      });
+    }
 
     // $scope.todos = [];
     //$scope.message = account.username;

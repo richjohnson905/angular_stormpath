@@ -43,11 +43,12 @@ exports.create = function(req, res) {
 }
 
 exports.destroy = function(req, res) {
-    // models.Consumer.destroy({
-    //     where: {
-    //         id: req.params.cid
-    //     }
-    // }).then(function(result) {
-    //     res.json(result);
-    // });
+  console.log("DESTROYER " + req.params.wid);
+  models.WiredGroup.destroy({
+      where: {
+          id: req.params.wid
+      }
+  }).then(function(result) {
+      res.json(result);
+  });
 }
