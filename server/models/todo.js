@@ -5,6 +5,7 @@ module.exports = function(sequelize, DataTypes) {
         name: DataTypes.STRING,
         complete: DataTypes.BOOLEAN,
         foo: DataTypes.STRING,
+        bar: Datatypes.STRING,
         stormId: DataTypes.STRING
     });
     return Todo;
