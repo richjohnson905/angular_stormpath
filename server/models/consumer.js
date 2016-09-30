@@ -10,6 +10,10 @@ module.exports = function(sequelize, DataTypes) {
                 Consumer.belongsToMany(models.Provider, {
                     through: 'Provider_Consumer',
                     foreignKey: 'Consumer_rowId'
+                }),
+                Consumer.belongsToMany(models.WiredGroup, {
+                    through: 'WiredGroup_Consumer',
+                    foreignKey: 'Consumer_rowId'
                 });
             }
         }

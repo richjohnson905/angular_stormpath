@@ -24,19 +24,6 @@ exports.show = function(req, res) {
         return res.json(schedule);
     });
 
-
-    // this worked
-    // models.Schedule.findAll({
-    //     where: {
-    //         id: scheduleId
-    //     }
-    // }).then(function(schedule) {
-    //     if (schedule.length == 1) {
-    //         return res.json(schedule[0]);
-    //     } else {
-    //         return res.json(null);
-    //     }
-    // });
 }
 
 exports.create = function(req, res) {
