@@ -16,11 +16,16 @@ Notes -
 * cd dist
 * grunt buildcontrol:heroku
 
-## Users
+## Users - local
 * rich@msn.com
 * kenny@msn.com
 * jeff@msn.com
 * heather@msn.com
+
+## Users - heroku
+* rich@msn.com
+* kenny@msn.com
+* jeff@msn.com
 
 ## Schema
 {"provider":{
