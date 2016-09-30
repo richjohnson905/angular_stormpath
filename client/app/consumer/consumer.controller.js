@@ -52,7 +52,6 @@ angular.module('yoStormApp')
       alert(available);
     }
     
-    
     // DATEPICKER BEGIN
   $scope.today = function() {
     $scope.dt = new Date();
