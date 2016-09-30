@@ -166,7 +166,7 @@ function getTodayFromDatepick(dayArray, dayName) {
 }
 
 function getDayHours($http, pid, sid, dayName, callback) {
-  $http.get('/api/provider/' + pid + '/schedule/' + sid + '/' + dayName).success(function(hours){
+  $http.get('/api/provider/' + pid + '/schedule/' + sid + '/nut/' + dayName).success(function(hours){
     callback(hours);
   });
 }

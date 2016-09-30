@@ -118,11 +118,11 @@ angular.module('yoStormApp')
     var sid = $stateParams.sid;
     var day = $stateParams.day;
     $scope.saveButtonLabel = day;
-    $http.get('api/provider/' + pid + '/schedule/' + sid + '/' + day.toLowerCase()).success(function(sundays){
-      $scope.hours = getHours(sundays);
+    $http.get('api/provider/' + pid + '/schedule/' + sid + '/nut/' + day.toLowerCase()).success(function(hours){
+      $scope.hours = getHours(hours);
     });
     $scope.saveHours = function(day) {
-      $http.post('api/provider/' + pid + '/schedule/' + sid + '/' + day.toLowerCase(), {hours: $scope.hours, sid: sid})
+      $http.post('api/provider/' + pid + '/schedule/' + sid + '/nut', {day: day.toLowerCase(), hours: $scope.hours, sid: sid})
         .success(function(){
           $state.go('provider.pview.sview.dayView', {}, {reload: true});
         })

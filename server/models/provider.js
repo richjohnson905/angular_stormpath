@@ -13,7 +13,9 @@ module.exports = function(sequelize, DataTypes) {
                     through: 'Provider_Consumer',
                     foreignKey: 'Provider_rowId'
                 }),
-                Provider.hasMany(models.Schedule, {as: 'ProviderSchedule'});
+                Provider.hasMany(models.Schedule, {
+                    as: 'ProviderSchedule'
+                });
             }
         }
     });
