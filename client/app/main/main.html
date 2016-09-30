@@ -15,15 +15,16 @@
 
       <table class="table consumer">
         <tr>
-        <td><h3>  </h3></td>
-        <td></td>
+          <td>Consumer</td>
+          <td>Date</td>
+          <td>Time</td>
+          <td>Remove</td>
         </tr>
         <tr ng-repeat="wire in wires">
-          <td>{{wire.Consumers[0].name}}</td>
-        <td>
-            {{wire.date}}, {{wire.Nut.hour}}
-            <a class="btn btn-danger"  ng-click="deleteWire(wire.id)">Delete</a>
-        </td>
+          <td>{{wire.name}}</td>
+          <td>{{wire.date | date:'MM/dd/yyyy'}}</td>
+          <td>{{wire.hour}}</td>
+          <td><a class="btn btn-danger"  ng-click="deleteWire(wire.id)">Delete</a></td>
         </tr>
     </table>
 	  
