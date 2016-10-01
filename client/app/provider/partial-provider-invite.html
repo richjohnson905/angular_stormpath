@@ -1,0 +1,33 @@
+<h3>Add Consumer</h3>
+
+<form>
+    <div class="form-provider-group">
+        <label for="email">Add by Email:</label>
+        <input type="text" class="form-control" ng-model="inviteEmail">
+    </div>
+
+    <button type="submit" class="btn btn-primary" ng-click="processForm()">Invite</button>
+    <a class="btn btn-danger" ui-sref="provider.index">Discard</a>
+
+    
+</form> 
+
+<h3>Current Consumers</h3>
+<table class="table consumer">
+        <tr>
+          <td><a href="http://www.gravatar.com">Gravatar</a></td>
+          <td>Email</td>
+          <td>Since</td>
+          <td>Recent</td>
+          <td>Remove</td>
+        </tr>
+        <tr ng-repeat="invite in consumers">
+          <td><img ng-src="{{gravatar(invite.stormId)}}"></td>
+          <td>{{invite.stormId}}</td>
+          <td>{{invite.createdAt | date:'MM/dd/yyyy'}}</td>
+          <td>{{invite.updatedAt | date:'MM/dd/yyyy'}}</td>
+          <td><a class="btn btn-danger"  ng-click="deleteInvite(invite.iid)">Delete</a></td>
+        </tr>
+    </table>
+
+    <pre>invites = {{consumers | json}}</pre>

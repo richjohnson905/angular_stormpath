@@ -51,6 +51,19 @@ angular.module('yoStormApp')
       $scope.provider = provider;
     });
   })
+  /* PROVIDER INVITE */
+  .controller('ProviderInviteCtrl', function($scope, $http, $stateParams, $state, md5){
+    var pid = $stateParams.pid;
+    $scope.gravatar = function(email) {
+      return "http://www.gravatar.com/avatar/" + md5.createHash(email) + "?s=32&d=identicon&r=PG";
+    }
+    $http.get('api/provider/' + pid + '/invite').success(function(invites) {
+      $scope.consumers = invites;
+    });
+    $scope.processForm = function() {
+      
+    }
+  })
   /* SCHEDULE INDEX */
   .controller('ProviderScheduleCtrl', function($scope, $http, $stateParams, $state) {
     var pid = $stateParams.pid;
@@ -100,7 +113,6 @@ angular.module('yoStormApp')
         .error(function(error) {
           console.log('Error editing schedule ' + error);
         });
-    
     }
   })
   /* HOUR */

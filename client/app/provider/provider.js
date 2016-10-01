@@ -48,6 +48,15 @@ angular.module('yoStormApp')
 	        authenticate: true
 	      }
       })
+      /* Provider Invite */
+      .state('provider.invite',{
+        url: '/:pid/invite',
+        templateUrl: 'app/provider/partial-provider-invite.html',
+        controller: 'ProviderInviteCtrl',
+        sp: {
+	        authenticate: true
+	      }
+      })
         /* Provider > Schedule Index */
         .state('provider.pview.schedule', {
           // abstract: true,
