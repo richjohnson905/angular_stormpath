@@ -13,6 +13,7 @@ module.exports = function(app) {
   // Insert routes below
   app.use('/api/provider/', ExpressStormpath.loginRequired, require('./api/provider'));
   app.use('/api/provider/:pid/schedule', ExpressStormpath.loginRequired, require('./api/provider/schedule'));
+  app.use('/api/provider/:pid/invite', ExpressStormpath.loginRequired, require('./api/provider/invite'));
   app.use('/api/provider/:pid/schedule/:sid/nut', ExpressStormpath.loginRequired, require('./api/provider/schedule/nut'));
   app.use('/api/provider/:pid/schedule/:sid/nut/:did', ExpressStormpath.loginRequired, require('./api/provider/schedule/nut'));
 

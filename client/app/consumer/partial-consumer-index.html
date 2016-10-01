@@ -1,11 +1,12 @@
 <!-- partial-consumer-index.html -->
+<p> Consumers are created by Provider invitation</p>
 <table class="table consumer">
     <tr>
     <td><h3>  </h3></td>
     <td></td>
     </tr>
     <tr ng-repeat="consumer in consumers">
-    <td>{{consumer.name}}</td>
+    <td>{{consumer.Providers[0].name}}</td>
     <td>
         <a class="btn btn-primary" ui-sref="consumer.schedule({cid: consumer.id})">Schedule</a>
         <a class="btn btn-danger"  ng-click="deleteConsumer(consumer.id)">Delete</a>
@@ -13,6 +14,6 @@
     </tr>
 </table>
 </br>
-<a class="btn btn-primary" ui-sref="consumer.add">Add a Consumer</a>
+<!--<a class="btn btn-primary" ui-sref="consumer.add">Add a Consumer</a>-->
 
 <pre>consumers = {{consumers | json}}</pre>

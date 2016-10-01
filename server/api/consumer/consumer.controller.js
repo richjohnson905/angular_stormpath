@@ -13,8 +13,7 @@ exports.index = function(req, res) {
     where: {
       stormId: req.user.email
     },
-    attributes: {exclude: ['createdAt', 'updatedAt']},
-    include: [{model: models.Provider, attributes: {exclude: ['createdAt', 'updatedAt']}}]
+    include: [models.Provider]
   }).then(function(obj){
     res.json(obj);
   });
@@ -26,8 +25,7 @@ exports.show = function(req, res) {
     where: {
       id: cid
     },
-    attributes: {exclude: ['createdAt', 'updatedAt']},
-    include: [{model: models.Provider, attributes: {exclude: ['createdAt', 'updatedAt']}}]
+    include: [models.Provider]
   }).then(function(consumer) {
     res.json(consumer);
   });
@@ -35,13 +33,13 @@ exports.show = function(req, res) {
 
 exports.create = function(req, res) {
 
-  models.Provider.findOne({where: {id: req.body.pid}}).then(function(provider) {
-    models.Consumer.create({name: req.body.name, stormId: req.user.email}).then(function(consumer) {
-      consumer.addProviders(provider).then(function(result){
-        return res.json(result);
-      });
-    });
-  });
+  // models.Provider.findOne({where: {id: req.body.pid}}).then(function(provider) {
+  //   models.Consumer.create({name: req.body.name, stormId: req.user.email}).then(function(consumer) {
+  //     consumer.addProviders(provider).then(function(result){
+  //       return res.json(result);
+  //     });
+  //   });
+  // });
   
 };
 

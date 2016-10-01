@@ -31,8 +31,7 @@ exports.show = function(req, res) {
     models.Provider.findOne({
         where: {
             id: providerId
-        },
-        attributes: {exclude: ['createdAt', 'updatedAt']}
+        }
     }).then(function(provider) {
         console.log('show then: ' + provider.name);
         res.json(provider);
@@ -62,8 +61,7 @@ function getProviders(req, res, callback) {
     models.Provider.findAll({
         where: {
             stormId: req.user.email
-        },
-        attributes: {exclude: ['createdAt', 'updatedAt']}
+        }
     }).then(function(providers) {
         callback(providers);
     });

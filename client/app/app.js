@@ -8,7 +8,8 @@ angular.module('yoStormApp', [
   'ngAnimate',
   'ui.bootstrap',
   'stormpath',
-  'stormpath.templates'
+  'stormpath.templates',
+  'angular-md5'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     

@@ -12,5 +12,4 @@ router.get('/:pid', controller.show);
 router.put('/:pid', controller.update);
 router.delete('/:pid', controller.destroy);
 
-//router.get('/schedule')
 module.exports = router;
