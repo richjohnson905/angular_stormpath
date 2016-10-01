@@ -8,6 +8,7 @@ angular.module('yoStormApp')
       var allWires = [];
       for (var i = 0; i < wires.length; i++) {
         var newWire = new Object();
+        newWire.wid = wires[i].id;
         newWire.date = new Date(wires[i].date);
         newWire.hour = HourFormat.apply(wires[i].Nut.hour);
         newWire.name = wires[i].Consumers[0].name;

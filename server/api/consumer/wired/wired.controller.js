@@ -12,8 +12,10 @@ exports.index = function(req, res) {
   console.log('Nut associations:', Object.keys(models.Nut.associations))
 
   models.WiredGroup.findAll({
-    include: [{model: models.Consumer, where: {stormId: req.user.email}}, 
-      models.Nut]
+    include: [{model: models.Consumer, where: {stormId: req.user.email},
+    attributes: {exclude: ['createdAt', 'updatedAt']}}, 
+      {model: models.Nut, attributes: {exclude: ['createdAt', 'updatedAt']}}],
+      attributes: {exclude: ['updatedAt', 'createdAt']}
   }).then(function(obj){
     res.json(obj);
   });
@@ -25,7 +27,8 @@ exports.show = function(req, res) {
   models.WiredGroup.findOne({
     where: {
       id: wid
-    }
+    },
+    attributes: {exclude: ['createdAt', 'updatedAt']}
     //include: [models.Provider]
   }).then(function(wired) {
     res.json(wired);
