@@ -71,8 +71,7 @@ function getSchedules(providerId, callback) {
     models.Schedule.findAll({
         where: {
             ProviderId: providerId
-        },
-        attributes: {exclude: ['createdAt', 'updatedAt']}
+        }
     }).then(function(schedules) {
         callback(schedules);
     });

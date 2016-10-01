@@ -13,8 +13,7 @@ exports.index = function(req, res) {
     where: {
       stormId: req.user.email
     },
-    attributes: {exclude: ['createdAt', 'updatedAt']},
-    include: [{model: models.Provider, attributes: {exclude: ['createdAt', 'updatedAt']}}]
+    include: [models.Provider]
   }).then(function(obj){
     res.json(obj);
   });
@@ -26,8 +25,7 @@ exports.show = function(req, res) {
     where: {
       id: cid
     },
-    attributes: {exclude: ['createdAt', 'updatedAt']},
-    include: [{model: models.Provider, attributes: {exclude: ['createdAt', 'updatedAt']}}]
+    include: [models.Provider]
   }).then(function(consumer) {
     res.json(consumer);
   });

@@ -25,8 +25,7 @@ exports.show = function(req, res) {
   models.WiredGroup.findOne({
     where: {
       id: wid
-    },
-    attributes: {exclude: ['createdAt', 'updatedAt']}
+    }
     //include: [models.Provider]
   }).then(function(wired) {
     res.json(wired);
