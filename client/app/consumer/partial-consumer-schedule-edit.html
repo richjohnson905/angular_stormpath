@@ -1,36 +1,43 @@
-<style>
-  .full button span {
-    background-color: limegreen;
-    border-radius: 32px;
-    color: black;
-  }
-  .partially button span {
-    background-color: orange;
-    border-radius: 32px;
-    color: black;
-  }
-</style>
+
 <div>
-    <pre> <em>{{dt | date:'fullDate' }}</em></pre>
-
-    <div style="display:inline-block; min-height:290px;">
-      <div uib-datepicker ng-model="dt" class="well well-sm" datepicker-options="options"></div>
-    </div>
-
-    <hr />
-    <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
-    <button type="button" class="btn btn-sm btn-default" ng-click="setDate(2009, 7, 24)">2009-08-24</button>
-    <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
-    <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" uib-tooltip="After today restriction">Min date</button>
+  <form name="dateForm">
+      <div class="form-group" ng-class="{'has-error': dateForm.dt.$invalid}">
+        <label>Date</label>
+        <div class="input-group">
+          <input type="text" 
+                 class="form-control" 
+                 uib-datepicker-popup="{{format}}" 
+                 ng-model="dt" 
+                 is-open="popup1.opened" 
+                 min-date="minDate" 
+                 datepicker-options="dateOptions" 
+                 ng-required="true" 
+                 close-text="Close"
+                 alt-input-formats="altInputFormats"
+                 name="dt"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </form>
 </div>
 
 <h4>Available Sessions Today</h4>
-<ul>
-    <li ng-repeat="nut in nuts">
-        <label for="time">{{nut.hour}}:</label>
-        <a class="btn btn-primary"  ng-click="pick(nut)">Pick</a>
-    </li>
-</ul>
+<table class="table consumer">
+    <tr>
+      <td>Time</td>
+      <td>Select</td>
+      <td>Remove</td>
+    </tr>
+    <tr ng-repeat="nut in nuts">
+      <td><label for="time">{{nut.hour}}:</label></td>
+      <td><a class="btn btn-primary"  ng-click="pick(nut)">Pick</a></td>
+      <td><a class="btn btn-danger"  ng-click="deleteNut(nut)">Delete</a></td>
+    </tr>
+</table>
 
 <pre>nuts = {{nuts | json}}</pre>
 <pre>schedule = {{schedule | json}}</pre>
