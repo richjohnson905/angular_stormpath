@@ -12,7 +12,11 @@ exports.index = function(req, res) {
   console.log('Nut associations:', Object.keys(models.Nut.associations))
 
   models.WiredGroup.findAll({
-    include: [{model: models.Consumer, where: {stormId: req.user.email}},
+    include: [
+      {
+        model: models.Consumer, where: {stormId: req.user.email},
+        include: [models.Provider]
+      },
       {model: models.Nut}]
   }).then(function(obj){
     res.json(obj);

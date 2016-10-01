@@ -61,7 +61,9 @@ angular.module('yoStormApp')
       $scope.consumers = invites;
     });
     $scope.processForm = function() {
-      
+      $http.post('/api/provider/' + pid + '/invite', {pid: pid, name: $scope.fullname, email: $scope.inviteEmail}).success(function(result){
+        $state.go("provider.invite", {}, {reload: true});
+      });
     }
   })
   /* SCHEDULE INDEX */

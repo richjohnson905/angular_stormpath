@@ -4,14 +4,14 @@ angular.module('yoStormApp')
   .controller('MainCtrl', function ($scope, $http, $state, HourFormat) {
 
     $http.get('api/wire').success(function(wires){
-      $scope.foo = wires;
+      $scope.wiredgroup = wires;
       var allWires = [];
       for (var i = 0; i < wires.length; i++) {
         var newWire = new Object();
         newWire.wid = wires[i].id;
         newWire.date = new Date(wires[i].date);
         newWire.hour = HourFormat.apply(wires[i].Nut.hour);
-        newWire.name = wires[i].Consumers[0].name;
+        newWire.name = wires[i].Consumers[0].Providers[0].name;
         newWire.cid = wires[i].Consumers[0].id;
         allWires.push(newWire);
       }

@@ -33,13 +33,13 @@ exports.show = function(req, res) {
 
 exports.create = function(req, res) {
 
-  models.Provider.findOne({where: {id: req.body.pid}}).then(function(provider) {
-    models.Consumer.create({name: req.body.name, stormId: req.user.email}).then(function(consumer) {
-      consumer.addProviders(provider).then(function(result){
-        return res.json(result);
-      });
-    });
-  });
+  // models.Provider.findOne({where: {id: req.body.pid}}).then(function(provider) {
+  //   models.Consumer.create({name: req.body.name, stormId: req.user.email}).then(function(consumer) {
+  //     consumer.addProviders(provider).then(function(result){
+  //       return res.json(result);
+  //     });
+  //   });
+  // });
   
 };
 
