@@ -17,7 +17,13 @@ exports.index = function(req, res) {
         model: models.Consumer, where: {stormId: req.user.email},
         include: [models.Provider]
       },
-      {model: models.Nut}]
+      {model: models.Nut}],
+      order: '"date" ASC',
+      where: {
+        date: {
+          $gt: new Date()
+        }
+      }
   }).then(function(obj){
     res.json(obj);
   });

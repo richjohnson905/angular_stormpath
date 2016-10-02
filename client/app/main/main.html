@@ -22,7 +22,7 @@
         </tr>
         <tr ng-repeat="wire in wires">
           <td><a ui-sref="consumer.schedule({cid: wire.cid})">{{wire.name}}</a></td>
-          <td>{{wire.date | date:'MM/dd/yyyy'}}</td>
+          <td>{{wire.date | date:'EEEE, MMMM d, y'}}</td>
           <td>{{wire.hour}}</td>
           <td><a class="btn btn-danger"  ng-click="deleteWire(wire.wid)">Delete</a></td>
         </tr>

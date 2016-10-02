@@ -53,7 +53,7 @@ angular.module('yoStormApp')
     // DATEPICKER BEGIN
     $scope.dt = new Date();
     $scope.minDate = new Date();
-    $scope.format = "MM/dd/yyyy";
+    $scope.format = "EEEE, MMMM d, y";
     $scope.altInputFormats = ['d!/M!/yyyy'];
     $scope.dateOptions = {
       formatYear: 'yy',

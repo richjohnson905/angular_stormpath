@@ -51,8 +51,6 @@ Notes -
 }
 
 ## TODO:
-* Invite consumer
-* Show Provider Name for Upcoming Name (instead of user entered name)
 * Order Upcoming by Day section
 * Only show upcoming (no historic on dashboard)
 
