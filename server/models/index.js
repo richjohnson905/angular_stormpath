@@ -8,6 +8,13 @@ var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + '/../config/config.json')[env];
 var db        = {};
 
+//http://stackoverflow.com/questions/17976459/utc-date-in-sequelize-js
+var types = require('pg').types;
+var timestampOID = 1114;
+types.setTypeParser(1114, function(stringValue) {
+  return new Date( Date.parse(stringValue + "0000") );
+});
+
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
