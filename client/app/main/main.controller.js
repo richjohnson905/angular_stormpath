@@ -57,6 +57,4 @@ angular.module('yoStormApp')
     //         console.log('Error: ' + error);
     //       });
     //     }
-    
-
   });
