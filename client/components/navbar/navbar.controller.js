@@ -18,6 +18,9 @@ angular.module('yoStormApp')
     };
 
     $scope.gravatar = function(email) {
-      return "http://www.gravatar.com/avatar/" + md5.createHash(email) + "?s=32&d=identicon&r=PG";
+      if (email) {
+        return "http://www.gravatar.com/avatar/" + md5.createHash(email) + "?s=32&d=identicon&r=PG";
+      }
+      return "";
     }
   });

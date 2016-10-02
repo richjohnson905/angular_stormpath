@@ -2,7 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
     var WiredGroup = sequelize.define('WiredGroup', {
-        date: DataTypes.DATEONLY
+        date: DataTypes.DATE
     },{
         classMethods: {
             associate: function(models) {
