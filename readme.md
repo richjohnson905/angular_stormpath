@@ -50,8 +50,12 @@ Notes -
   }
 }
 
-## TODO:
+## TODO - Short term:
 * Order Upcoming by Day section
 * Only show upcoming (no historic on dashboard)
+
+## TODO - Long term
+* Babysit
+* Available flag
 
 ## Data Diagram

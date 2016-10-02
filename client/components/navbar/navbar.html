@@ -38,6 +38,7 @@
 			</ul>
 			<div if-user style="float: right !important">
 				<!--<p class="navbar-text"><span class="welcome">Welcome, {{message}}</span> <br>-->
+				<td><img ng-src="{{gravatar(user.email)}}"></td>
 				<a ng-href="/profile">My Account</a> | <a href="" sp-logout>Logout</a>
 			</div>
 			<div if-not-user style="float: right !important">
