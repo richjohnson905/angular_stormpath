@@ -16,10 +16,35 @@
         <label for="phone">Phone Number:</label>
         <input type="text" class="form-control" ng-model="provider.phone">
     </div>
-    </br>
+    <br/>
+     <label>Provider Type?</label>
+    <div class="form-group">
+        <div class="radio">
+            <label>
+                <input type="radio" name="providerType" value="group" ng-model="provider.type">
+                Group - open sign-up (i.e. gym)
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="providerType" value="oneOnOne" ng-model="provider.type">
+                One-On-One - repeating schedule (i.e. Piano lessons)
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="providerType" value="oneTime" ng-model="provider.type">
+                One-Time - pick schedule as needed (i.e. babysitting, )
+            </label>
+        </div>
+    </div>
+
+
+    <hr />
+
+  
 
     <div class="text-center">
-        <span class="glyphicon glyphicon-heart"></span>
         <h3>Submit!</h3>
         
         <button type="submit" class="btn btn-primary" ng-click="processForm()">Submit</button>

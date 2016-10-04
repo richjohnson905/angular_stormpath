@@ -15,6 +15,7 @@ exports.create = function(req, res) {
         name: req.body.name,
         address: req.body.address,
         phone: req.body.phone,
+        providerType: req.body.providerType,
         stormId: req.user.email
     })
     .then(function(){

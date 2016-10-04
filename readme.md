@@ -59,3 +59,8 @@ Notes -
 * Available flag
 
 ## Data Diagram
+
+* drop schema public cascade;
+DROP SCHEMA public CASCADE;
+CREATE SCHEMA public;
+GRANT ALL ON SCHEMA public TO public;

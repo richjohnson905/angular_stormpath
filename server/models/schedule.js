@@ -13,7 +13,8 @@ module.exports = function(sequelize, DataTypes) {
                     foreignKey: {
                         allowNull: false
                     }
-                });
+                }),
+                Schedule.hasOne(models.Event)
             }
         }
     });

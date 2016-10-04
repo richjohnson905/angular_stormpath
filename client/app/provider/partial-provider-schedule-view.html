@@ -11,9 +11,10 @@
 
 </div>
 </br>
-    <ul class="nav nav-tabs">
-        <li ng-repeat="type in dayModel" ui-sref="provider.pview.sview.dayEdit({day:type})" ui-sref-active="active"><a>{{type}}</a></li>
-    </ul>
+<ul class="nav nav-tabs">
+    <li ng-repeat="type in dayModel" ui-sref="provider.pview.sview.dayEdit({day:type})" ui-sref-active="active"><a>{{type}}</a></li>
+</ul>
+
 
 <div ui-view></div>
 

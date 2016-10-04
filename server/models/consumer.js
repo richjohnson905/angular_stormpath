@@ -14,7 +14,8 @@ module.exports = function(sequelize, DataTypes) {
                 Consumer.belongsToMany(models.WiredGroup, {
                     through: 'WiredGroup_Consumer',
                     foreignKey: 'Consumer_rowId'
-                });
+                }),
+                Consumer.hasOne(models.Event);
             }
         }
     });

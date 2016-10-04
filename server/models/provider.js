@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
         name: DataTypes.STRING,
         address: DataTypes.STRING,
         phone: DataTypes.STRING,
-        stormId: DataTypes.STRING
+        stormId: DataTypes.STRING,
+        providerType: DataTypes.ENUM('group', 'oneOnOne', 'oneTime')
     },{
         classMethods: {
             associate: function(models) {
