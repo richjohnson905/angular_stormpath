@@ -1,0 +1,38 @@
+<!-- partial-provider-schedule-view.html -->
+<div>
+    <input type="hidden" ng-model="providerId" value="{{providerId}}"/>
+    
+    Name: {{schedule.name}}<br />
+
+    <a class="btn btn-primary" ui-sref="provider.pview.edit({id: providerId, sid: schedule.id})">Edit Schedule Detail</a>
+
+    <br />
+    <br />
+
+</div>
+</br>
+<!--<div ng-if="provider.providerType=='groupOpen' || provider.providerType=='groupClosed'">
+    <ul class="nav nav-tabs">
+        <li ng-repeat="type in dayModel" ui-sref="provider.pview.sview.dayEdit({day:type})" ui-sref-active="active"><a>{{type}}</a></li>
+    </ul>
+</div>-->
+<div ng-switch on="provider.providerType">
+    <div ng-switch-when="groupOpen">
+        <!-- code to render group open block-->
+        <ul class="nav nav-tabs">
+            <li ng-repeat="type in dayModel" ui-sref="provider.pview.sview.groupopen({day:type})" ui-sref-active="active"><a>{{type}}</a></li>
+        </ul>
+    </div>
+    <div ng-switch-default>
+        <!-- code to render group closed block -->
+        <ul class="nav nav-tabs">
+            <li ng-repeat="type in dayModel" ui-sref="provider.pview.sview.groupclosed({day:type})" ui-sref-active="active"><a>{{type}}</a></li>
+        </ul>
+    </div>
+</div>
+
+<div ui-view></div>
+
+</br>
+  
+<pre>schedule = {{schedule | json}}</pre>

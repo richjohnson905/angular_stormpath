@@ -1,0 +1,53 @@
+<h3>Setup a one-time event</h3>
+
+
+<div>
+  <form name="dateForm">
+      <div class="form-group" ng-class="{'has-error': dateForm.dt.$invalid}">
+        <label>Date</label>
+        <div class="input-group">
+          <input type="text" 
+                 class="form-control" 
+                 uib-datepicker-popup="{{format}}" 
+                 ng-model="dt" 
+                 is-open="popup1.opened" 
+                 min-date="minDate" 
+                 datepicker-options="dateOptions" 
+                 ng-required="true" 
+                 close-text="Close"
+                 alt-input-formats="altInputFormats"
+                 name="dt"/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </form>
+</div>
+
+
+
+
+
+<div uib-timepicker ng-model="mytime" ng-change="changed()" hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></div>
+
+  <pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
+
+  <div class="row"> 
+    <div class="col-xs-6">
+        Hours step is:
+      <select class="form-control" ng-model="hstep" ng-options="opt for opt in options.hstep"></select>
+    </div>
+    <div class="col-xs-6">
+        Minutes step is:
+      <select class="form-control" ng-model="mstep" ng-options="opt for opt in options.mstep"></select>
+    </div>
+  </div>
+
+  <hr>
+
+  <button type="button" class="btn btn-info" ng-click="toggleMode()">12H / 24H</button>
+  <button type="button" class="btn btn-default" ng-click="update()">Set to 14:00</button>
+  <button type="button" class="btn btn-danger" ng-click="clear()">Clear</button>

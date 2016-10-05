@@ -3,7 +3,7 @@
 <div>
 
     <form>
-        <input type="hidden" ng-model="providerId" value="{{provider.id}}"/>
+        <!--<input type="hidden" ng-model="providerId" value="{{provider.id}}"/>-->
     <div class="form-provider-group">
         <label for="name">Provider Name:</label>
         <input type="text" class="form-control" ng-model="provider.name">
@@ -17,32 +17,35 @@
         <input type="text" class="form-control" ng-model="provider.phone">
     </div>
     <br/>
-     <label>Provider Type?</label>
+     <label>Provider Type:</label>
     <div class="form-group">
         <div class="radio">
             <label>
-                <input type="radio" name="providerType" value="group" ng-model="provider.type">
-                Group - open sign-up (i.e. gym)
+                <input type="radio" name="providerType" value="groupOpen" ng-model="provider.providerType">
+                Group - provide open sign-up to consumer (i.e. gym)
             </label>
         </div>
         <div class="radio">
             <label>
-                <input type="radio" name="providerType" value="oneOnOne" ng-model="provider.type">
-                One-On-One - repeating schedule (i.e. Piano lessons)
+                <input type="radio" name="providerType" value="groupClosed" ng-model="provider.providerType">
+                Group - closed, invite-only (i.e. band, bookclub)
             </label>
         </div>
         <div class="radio">
             <label>
-                <input type="radio" name="providerType" value="oneTime" ng-model="provider.type">
+                <input type="radio" name="providerType" value="oneOnOne" ng-model="provider.providerType">
+                One-On-One - repeating schedule (i.e. Piano lessons, massage)
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="providerType" value="oneTime" ng-model="provider.providerType">
                 One-Time - pick schedule as needed (i.e. babysitting, )
             </label>
         </div>
     </div>
 
-
     <hr />
-
-  
 
     <div class="text-center">
         <h3>Submit!</h3>
@@ -51,7 +54,7 @@
         <a class="btn btn-danger" ui-sref="provider.index">Discard</a>
     </div>
     </form> 
-
+    <pre>provider.type = {{provider.providerType | json}}</pre>
     <pre>provider = {{provider | json}}</pre>
     
      <pre>master = {{master | json}}</pre>

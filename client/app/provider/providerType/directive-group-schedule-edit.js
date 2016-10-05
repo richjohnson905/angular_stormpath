@@ -10,14 +10,17 @@ angular.module('yoStormApp')
             link: function (scope, element, attrs) {
                 if (scope.provider) {
                     switch(scope.provider.providerType) {
-                    case "group":
-                        scope.template = 'app/provider/providerType/group.html';
+                    case "groupOpen":
+                        scope.template = 'app/provider/providerType/group-open/group.html';
+                        break;
+                    case "groupClosed":
+                        scope.template = 'app/provider/providerType/group-closed/group.closed.html';
                         break;
                     case "oneTime":
-                        scope.template = 'app/provider/providerType/oneTime.html';
+                        scope.template = 'app/provider/providerType/once/oneTime.html';
                         break;
                     case "oneOnOne":
-                        scope.template = 'app/provider/providerType/oneOnOne.html';
+                        scope.template = 'app/provider/providerType/one-on-one/oneOnOne.html';
                         break;
                     }
                 }

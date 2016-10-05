@@ -61,7 +61,7 @@ angular.module('yoStormApp')
         .state('provider.pview.schedule', {
           // abstract: true,
           url: '/schedule',
-          templateUrl: 'app/provider/schedule/partial-provider-schedule-index.html',
+          templateUrl: 'app/provider/providerType/partial-provider-schedule-index.html',
           controller: 'ProviderScheduleCtrl',
           sp: {
             authenticate: true
@@ -70,7 +70,7 @@ angular.module('yoStormApp')
         /* Provider > Schedule New */
         .state('provider.pview.create',{
           url: '/create',
-          templateUrl: 'app/provider/schedule/partial-provider-schedule-edit.html',
+          templateUrl: 'app/provider/providerType/partial-provider-schedule-edit.html',
           controller: 'ProviderScheduleNewCtrl',
           sp: {
             authenticate: true
@@ -79,7 +79,7 @@ angular.module('yoStormApp')
         /* Provider > Schedule View */
         .state('provider.pview.sview',{
           url: '/:sid',
-          templateUrl: 'app/provider/schedule/partial-provider-schedule-view.html',
+          templateUrl: 'app/provider/providerType/partial-provider-schedule-view.html',
           controller: 'ProviderScheduleViewCtrl',
           sp: {
             authenticate: true
@@ -88,30 +88,39 @@ angular.module('yoStormApp')
         /* Provider > Schedule Edit */
         .state('provider.pview.edit',{
           url: '/:sid/edit',
-          templateUrl: 'app/provider/schedule/partial-provider-schedule-edit.html',
+          templateUrl: 'app/provider/providerType/partial-provider-schedule-edit.html',
           controller: 'ProviderScheduleEditCtrl',
           sp: {
             authenticate: true
           }
-        })
-          /* Provider > Schedule > dayView */
-          .state('provider.pview.sview.dayView',{
-            url: '/:day',
-            templateUrl: 'app/provider/schedule/partial-provider-schedule-day-view.html',
-            controller: 'ProviderScheduleHourCtrl',
-            sp: {
-              authenticate: true
-            }
-          })
+        });
+          /* Provider > Schedule > dayViewGroupOpen */
+          // .state('provider.pview.sview.dayViewGroupOpen',{
+          //   url: '/:day',
+          //   templateUrl: 'app/provider/providerType/partial-provider-schedule-group-day-view.html',
+          //   controller: 'ProviderScheduleHourCtrl',
+          //   sp: {
+          //     authenticate: true
+          //   }
+          // })
+          /* Provider > Schedule > dayViewOnceEdit */
+          // .state('provider.pview.sview.dayViewOnceEdit',{
+          //   url: '/:day',
+          //   templateUrl: 'app/provider/providerType/partial-provider-schedule-day-once-edit.html',
+          //   controller: 'ProviderScheduleHourCtrl',
+          //   sp: {
+          //     authenticate: true
+          //   }
+          // })
           /* Provider > Schedule > dayEdit */
-          .state('provider.pview.sview.dayEdit',{
-            url: '/:day/edit',
-            templateUrl: 'app/provider/schedule/partial-provider-schedule-day-edit.html',
-            controller: 'ProviderScheduleHourEditCtrl',
-            sp: {
-              authenticate: true
-            }
-          });
+          // .state('provider.pview.sview.dayEdit',{
+          //   url: '/:day/edit',
+          //   templateUrl: 'app/provider/providerType/partial-provider-schedule-day-edit.html',
+          //   controller: 'ProviderScheduleHourEditCtrl',
+          //   sp: {
+          //     authenticate: true
+          //   }
+          // });
   }).run(function($rootScope,$state,$stateParams){
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;

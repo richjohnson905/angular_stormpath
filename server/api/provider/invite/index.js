@@ -3,7 +3,7 @@
 var express = require('express');
 var controller = require('./invite.controller');
 
-var router = express.Router();
+var router = express.Router({mergeParams: true});
 
 router.get('/', controller.index);
 router.post('/', controller.create);

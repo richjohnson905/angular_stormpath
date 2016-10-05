@@ -93,11 +93,15 @@ angular.module('yoStormApp')
     }
   })
   /* SCHEDULE VIEW */
-  .controller('ProviderScheduleViewCtrl', function($scope, $http, $stateParams) {
+  .controller('ProviderScheduleViewCtrl', function($scope, $http, $stateParams, $state) {
     var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     $scope.dayModel = days;
+    
     $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
       $scope.schedule = schedule;
+      if ($scope.provider.providerType == 'oneTime') {
+        $state.go("provider.pview.sview.dayViewOnceEdit", {sid: $stateParams.sid});
+      }
     });
   })
   /* SCHEDULE EDIT */
@@ -122,12 +126,19 @@ angular.module('yoStormApp')
     $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
       $scope.schedule = schedule;
       $scope.providerId = $stateParams.pid;
-      
+      // if ($scope.provider.providerType == 'groupOpen') {
+      //   alert("group Open");
+      // } else if ($scope.provider.providerType == 'groupClosed') {
+      //   alert("group Closed");
+      // } else if ($scope.provider.providerType == 'oneOnOne') {
+      //   alert("one on one");
+      // } else {
+      //   alert("one time");
+      // }
     });
   }) 
   /* HOUR EDIT*/
   .controller('ProviderScheduleHourEditCtrl', function($scope, $http, $stateParams, $state) {
-    //$scope.hours = [];
     var pid = $stateParams.pid;
     var sid = $stateParams.sid;
     var day = $stateParams.day;
@@ -138,7 +149,7 @@ angular.module('yoStormApp')
     $scope.saveHours = function(day) {
       $http.post('api/provider/' + pid + '/schedule/' + sid + '/nut', {day: day.toLowerCase(), hours: $scope.hours, sid: sid})
         .success(function(){
-          $state.go('provider.pview.sview.dayView', {}, {reload: true});
+          $state.go('provider.pview.sview.dayViewGroupOpen', {}, {reload: true});
         })
         .error(function(err) {
           console.log('Error: ' + err);
