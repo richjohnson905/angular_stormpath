@@ -61,7 +61,7 @@ angular.module('yoStormApp')
         .state('provider.pview.schedule', {
           // abstract: true,
           url: '/schedule',
-          templateUrl: 'app/provider/partial-provider-schedule-index.html',
+          templateUrl: 'app/provider/schedule/partial-provider-schedule-index.html',
           controller: 'ProviderScheduleCtrl',
           sp: {
             authenticate: true
@@ -70,7 +70,7 @@ angular.module('yoStormApp')
         /* Provider > Schedule New */
         .state('provider.pview.create',{
           url: '/create',
-          templateUrl: 'app/provider/partial-provider-schedule-edit.html',
+          templateUrl: 'app/provider/schedule/partial-provider-schedule-edit.html',
           controller: 'ProviderScheduleNewCtrl',
           sp: {
             authenticate: true
@@ -79,7 +79,7 @@ angular.module('yoStormApp')
         /* Provider > Schedule View */
         .state('provider.pview.sview',{
           url: '/:sid',
-          templateUrl: 'app/provider/partial-provider-schedule-view.html',
+          templateUrl: 'app/provider/schedule/partial-provider-schedule-view.html',
           controller: 'ProviderScheduleViewCtrl',
           sp: {
             authenticate: true
@@ -88,7 +88,7 @@ angular.module('yoStormApp')
         /* Provider > Schedule Edit */
         .state('provider.pview.edit',{
           url: '/:sid/edit',
-          templateUrl: 'app/provider/partial-provider-schedule-edit.html',
+          templateUrl: 'app/provider/schedule/partial-provider-schedule-edit.html',
           controller: 'ProviderScheduleEditCtrl',
           sp: {
             authenticate: true
@@ -97,7 +97,7 @@ angular.module('yoStormApp')
           /* Provider > Schedule > dayView */
           .state('provider.pview.sview.dayView',{
             url: '/:day',
-            templateUrl: 'app/provider/partial-provider-schedule-day-view.html',
+            templateUrl: 'app/provider/schedule/partial-provider-schedule-day-view.html',
             controller: 'ProviderScheduleHourCtrl',
             sp: {
               authenticate: true
@@ -106,7 +106,7 @@ angular.module('yoStormApp')
           /* Provider > Schedule > dayEdit */
           .state('provider.pview.sview.dayEdit',{
             url: '/:day/edit',
-            templateUrl: 'app/provider/partial-provider-schedule-day-edit.html',
+            templateUrl: 'app/provider/schedule/partial-provider-schedule-day-edit.html',
             controller: 'ProviderScheduleHourEditCtrl',
             sp: {
               authenticate: true
