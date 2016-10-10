@@ -33,3 +33,20 @@ exports.show = function(req, res) {
   });
 };
 
+exports.update = function(req, res) {
+    models.Event.update(
+    {
+        date: req.body.date,
+        ConsumerId: req.body.ConsumerId,
+        message: req.body.message
+    },
+    {
+        where: { id : req.body.id }
+    })
+    .then(function (result) { 
+        console.log('Result: ' + result);
+        res.json(result);
+    }, function(rejectedPromiseError){
+        console.log('rejectedPromiseError: ' + rejectedPromiseError);
+    });
+}

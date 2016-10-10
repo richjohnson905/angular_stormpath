@@ -1,12 +1,10 @@
-<h3>Setup a one-time event</h3>
-
 
 <div>
-
+      <form>
       <div class="form-group" ng-class="{'has-error': dateForm.dt.$invalid}">
         <div class="radio" ng-repeat="invite in consumers">
           <label>{{invite.name}}</label>
-          <input type="radio" ng-model="activeConsumer.consumer" ng-value="invite"/>
+          <input type="radio" ng-model="activeConsumer.consumer" ng-value="invite" ng-change='newValue(invite)'/>
         </div>
         <br />
 

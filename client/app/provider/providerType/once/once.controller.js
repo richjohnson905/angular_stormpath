@@ -26,44 +26,55 @@ angular.module('yoStormApp')
     })
   /* ONCE EDIT */
   .controller('OnceEditCtrl', function($scope, $http, $state, $stateParams) {
-      $scope.dt = new Date();
+    $scope.dt = new Date();
     $http.get('api/provider/' + $stateParams.pid + '/invite').success(function(invites) {
         $scope.consumers = invites;
-    });
-    if ($stateParams.eid) {
-        $scope.isEdit = true;
-        $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid + '/pevent/' + $stateParams.eid).success(function(evt) {
-            $scope.activeConsumer = {}
-            for (var i = 0; i < $scope.consumers.length; i++) {
-                if ($scope.consumers[i].name == evt.Consumer.name) {
-                    $scope.activeConsumer.consumer = $scope.consumers[i];
-                }
+        $scope.$watch('activeConsumer.consumer', function(value) {
+            if (value) {
+            console.log(value);
+            $scope.evt.ConsumerId = value.id
             }
-            $scope.evt = evt;
-            $scope.dt = evt.date;
         });
-        $scope.processForm = function() {
-            $http.put('/api/provider/' + $stateParams.pid + '/' + $stateParams.sid + '/once/' + $stateParams.eid, $scope.event)
-            .success(function(data) {
-                $scope.event = data;
-                console.log(data);
-            })
-            .error(function(error) {
-                console.log('Error: ' + error);
+
+        if ($stateParams.eid) {
+            $scope.isEdit = true;
+            $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid + '/pevent/' + $stateParams.eid).success(function(evt) {
+                $scope.activeConsumer = {}
+                for (var i = 0; i < $scope.consumers.length; i++) {
+                    if ($scope.consumers[i].name == evt.Consumer.name) {
+                        $scope.activeConsumer.consumer = $scope.consumers[i];
+                    }
+                }
+                $scope.evt = evt;
+                $scope.dt = evt.date;
             });
+            $scope.processForm = function() {
+                $http.put('/api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid + '/pevent/' + $stateParams.eid, $scope.evt)
+                .success(function(data) {
+                    $scope.event = data;
+                    console.log(data);
+                })
+                .error(function(error) {
+                    console.log('Error: ' + error);
+                });
+            }
+        } else {
+            $scope.isCreate = true;
+            var evt = {}
+            evt.date = new Date();
+            evt.message = "add message here"
+            //evt.ConsumerId = $scope.consumers[0].id;
+            $scope.evt = evt;
+            $scope.activeConsumer = {}
+            $scope.activeConsumer.consumer = $scope.consumers[0];
+            $scope.processForm = function() {
+                var cid = $scope.consumerId;
+                $http.post('/api/consumer/' + cid + '/cevent', {cid: cid, sid: $stateParams.sid, dt: $scope.dt, message: $scope.message}).success(function(evt) {
+                    $state.go('provider.pview.sview.onceView', {eid: evt.id}, {reload: true});
+                });
+            }
         }
-    } else {
-        $scope.isCreate = true;
-        
-        $scope.consumers = invites;
-        $scope.processForm = function() {
-            var cid = $scope.consumerId;
-            $http.post('/api/consumer/' + cid + '/cevent', {cid: cid, sid: $stateParams.sid, dt: $scope.dt, message: $scope.message}).success(function(evt) {
-                $state.go('provider.pview.sview.onceView', {eid: evt.id}, {reload: true});
-            });
-        }
-    }
-    
+    });
     $scope.dt.setMinutes(0);
 
     $scope.hstep = 1;
