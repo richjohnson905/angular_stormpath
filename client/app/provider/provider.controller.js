@@ -100,7 +100,9 @@ angular.module('yoStormApp')
     $http.get('api/provider/' + $stateParams.pid + '/schedule/' + $stateParams.sid).success(function(schedule) {
       $scope.schedule = schedule;
       if ($scope.provider.providerType == 'oneTime') {
-        $state.go("provider.pview.sview.dayViewOnceEdit", {sid: $stateParams.sid});
+        $state.go("provider.pview.sview.onceView", {sid: $stateParams.sid});
+      } else if ($scope.provider.providerType == 'oneOnOne') {
+        $state.go("provider.pview.sview.oneOnOneEdit", {sid: $stateParams.sid});
       }
     });
   })

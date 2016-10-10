@@ -5,8 +5,8 @@ angular.module('yoStormApp')
     $stateProvider
       /* One On One Edit */
       .state('provider.pview.sview.oneOnOneEdit', {
-        url: '/once',
-        templateUrl: 'app/provider/providerType/once/partial-provider-schedule-oneOnOne-edit.html',
+        url: '/one-on-one',
+        templateUrl: 'app/provider/providerType/one-on-one/partial-provider-schedule-oneOnOne-edit.html',
         controller: 'OneOnOneEditCtrl',
         sp: {
 	        authenticate: true

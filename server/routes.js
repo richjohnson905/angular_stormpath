@@ -17,11 +17,14 @@ module.exports = function(app) {
   app.use('/api/provider/:pid/invite', ExpressStormpath.loginRequired, require('./api/provider/invite'));
   app.use('/api/provider/:pid/schedule/:sid/nut', ExpressStormpath.loginRequired, require('./api/provider/schedule/nut'));
   app.use('/api/provider/:pid/schedule/:sid/nut/:did', ExpressStormpath.loginRequired, require('./api/provider/schedule/nut'));
+  app.use('/api/provider/:pid/schedule/:sid/pevent', ExpressStormpath.loginRequired, require('./api/provider/schedule/pevent'));
 
   app.use('/api/consumer', ExpressStormpath.loginRequired, require('./api/consumer'));
   app.use('/api/consumer/:cid/wired', ExpressStormpath.loginRequired, require('./api/consumer/wired'));
+  app.use('/api/consumer/:cid/cevent', ExpressStormpath.loginRequired, require('./api/consumer/cevent'));
 
   app.use('/api/wire', ExpressStormpath.loginRequired, require('./api/consumer/wired'));
+  // app.use('/api/event', ExpressStormpath.loginRequired, require('./api/consumer/event'));
 
   app.use('/api/todo', ExpressStormpath.loginRequired, require('./api/todo'));
   app.use('/api/thing', require('./api/thing'));

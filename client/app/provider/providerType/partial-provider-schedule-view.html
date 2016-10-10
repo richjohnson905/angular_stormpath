@@ -23,11 +23,17 @@
             <li ng-repeat="type in dayModel" ui-sref="provider.pview.sview.groupopen({day:type})" ui-sref-active="active"><a>{{type}}</a></li>
         </ul>
     </div>
-    <div ng-switch-default>
-        <!-- code to render group closed block -->
+    <div ng-switch-when="groupClosed">
+        <!-- code to render group closed block-->
         <ul class="nav nav-tabs">
             <li ng-repeat="type in dayModel" ui-sref="provider.pview.sview.groupclosed({day:type})" ui-sref-active="active"><a>{{type}}</a></li>
         </ul>
+    </div>
+    <div ng-switch-when="oneOnOne">
+        <!-- code to render one on one block -->
+        <!--<ul class="nav nav-tabs">
+            <li ng-repeat="type in dayModel" ui-sref="provider.pview.sview.groupclosed({day:type})" ui-sref-active="active"><a>{{type}}</a></li>
+        </ul>-->
     </div>
 </div>
 

@@ -2,7 +2,8 @@
 
 module.exports = function(sequelize, DataTypes) {
     var Event = sequelize.define('Event', {
-        date: DataTypes.DATE
+        date: DataTypes.DATE,
+        message: DataTypes.STRING
     },{
         classMethods: {
             associate: function(models) {

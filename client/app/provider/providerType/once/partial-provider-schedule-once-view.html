@@ -1,0 +1,15 @@
+
+
+<h5> Event Date: {{event[0].date}} </h5>
+Event message: {{event[0].message}} <br />
+Event consumer: {{event[0].Consumer.name}} <br />
+
+<div ng-if="isEdit">
+    <a class="btn btn-primary" ui-sref="provider.pview.sview.onceEdit({eid: event[0].id})">Edit</a>
+</div>
+
+<div ng-if="isCreate">
+    <a class="btn btn-primary" ui-sref="provider.pview.sview.onceCreate">Create</a>
+</div>
+
+<pre> event = {{event | json}}</pre>

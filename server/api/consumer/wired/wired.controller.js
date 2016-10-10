@@ -3,13 +3,8 @@
 var _ = require('lodash');
 var models = require('../../../models');
 
-// Get list of consumers
+// Get list of wired groups
 exports.index = function(req, res) {
-  console.log('Consumer associations:', Object.keys(models.Consumer.associations))
-  console.log('Provider associations:', Object.keys(models.Provider.associations))
-  console.log('Schedule associations:', Object.keys(models.Schedule.associations))
-  console.log('Wired associations:', Object.keys(models.WiredGroup.associations))
-  console.log('Nut associations:', Object.keys(models.Nut.associations))
 
   models.WiredGroup.findAll({
     include: [
