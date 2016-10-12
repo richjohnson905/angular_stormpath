@@ -17,7 +17,7 @@ angular.module('yoStormApp')
   /* PROVIDER NEW */
   .controller('ProviderNewCtrl', function($scope, $http, $state) {
     $scope.processForm = function() {
-      $http.post('/api/provider/', {name: $scope.provider.name, address: $scope.provider.address, phone: $scope.provider.phone, providerType: $scope.provider.type})
+      $http.post('/api/provider/', {name: $scope.provider.name, address: $scope.provider.address, phone: $scope.provider.phone, providerType: $scope.provider.providerType})
         .success(function(){
           $state.go('provider.index', {}, {reload: true});
         })
